@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('mensagens', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('email');
+            $table->text('mensagem');
             $table->timestamps();
         });
     }

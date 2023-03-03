@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('dadosdefesa', function (Blueprint $table) {
             $table->id();
+            $table->string('nome_estudante');
+            $table->string('foto');
+            $table->string('declaracao_nota');
+            $table->string('monografia');
+            $table->string('curriculum');
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('monografia', function (Blueprint $table) {
             $table->id();
+            $table->string('autor');
+            $table->string('tema');
+            $table->string('curso');
+            $table->text('resumo');
+            $table->string('nivel');
+            $table->string('supervisor');
+            $table->string('ficheiro');
             $table->timestamps();
         });
     }

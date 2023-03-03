@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('docente', function (Blueprint $table) {
             $table->id();
+            $table->tinynt('is_docente','1');
+            $table->tinynt('is_admin', '1');
             $table->timestamps();
         });
     }

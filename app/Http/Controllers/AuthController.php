@@ -34,7 +34,8 @@ class AuthController extends Controller
     public function storeEstudante(Request $request)
     {
         $utilizador = new User();
-        $utilizador->user_nome = $request->input('user_estudante');
+        $utilizador->num_estudante = $request->input('num_estudante');
+        $utilizador->regime = $request->input('regime');
     
     }
 
