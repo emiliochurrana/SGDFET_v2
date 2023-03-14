@@ -9,7 +9,8 @@ class Comentario extends Model
 {
     use HasFactory;
 
-    public function user(){
-        return $this->belongsTo('App\Models\User');
+    public function estudante(){
+
+        return $this->belongsTo('App\Models\Estudante');
     }
 }

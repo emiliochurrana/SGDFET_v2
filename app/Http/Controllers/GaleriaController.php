@@ -47,6 +47,7 @@ class GaleriaController extends Controller
 
         $galeria->titulo = $request->input('titulo');
         $galeria->data = $request->input('data');
+        
         $galeria->descricao = $request->input('descricao');
 
         $galeria->save();

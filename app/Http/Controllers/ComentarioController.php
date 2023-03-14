@@ -36,6 +36,7 @@ class ComentarioController extends Controller
         $comentario->mensagem = $request->input('mensagem');
         $user = auth()->user();
         $comentario->id_estudante = $user->id;
+        
         $comentario->save();
     }
 

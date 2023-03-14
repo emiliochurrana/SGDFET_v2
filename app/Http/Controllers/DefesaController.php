@@ -42,6 +42,8 @@ class DefesaController extends Controller
         $defesa->data = $request->input('data');
         $defesa->hora = $request->input('hora');
 
+        $defesa->save();
+
     }
 
     /**

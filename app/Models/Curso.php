@@ -10,6 +10,7 @@ class Curso extends Model
     use HasFactory;
 
     public function estudante(){
+        
         return $this->hasMany('App\Models\Estudante');
     }
 }

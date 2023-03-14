@@ -83,5 +83,6 @@ class NoticiasController extends Controller
     public function destroy(string $id)
     {
         //
+        
     }
 }

@@ -75,5 +75,6 @@ class AuthController extends Controller
         Session::forget('user');
         return redirect()->route('home');
     }
+    
    
 }

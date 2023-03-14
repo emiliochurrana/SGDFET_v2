@@ -30,7 +30,25 @@ class Estudante extends Model
     }
 
     public function docente(){
+
         return $this->belongsTo('App\Models\Docente');
+
     }
+
+    public function defesa(){
+
+        return $this->belongsTo('App\Models\Defesa');
+
+    }
+
+    public function monografia(){
+
+        return $this->belongsTo('App\Models\Monografia');
+
+    }
+    public function cometario(){
+        return $this->hashMany('App\Models\Comentario');
+    }
+
 
 }

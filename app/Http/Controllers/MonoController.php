@@ -49,6 +49,7 @@ class MonoController extends Controller
         
         $mono->save();
     }
+    
 
     /**
      * Display the specified resource.

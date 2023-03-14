@@ -31,6 +31,7 @@ Route::get('/usuario/editar/{user}', [UserController::class],'formEditDocente')-
 Route::get('/monografia/{id}', [MonoController::class, 'download'])->middleware('auth');
 Route::get('/monografias/{id}', [MonoController::class, 'showMonografia']);
 Route::get('/defesas/{id}', [DefesaController::class, 'showDefesa']);
+//Route::get('/dashboard', [MonoController::class, 'dashboard'])->middleware('auth');
 
 //POST
 Route::post('/usuario/estudante', [UserController::class],'storeEstudante')->name('user.storeEstudante');
@@ -43,8 +44,6 @@ Route::post('/estudante', [UserController::class,'storeEstudante']);
 Route::post('/docente', [UserController::class, 'storeDocente']);
 Route::post('/admin', [UserController::class, 'storeAdmin']);
 Route::delete('/monografia/{id}', [MonoController::class, 'destroy']);
-
-//Route::get('/dashboard', [MonoController::class, 'dashboard'])->middleware('auth');
 
 //PUT/PUTCH
 Route::put('/usuario/editestudante/{user}', [UserController::class], 'editEstudante')->name('users.editestudante');

@@ -33,11 +33,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    public function cometario(){
-        return $this->hashMany('App\Models\Comentario');
-    }
-
+   
     public function estudante(){
         return $this->hasMany('App\Models\Estudante');
     }

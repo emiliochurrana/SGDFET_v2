@@ -34,6 +34,7 @@ class DadosController extends Controller
             
             // upload de foto 
             if($request->hasFile('foto') && $request->file('foto')->isValid()){
+                
 
                 $requestImage = $request->foto;
 

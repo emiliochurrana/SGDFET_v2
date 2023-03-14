@@ -33,6 +33,7 @@ class CursoController extends Controller
         $curso->nome = $request->input('nome');
 
         $curso->save();
+        
     }
 
     /**

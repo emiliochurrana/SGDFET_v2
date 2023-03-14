@@ -80,6 +80,7 @@ class UserController extends Controller
     
     
     }
+    
 
     //-------------------------------------------------Cadastro de docente---------------------------------
     public function formAddDocente(){
