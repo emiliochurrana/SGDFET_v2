@@ -16,8 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_active','1');
+            $table->string('username');
             $table->string('password');
+            $table->boolean('is_active');
+            $table->boolean('is_estudante');
+            $table->boolean('is_docente');
+            $table->boolean('is_admin');
+            $table->boolean('is_drcurso');
             $table->rememberToken();
             $table->timestamps();
         });

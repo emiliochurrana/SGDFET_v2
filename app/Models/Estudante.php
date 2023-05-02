@@ -4,51 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Estudante extends Model
 {
     use HasFactory;
 
+    protected $table = 'estudantes';
     protected $fillable = [
 
+        'id_user',
+        'id_docente',    
         'num_estudante',
-        'regime',
-        'ano_ingresso',
-        'supervisor',
+        'foto',
         'curso',
-        'is_estudante',
-
+        'supervisor',
+        'regime',
+        'ano_ingresso'
     ];
 
-    public function user(){
+    protected $grarded = [];
 
-        return $this->hasMany('App\Models\User');
+    public function userEstudante(): BelongsTo{
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
-    public function curso(){
-      return $this->belongsTo('App\Models\Curso');  
+    public function docenteEstudante(): BelongsTo{
+        return $this->belongsTo(User::class, 'id_docente', 'id');
     }
-
-    public function docente(){
-
-        return $this->belongsTo('App\Models\Docente');
-
-    }
-
-    public function defesa(){
-
-        return $this->belongsTo('App\Models\Defesa');
-
-    }
-
-    public function monografia(){
-
-        return $this->belongsTo('App\Models\Monografia');
-
-    }
-    public function cometario(){
-        return $this->hashMany('App\Models\Comentario');
-    }
-
-
 }

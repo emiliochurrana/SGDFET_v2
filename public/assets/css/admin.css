@@ -1,0 +1,20 @@
+.navbar.navbar-light.navbar-expand.bg-white.shadow.mb-4.topbar.static-top {
+  background-color: #4ec5df;
+  background-image: linear-gradient(180deg,#4ec5df 10%,#228fbe);
+}
+
+.d-none.d-lg-inline {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  padding-right: 8px;
+}
+
+.font-weight-bold.m-0 {
+  color: #54b5fb;
+}
+
+.form-control {
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
+

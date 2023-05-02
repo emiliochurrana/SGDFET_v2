@@ -2,29 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use Illuminate\Http\Request;
 use App\Models\Galeria;
+use Illuminate\Http\Response;
 
 class GaleriaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Funcao para listar todos dados da galeria.
      */
     public function index()
     {
-        //
+        $galerias = Galeria::all();
+        return view('admin.galeria', ['galerias' => $galerias]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Funcao para carregar o formulario de cadastro da galeria.
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Funcao para salvar dados da galeria.
      */
     public function store(Request $request)
     {
@@ -38,9 +41,9 @@ class GaleriaController extends Controller
 
             $extension = $requestImage->extension();
 
-            $imageName=md5($requestImage->foto->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $imageName=md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $request->foto->move(public_path('ficheiros/fotos/galeria'), $imageName);
+            $request->foto->move(public_path('ficheiros/galeria'), $imageName);
 
             $galeria->foto = $imageName;
         }
@@ -50,39 +53,70 @@ class GaleriaController extends Controller
         
         $galeria->descricao = $request->input('descricao');
 
-        $galeria->save();
+
+        if($galeria->save()){
+            return redirect()->route('galeriaview')->with(['Mensagem' => 'Galeria cadastrada com sucesso!'], Response::HTTP_OK);
+        }else{
+            return redirect()->route('newgaleria')->with(['Mensagem' => 'Erro ao cadastrar galeria!'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
 
     }
 
     /**
-     * Display the specified resource.
+     * Funcao para visualizar dados da galeria.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $galeria = Galeria::findOrFail($id);
+        return view('admin.showgaleria', ['galeria' => $galeria]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Funcao para carregar o formulario para editar dados da galeria.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $galeria = Galeria::findOrFail($id);
+        return view('admin.editgaleria', ['galeria' => $galeria]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Funcao para actualizar dados da galeria.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request)
+    { 
+        $data = $request->all();
+        $requestid =$request->id_drcurso;
+        $data['id_drcurso'] = $requestid;
+        //upload de foto 
+        if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+            $requestImage = $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName=md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('ficheiros/galeria'), $imageName);
+
+            $data['foto'] = $imageName;
+        }
+        $galeria = Galeria::findOrFail($request->id)->update($data);
+        if($galeria){
+
+            return redirect()->route('galeriaview')->with(['msgSucessUpdate' => 'Galeria actualizada com sucesso!'], Response::HTTP_OK);
+        }else{
+            return redirect()->route('editgaleria')->with(['msgErrorUpdate' => 'Erro ao actualizar a galeria!'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Funcao para eliminar dados da galeria.
      */
     public function destroy(string $id)
     {
-        //
+        Galeria::findOrFail($id)->delete();
+
+        return redirect()->route('galeriaview')->with(['Mensagem' => 'Galeria eliminada com sucesso!'], Response::HTTP_OK);
     }
 }
