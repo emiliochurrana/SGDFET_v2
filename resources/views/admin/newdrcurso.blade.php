@@ -238,22 +238,28 @@
                     <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-top: 20px;margin-right: 20px;margin-bottom: 0px;margin-left: 20px;">Novo Dr. do curso<br></h2>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorStore'))
-                            <strong>{{ session('msgErrorStore') }}</strong>
-                            @endif
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorPass'))
-                            <strong>{{ session('msgErrorPass') }}</strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgPass'))
-                            <strong>{{ session('msgPass') }}</strong>
-                            @endif
-                        </div>
-                        </div>
-                    </main>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgErrorStore'))
+                                    <p class="msg"><Strong>{{session('msgErrorStore')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgErrorPass'))
+                                    <p class="msg"><Strong>{{session('msgErrorPass')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgPass'))
+                                    <p class="msg"><Strong>{{session('msgPass')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                        </main>
                     <form style="padding: 40px;" method="post" role="form" action="{{ ('/usuario/drcurso') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group d-flex justify-content-center align-items-center">

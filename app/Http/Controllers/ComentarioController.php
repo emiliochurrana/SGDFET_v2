@@ -60,9 +60,9 @@ class ComentarioController extends Controller
         $user = auth()->user();
         $comentario->id_estudante = $user->id;
         if($comentario->save()){
-            return redirect('/inicio')->with('msgSucess', 'Comentario enviado com sucesso');
+            return redirect()->back()->with('msgSucess', 'Comentario enviado com sucesso');
         }else{
-            return redirect('/inicio')->with('msgError', 'Erro no envio do comentario');
+            return redirect()->back()->with('msgError', 'Erro no envio do comentario');
         }
     }
     
@@ -81,9 +81,9 @@ class ComentarioController extends Controller
        // $user = auth()->user();
         $comentario->id_estudante = '2';
         if($comentario->save()){
-            return redirect('/')->with('msgSucess', 'Comentario enviado com sucesso');
+            return redirect()->back()->with('msgSucess', 'Comentario enviado com sucesso');
         }else{
-            return redirect('/')->with('msgError', 'Erro no envio do comentario');
+            return redirect()->back()->with('msgError', 'Erro no envio do comentario');
         }
     }
 

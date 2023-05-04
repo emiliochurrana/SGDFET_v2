@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Defesa;
 use App\Models\DefesaDocente;
+use App\Models\User;
 use Illuminate\Http\Response;
+use mysqli;
+
 class DefesaController extends Controller
 {
     /**
@@ -51,10 +54,38 @@ class DefesaController extends Controller
     /**
      * Funcao para carregar o formulario de cadastro de uma nova defesa.
      */
-    public function create()
-    {
-        return view('admin.newedefesa');
+    public function retorna(Request $request){
+        $search = $request->username;
+        if($search == ''){
+            $estudantes = User::orderby('name', 'asc')->where(['is_estudante' => 1])->select('id', 'name', 'username')->limit(1)->get();
+        }else{
+            $estudantes = User::with('estudanteUser')->orderby('name', 'asc')->select('id', 'name', 'username')
+            ->where(['username'=> $search])->limit(1)->get();
+        }
+
+        $response = array();
+        foreach($estudantes as $estudante){
+            $response[] = array("num_estudante" => $estudante->estudanteUser->numestudante);
+            $response[] = array("id_estudante" => $estudante->id);
+            $response[] = array("name" => $estudante->name);
+            $response[] = array("curso" => $estudante->estudanteUser->curso);
+            $response[] = array("supervisor" => $estudante->estudanteUser->supervisor); 
+            $response[] = array("nivel" => $estudante->estudanteUser->nivel);
+            $response[] = array("regime" => $estudante->estudanteUser->regime); 
+            
+        }
+        return response()->json($response);
     }
+
+
+ 
+    public function create()
+    {    
+        $docentes = User::with('docenteUser')->where('is_docente', 1)->get();
+        return view('admin.newdefesa', ['docentes' => $docentes]);
+    }
+
+    
 
 
     /**
@@ -129,15 +160,15 @@ class DefesaController extends Controller
     public function update(Request $request)
     {
       
-      Defesa::findOrFail($request->id)->update($request->all());
+      $defesa = Defesa::findOrFail($request->id)->update($request->all());
 
-      if($request->all()){
+      if($defesa){
 
-                return redirect()->route('defesaview')->with('Mensagem', 'Dados da defesa actualizados com sucesso!');
+                return redirect()->route('defesaview')->with('msgSucessUpdate', 'Dados da defesa actualizados com sucesso!');
 
         } else{
 
-                return redirect()->route('editdefesa')->with('Mensagem', 'Erro na actualizacao do dados da defesa!');
+                return redirect()->back()->with('msgErrorUpdate', 'Erro na actualizacao do dados da defesa!');
 
       }
 
@@ -151,7 +182,7 @@ class DefesaController extends Controller
     {
         Defesa::findOrFail($id)->delete();
         
-        return redirect()->route('defesasview')->with('Mensagem', 'Defesa eliminada com sucesso!');
+        return redirect()->route('defesasview')->with('msgSucessDelete', 'Defesa eliminada com sucesso!');
      
     }
 }

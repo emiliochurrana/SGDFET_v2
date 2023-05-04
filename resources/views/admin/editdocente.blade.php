@@ -11,59 +11,59 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_docente)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                    </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_docente)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                </li>
 
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                    @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
                     @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                    </li>
-                    @if(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                        @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    </li>
-                    @endif
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                    </li>
-                    </li>
-                    @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                    </li>
-                    @endif
-                </ul>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                @endif
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                </li>
+                </li>
+                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                </li>
+                @endif
+            </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
     </nav>
@@ -190,20 +190,33 @@
                     <h2 style="margin-bottom: 15px;color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar {{$docente->userDocente->name}}<br></h2>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorUpdate'))
-                            <Strong>{{session('msgErrorUpdate')}}</Strong>
-                            @endif
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgErrorUpdate'))
+                                <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
                             @if(session('msgIncorrecta'))
-                            <Strong>{{session('msgIncorrecta')}}</Strong>
+                            <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
                             @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
                             @if(session('password_actual'))
-                            <Strong>{{session('password_actual')}}</Strong>
+                            <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
                             @endif
+                            </div>
+                        </div>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                            @if(session('msgError'))
+                            <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
+                            @endif
+                            </div>
                         </div>
                     </main>
 
@@ -231,12 +244,12 @@
                         </div>
                         <div class="form-group d-flex justify-content-center align-items-center">
                             <label style="margin-right: 5px;width: 200px;color: #000000;">Confirme Nova Senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in"  data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" name="confirm_password">
+                            <input class="shadow form-control" type="password" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" name="confirm_password">
                         </div>
                         <div class="form-check" style="padding-bottom: 10px;">
                             <input class="form-check-input" type="checkbox" value="1" id="formCheck-1" name="is_active" <?php if ($docente->userDocente->is_active) {
-                                                                                                                                                                echo "checked";
-                                                                                                                                                            } ?>>
+                                                                                                                            echo "checked";
+                                                                                                                        } ?>>
                             <label class="form-check-label" for="formCheck-1" style="color: #999999;">Activo</label>
                         </div>
                         <div class="form-group d-flex justify-content-end align-items-end">

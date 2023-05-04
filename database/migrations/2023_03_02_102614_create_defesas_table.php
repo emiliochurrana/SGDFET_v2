@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('curso');
             $table->text('resumo');
             $table->string('nivel');
+            $table->string('regime');
             $table->string('supervisor');
             $table->string('oponente');
             $table->string('presidente');

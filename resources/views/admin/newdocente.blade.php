@@ -42,7 +42,7 @@
                     @if(auth()->user()->is_drcurso)
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                        @endif
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                     </li>
@@ -203,26 +203,26 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow" role="presentation">
-                            <div class="nav-item dropdown no-arrow">
-                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
-                                    <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
-                                    @if(auth()->user()->is_docente)
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                                        <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
+                                        @if(auth()->user()->is_docente)
                                         <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                         @elseif(auth()->user()->is_drcurso)
                                         <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                         @elseif(auth()->user()->is_admin)
                                         <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                         @endif
-                                </a>
-                                <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                    <a class="dropdown-item" role="presentation" href="/usuario/perfil/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
-                                    <!--<a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
+                                    </a>
+                                    <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                                        <a class="dropdown-item" role="presentation" href="/usuario/perfil/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                        <!--<a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                     <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>-->
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" role="presentation" href="{{ ('/usuario/logout') }}"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" role="presentation" href="{{ ('/usuario/logout') }}"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -231,20 +231,26 @@
                         <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-top: 20px;margin-right: 20px;margin-bottom: 0px;margin-left: 20px;">Novo Docente<br></h2>
                         <hr style="background-color: #3ba2dc;margin-top: 5px;">
                         <main>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                @if(session('msgErrorStore'))
-                                <Strong>{{session('msgErrorStore')}}</Strong>
-                                @endif
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgErrorStore'))
+                                    <p class="msg"><Strong>{{session('msgErrorStore')}}</Strong></p>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                @if(session('msgErrorPass'))
-                                <Strong>{{session('msgErrorPass')}}</Strong>
-                                @endif
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgErrorPass'))
+                                    <p class="msg"><Strong>{{session('msgErrorPass')}}</Strong></p>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                @if(session('msgPass'))
-                                <Strong>{{session('msgPass')}}</Strong>
-                                @endif
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgPass'))
+                                    <p class="msg"><Strong>{{session('msgPass')}}</Strong></p>
+                                    @endif
+                                </div>
                             </div>
                         </main>
 

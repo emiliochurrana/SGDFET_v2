@@ -67,7 +67,7 @@ use Illuminate\Support\Facades\Route;
         })->middleware('auth'); //rota para retornar a pagina gagina inicial apos login 
         
         Route::get('/inicio',[NoticiasController::class, 'indexNoticia']);
-        Route::get('/', [NoticiasController::class, 'indexNoticia']);
+        //Route::get('/', [NoticiasController::class, 'indexNoticia']);
 
         Route::get('/usuario/notificacoes', function(){
             return view('usuario.notificacoes');
@@ -106,6 +106,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('/defesa/edit/{id}', [DefesaController::class, 'edit'])->name('editdefesa')->middleware('auth'); //rota para carregar o formulario para editas dados da defesa
             Route::get('/defesa/show/{id}', [DefesaController::class, 'show'])->name('showdefesa')->middleware('auth'); //rota para trazer de forma detalhada os dados de uma determinada defesa 
             Route::get('/defesas/pesquisadefesa', [DefesaController::class,'pesquisa']); //rota de pesquisa de Defesas
+            Route::get('/estudante/defesa', [DefesaController::class, 'retorna'])->name('getestudante');
 
             Route::get('/comentarios', [ComentarioController::class, 'index'])->name('comentarios')->middleware('auth');
 

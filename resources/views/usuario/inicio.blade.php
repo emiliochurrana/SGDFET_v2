@@ -105,89 +105,89 @@
                     <small class="form-text text-left text-light" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #ffffff;font-size: 16px;margin-bottom: 4px;margin-right: 5px;">
                         Submeta já a tua defesa dando um click no&nbsp;botão <br>
                     </small>
-                    
+
                     <form method="post" role="form" action="/dados" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal fade centro" role="dialog" tabindex="-1" id="modal">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h6 style="color: rgb(134,134,135);">Submeta</h6>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-
-                                <form>
-                                <div class="modal-body">
-                                    <h3 class="titulos" style="color: rgb(127,129,132);">Formulário de Submissão: </h3> 
-                                    <div class="col text-left d-flex padMar">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Bi</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" placeholder="click aqui" name="bi">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
-
-                                        </div>
+                        @csrf
+                        <div class="modal fade centro" role="dialog" tabindex="-1" id="modal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 style="color: rgb(134,134,135);">Submeta</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
                                     </div>
-                                    <div class="col text-left d-flex padMar">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Declaração de Notas</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" placeholder="click aqui" name="declaracao_nota">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12 d-flex">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Monografia</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="monografia">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
+                                    <form>
+                                        <div class="modal-body">
+                                            <h3 class="titulos" style="color: rgb(127,129,132);">Formulário de Submissão: </h3>
+                                            <div class="col text-left d-flex padMar">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Upload de Bi</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" placeholder="click aqui" name="bi">
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Curriculum Vitae</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="curriculum">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
+                                                </div>
                                             </div>
+                                            <div class="col text-left d-flex padMar">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Upload de Declaração de Notas</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" placeholder="click aqui" name="declaracao_nota">
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 d-flex">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Upload de Monografia</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" name="monografia">
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                    <span class="input-group-addon btn btn-default btn-file">
+                                                        <span class="fileinput-new">Upload de Curriculum Vitae</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" name="curriculum">
+                                                    </span>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                                    <div class="form-control" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-sm text-white-50 border rounded btn-Oscuro" type="submit" style="background-color: #2a81a6;color: #f4eeee;">Submeter</button>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-sm text-white-50 border rounded btn-Oscuro" type="submit" style="background-color: #2a81a6;color: #f4eeee;">Submeter</button>
+                                        </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </form>
 
                     <button class="btn btn-sm text-body border rounded border-success shadow-lg btn-Oscuro" data-bs-hover-animate="tada" data-toggle="modal" data-target="#modal" type="button" style="background-color: #ffffff;">Submeter</button>
@@ -196,32 +196,83 @@
         </div>
     </section>
     <section class="text-center" style="margin-top: 30px;background-repeat: no-repeat;background-size: cover;">
-        <div class="container" style="background-image: url(&quot;../img/fundo3.png&quot;);background-size: cover;background-repeat: no-repeat;max-width: 100%;background-position: center;padding-top: 150px;padding-bottom: 200px;">
+        <div class="container" style="background-image: url(&quot;/../img/fundo3.png&quot;);background-size: cover;background-repeat: no-repeat;max-width: 100%;background-position: center;padding-top: 100px;padding-bottom: 200px;">
             <div class="row text-justify">
                 <div class="col" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="padding-left: 40px;">
                     <h2 style="color: #68c7ef;font-family: 'Titillium Web', sans-serif;font-weight: bold;">FET Noticias</h2>
                     <hr style="background-color: #68c7ef;margin-top: 5px;">
                 </div>
-   
                 <div class="col-auto col-lg-12 offset-xl-0 text-center d-xl-flex justify-content-xl-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
                 @foreach($noticias as $noticia)
                     <figure class="snip1527">
                         <div class="image">
-                            <img src="/ficheiros/noticias/{{($noticia->foto)}}" alt="pr-sample23" />
+                            <img src="/ficheiros/noticias/{{$noticia->foto}}" alt="pr-sample23" />
                         </div>
                         <figcaption>
                             <div class="date">
-                                <span class="day">{{date('d', strtotime($noticia->data))}}</span>
-                                <span class="month">{{date('m', strtotime($noticia->data))}}</span>
+                                <span class="day"> {{date('d', strtotime($noticia->data))}}</span>
+                                <span class="month"> {{date('m', strtotime($noticia->data))}}</span>
                             </div>
-                            <h3>The World Ended Yesterday</h3>
-                            <p>
+                            <h3>{{$noticia->titulo}}</h3>
+                            <!--<p>
+
                                 You know what we need, Hobbes? We need an attitude. Yeah, you can't be cool if you don't have an attitude.
+                            </p>-->
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                    @endforeach
+                   <!-- <figure class="snip1527 hover">
+                        <div class="image">
+                            <img src="/../img/pr-sample24.jpg" alt="pr-sample24" />
+                        </div>
+                        <figcaption>
+                            <div class="date">
+                                <span class="day">17</span>
+                                <span class="month">Nov</span>
+                            </div>
+                            <h3>An Abstract Post Heading</h3>
+                            <p>
+
+                                Sometimes the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.
                             </p>
                         </figcaption>
                         <a href="#"></a>
                     </figure>
-                   @endforeach
+                    <figure class="snip1527">
+                        <div class="image">
+                            <img src="/../img/pr-sample25.jpg" alt="pr-sample25" />
+                        </div>
+                        <figcaption>
+                            <div class="date">
+                                <span class="day">01</span>
+                                <span class="month">Dec</span>
+                            </div>
+                            <h3>Down with this sort of thing</h3>
+                            <p>
+
+                                I don't need to compromise my principles, because they don't have the slightest bearing on what happens to me anyway.
+                            </p>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                    <figure class="snip1527">
+                        <div class="image">
+                            <img src="/../img/pr-sample23.jpg" alt="pr-sample23" />
+                        </div>
+                        <figcaption>
+                            <div class="date">
+                                <span class="day">28</span>
+                                <span class="month">Oct</span>
+                            </div>
+                            <h3>The World Ended Yesterday</h3>
+                            <p>
+
+                                You know what we need, Hobbes? We need an attitude. Yeah, you can't be cool if you don't have an attitude.
+                            </p>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>-->
                 </div>
             </div>
             <div class="row text-center" style="margin-bottom: 20px;margin-top: 30px;margin-right: 0px;margin-left: 0px;padding-right: 0px;padding-left: 0px;max-width: 100%;">
@@ -238,10 +289,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-2.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-2.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
                                                                 <h3 class="name-imagia" style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-size: 16px;font-weight: bold;">Nunes Jose Churrana</h3>
@@ -278,10 +329,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-1.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="footer-imagia">
                                                                 <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
@@ -322,45 +373,43 @@
                         </div>
                         <div>
                             <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev" style="max-width: 90px;">
-                                <span class="carousel-control-prev-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/back_48px.png&quot;);"></span>
+                                <span class="carousel-control-prev-icon" style="width: 50px;height: 50px;background-image: url(&quot;/../img/back_48px.png&quot;);"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/forward_48px.png&quot;);"></span>
+                                <span class="carousel-control-next-icon" style="width: 50px;height: 50px;background-image: url(&quot;/../img/forward_48px.png&quot;);"></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
                     </div>
-                    <section>
-
-                    </section>
                 </div>
                 <div class="col-lg-6 col-xl-5 offset-xl-0" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="padding-left: 0px;padding-right: 0px;">
-                <!--<div class="col-lg-6 col-xl-5 offset-xl-0" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="padding-right: 5px;">-->
                     <h2 class="text-justify" style="color: #1e2671;font-weight: bold;max-width: 100%;margin-bottom: 25px;">Galeria</h2>
+                    
                     <div class="carousel slide carousel-fade shadow-lg" data-ride="carousel" data-aos="flip-left" data-aos-duration="450" data-aos-delay="450" id="carousel-4" style="border-radius: .90rem!important;">
-                        <div class="carousel-inner" role="listbox">
-                        @foreach($galerias as $galeria)
-                            <div class="carousel-item active">
+                    <div class="carousel-item active">
+                    </div>
+                    <div class="carousel-inner" role="listbox">
+                            @foreach($galerias as $galeria)
+                            <div class="carousel-item">
                                 <div class="row" style="padding: 20px;">
-                                
                                     <div class="col offset-xl-1" style="padding-top: 15px;padding-bottom: 15px;">
-                                        <img class="rounded shadow" src="/ficheiros/galeria/{{($galeria->foto)}}" alt="Slide Image" style="max-width: 290px;height: 320px;">
+                                        <img class="rounded shadow" src="/ficheiros/galeria/{{$galeria->foto}}" alt="Slide Image" style="max-width: 290px;height: 320px;">
                                     </div>
                                     <div class="col d-flex flex-column justify-content-center align-items-center" style="padding-top: 15px;padding-bottom: 15px;">
-                                        <p style="font-family: Roboto, sans-serif;">29 Marco 2022&nbsp;</p>
-                                        <h2 style="margin-bottom: 40px;">Heading</h2>
-                                        <button class="btn" type="button" style="background-color: #16e8f5;">Saber mais</button>
+                                        <p style="font-family: Roboto, sans-serif;">{{$galeria->data}}&nbsp;</p>
+                                        <h2 style="margin-bottom: 40px;">{{$galeria->titulo}}</h2>
+                                        <a class="btn" type="button" href="" style="background-color: #16e8f5;">Saber mais</a>
                                     </div>
-                                   
                                 </div>
-                               
                             </div>
                             @endforeach
-                            
+                        
                             <!--<div class="carousel-item">
                                 <div class="row" style="padding: 20px;">
-                                    <div class="col offset-xl-1" style="padding-top: 15px;padding-bottom: 15px;"><img class="rounded shadow" src="../img/bg_login.jpg" alt="Slide Image" style="max-width: 290px;height: 320px;"></div>
+                                    <div class="col offset-xl-1" style="padding-top: 15px;padding-bottom: 15px;">
+                                        <img class="rounded shadow" src="/../img/bg_login.jpg" alt="Slide Image" style="max-width: 290px;height: 320px;">
+                                    </div>
                                     <div class="col d-flex flex-column justify-content-center align-items-center" style="padding-top: 15px;padding-bottom: 15px;">
                                         <p style="font-family: Roboto, sans-serif;">29 Marco 2022&nbsp;</p>
                                         <h2 style="margin-bottom: 40px;">Heading</h2>
@@ -371,7 +420,7 @@
                             <div class="carousel-item">
                                 <div class="row" style="padding: 20px;">
                                     <div class="col offset-xl-1" style="padding-top: 15px;padding-bottom: 15px;">
-                                        <img class="rounded shadow" src="../img/blog-3.jpg" alt="Slide Image" style="max-width: 290px;height: 320px;">
+                                        <img class="rounded shadow" src="/../img/blog-3.jpg" alt="Slide Image" style="max-width: 290px;height: 320px;">
                                     </div>
                                     <div class="col d-flex flex-column justify-content-center align-items-center" style="padding-top: 15px;padding-bottom: 15px;">
                                         <p style="font-family: Roboto, sans-serif;">29 Marco 2022&nbsp;</p>
@@ -380,7 +429,6 @@
                                     </div>
                                 </div>
                             </div>-->
-                            
                         </div>
                         <div>
                             <a class="carousel-control-prev" href="#carousel-4" role="button" data-slide="prev">
@@ -391,7 +439,6 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
-                       
                     </div>
                 </div>
             </div>
@@ -412,10 +459,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-2.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-2.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
                                                                 <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Yolanda Emidio</h3>
@@ -449,10 +496,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-1.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="footer-imagia">
                                                                 <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i>&nbsp;Mais</span>
@@ -486,10 +533,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-1.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="footer-imagia">
                                                                 <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
@@ -523,10 +570,10 @@
                                                     <div class="card-imagia">
                                                         <div class="front-imagia">
                                                             <div class="cover-imagia">
-                                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
+                                                                <img alt="" src="/../img/8sl6Q86gsfM.jpg">
                                                             </div>
                                                             <div class="user-imagia">
-                                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
+                                                                <img class="rounded-circle img-circle" alt="" src="/../img/img-1.jpg" style="width: 100px;height: 100px;">
                                                             </div>
                                                             <div class="footer-imagia">
                                                                 <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
@@ -564,11 +611,11 @@
                         </div>
                         <div>
                             <a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev" style="width: 100px;">
-                                <span class="carousel-control-prev-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/back_48px.png&quot;);"></span>
+                                <span class="carousel-control-prev-icon" style="width: 50px;height: 50px;background-image: url(&quot;/../img/back_48px.png&quot;);"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carousel-2" role="button" data-slide="next" style="width: 100px;">
-                                <span class="carousel-control-next-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/forward_48px.png&quot;);"></span>
+                                <span class="carousel-control-next-icon" style="width: 50px;height: 50px;background-image: url(&quot;/../img/forward_48px.png&quot;);"></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>

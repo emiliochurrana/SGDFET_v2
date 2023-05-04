@@ -42,7 +42,7 @@
                     @if(auth()->user()->is_drcurso)
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                        @endif
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                     </li>
@@ -222,15 +222,19 @@
                         </div>
                         @if(auth()->user()->is_drcurso)
                         <main>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                                @if(session('msgSucessStore'))
-                                <Strong>{{ session('msgSucessStore') }}</Strong>
-                                @endif
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
+                                    @if(session('msgSucessStore'))
+                                    <p class="msg"><Strong>{{ session('msgSucessStore') }}</Strong></p>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                                @if(session('msgSucessUpdate'))
-                                <Strong>{{ session('msgSucessUpdate') }}</Strong>
-                                @endif
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
+                                    @if(session('msgSucessUpdate'))
+                                    <p class="msg"><Strong>{{ session('msgSucessUpdate') }}</Strong></p>
+                                    @endif
+                                </div>
                             </div>
                         </main>
                         @endif
@@ -244,10 +248,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-7 offset-xl-0 d-flex justify-content-end align-items-center">
-                                @if(auth()->user()->is_drcurso)
+                                    @if(auth()->user()->is_drcurso)
                                     <div class="btn-group" role="group">
-                                        <a class="btn border rounded d-xl-flex align-items-xl-center" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="newnoticia.html">
-                                        <i class="material-icons">library_books</i>&nbsp; Nova Defesa<br></a>
+                                        <a class="btn border rounded d-xl-flex align-items-xl-center" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="{{('/defesa/store')}}">
+                                            <i class="material-icons">library_books</i>&nbsp; Nova Defesa<br></a>
                                     </div>
                                     @endif
                                 </div>

@@ -11,59 +11,59 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_docente)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                    </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_docente)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                </li>
 
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                    @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
                     @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                    </li>
-                    @if(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                        @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    </li>
-                    @endif
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                    </li>
-                    </li>
-                    @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                    </li>
-                    @endif
-                </ul>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                @endif
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                </li>
+                </li>
+                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                </li>
+                @endif
+            </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
     </nav>
@@ -172,12 +172,12 @@
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                        <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
-                                        @elseif(auth()->user()->is_drcurso)
-                                        <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
-                                        @elseif(auth()->user()->is_admin)
-                                        <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
-                                        @endif
+                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    @elseif(auth()->user()->is_drcurso)
+                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    @elseif(auth()->user()->is_admin)
+                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                     <a class="dropdown-item" role="presentation" href="/usuario/perfil/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
@@ -195,9 +195,15 @@
                 <div class="card shadow">
                     <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="margin-bottom: 15px;color: #3ba2dc;padding-left: 20px;padding-right: 20px;padding-top: 10px;">Editar [Tema da Monografia]</h2>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
-                    <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                    <Strong>Erro!</Strong> Ao actualizar os dados da monografia.
-                </div>
+                    <main>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgErrorUpdate'))
+                                <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                                @enfif
+                            </div>
+                        </div>
+                    </main>
 
                     <form style="padding: 40px;">
                         <div class="form-group d-flex">

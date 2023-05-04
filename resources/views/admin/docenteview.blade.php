@@ -192,20 +192,26 @@
                         </div>
                         @if(auth()->user()->is_drcurso)
                         <main>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
                                 @if(session('msgSucessStore'))
-                                <Strong>{{session('msgSucessStore')}}</Strong>
-                                @endif
+                                <p class="msg"><Strong>{{session('msgSucessStore')}}</Strong></p>
+                                @endif 
                             </div>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
                                 @if(session('msgSucessUpdate'))
-                                <Strong>{{session('msgSucessUpdate')}}</Strong>
+                                <p class="msg" style="text-align: center;"><Strong>{{session('msgSucessUpdate')}}</Strong></p>
                                 @endif
                             </div>
-                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
                                 @if(session('msgSucess'))
-                                <Strong>{{session('msgSucess')}}</Strong>
+                                <p class="msg"><Strong>{{session('msgSucess')}}</Strong></p>
                                 @endif
+                                </div>
                             </div>
                         </main>
                         @endif

@@ -201,25 +201,34 @@
                     <h2 style="color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar Perfil de {{$estudante->userEstudante->name}}</h2>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorUpdate'))
-                            <Strong>{{session('msgErrorUpdate')}}</Strong>
-                            @endif
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgErrorUpdate'))
+                                <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
                             @if(session('msgIncorrecta'))
-                            <Strong>{{session('msgIncorrecta')}}</Strong>
+                            <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
                             @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
                             @if(session('password_actual'))
-                            <Strong>{{session('password_actual')}}</Strong>
+                            <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
                             @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
                             @if(session('msgError'))
-                            <Strong>{{session('msgError')}}</Strong>
+                            <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
                             @endif
+                            </div>
+                        </div>
                     </main>
 
                     <form style="width: 100%;padding: 40px;" method="post" action="/usuario/updatestudante/{{$estudante->userEstudante->id}}" enctype="multipart/form-data" role="form">

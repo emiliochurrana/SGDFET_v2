@@ -11,59 +11,59 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_docente)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                    </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_docente)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                </li>
 
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                    @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
                     @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                    </li>
-                    @if(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                        @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    </li>
-                    @endif
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                    </li>
-                    </li>
-                    @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                    </li>
-                    @endif
-                </ul>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                @endif
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                </li>
+                </li>
+                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                </li>
+                @endif
+            </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
     </nav>
@@ -226,15 +226,19 @@
                     </div>
                     @if(auth()->user()->is_drcurso)
                     <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessStore'))
-                            <Strong>{{session('msgSucessStore')}}</Strong>
-                            @endif
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem">
+                                @if(session('msgSucessStore'))
+                                <p class="msg"><Strong>{{session('msgSucessStore')}}</Strong></p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessUpdate'))
-                            <Strong>{{session('msgSucessUpdate')}}</Strong>
-                            @endif
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem">
+                                @if(session('msgSucessUpdate'))
+                                <p class="msg"><Strong>{{session('msgSucessUpdate')}}</Strong></p>
+                                @endif
+                            </div>
                         </div>
                     </main>
                     @endif

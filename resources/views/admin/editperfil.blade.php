@@ -230,63 +230,76 @@
                     <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessUpdate'))
-                            <Strong>{{ session('msgSucessUpdate') }}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucess'))
-                            <Strong>{{ session('msgSucess') }}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorUpdate'))
-                            <Strong>{{session('msgErrorUpdate')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgError'))
-                            <Strong>{{session('msgError')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgIncorrecta'))
-                            <Strong>{{session('msgIncorrecta')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('password_actual'))
-                            <Strong>{{session('password_actual')}}</Strong>
-                            @endif
-                        </div>
-                    </main>
-
-                    <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateadmin/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        @foreach($perfil as $admin)
-                        <div class="form-row">
-                            <div class="col-4 d-flex justify-content-center">
-                                <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
-                                    <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                                    <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$admin->foto}}" width="290px">
-                                </label>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem">
+                                @if(session('msgSucessUpdate'))
+                                <p class="msg"><Strong>{{ session('msgSucessUpdate') }}</Strong>
                             </div>
-                            <div class="col">
-                                <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                                    <label style="width: 230px;color: #000000;">Nome</label>
-                                    <input class="shadow form-control" value="{{$admin->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
-                                </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                                    <input class="shadow form-control" value="{{$admin->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
-                                </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Curso</label>
-                                    <input class="shadow form-control" type="text" value="{{$admin->curso}}"data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                                    <input class="shadow form-control" type="hidden" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
-                                   <!-- <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
+                            @endif
+                        </div>
+                </div>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem">
+                        @if(session('msgSucess'))
+                        <p class="msg"><Strong>{{ session('msgSucess') }}</Strong></p>
+                        @endif
+                    </div>
+                </div>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem-error">
+                        @if(session('msgErrorUpdate'))
+                        <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                        @endif
+                    </div>
+                </div>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem-error">
+                        @if(session('msgError'))
+                        <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
+                        @endif
+                    </div>
+                </div>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem-error">
+                        @if(session('msgIncorrecta'))
+                        <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
+                        @endif
+                    </div>
+                </div>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem-error">
+                        @if(session('password_actual'))
+                        <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
+                        @endif
+                    </div>
+                </div>
+                </main>
+
+                <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateadmin/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    @foreach($perfil as $admin)
+                    <div class="form-row">
+                        <div class="col-4 d-flex justify-content-center">
+                            <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
+                                <input type="file" style="width: 0%;" accept="image/*" name="foto">
+                                <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$admin->foto}}" width="290px">
+                            </label>
+                        </div>
+                        <div class="col">
+                            <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
+                                <label style="width: 230px;color: #000000;">Nome</label>
+                                <input class="shadow form-control" value="{{$admin->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
+                            </div>
+                            <div class="form-group d-flex justify-content-center align-items-center">
+                                <label style="width: 230px;color: #000000;">Nome do Usuario</label>
+                                <input class="shadow form-control" value="{{$admin->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                            </div>
+                            <div class="form-group d-flex justify-content-center align-items-center">
+                                <label style="width: 230px;color: #000000;">Curso</label>
+                                <input class="shadow form-control" type="text" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
+                                <input class="shadow form-control" type="hidden" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
+                                <!-- <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
                                         <optgroup label="curso">
                                             <option selected="">{{$admin->curso}}</option>
                                             <option>Informatica</option>
@@ -296,107 +309,120 @@
                                             <option>Agropecuaria</option>
                                         </optgroup>
                                     </select>-->
-                                </div>
                             </div>
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                            <label style="margin-right: 10px;color: #000000;">Email</label>
-                            <input class="shadow form-control" style="margin-right: 20px" value="{{$admin->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-                        </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                            <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
-                        </div>
-                        <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" value="{{$admin->curriculum}}" accept="pdf/*" name="curriculum">{{$admin->curriculum}}
-                                </span>
-                                <a href="/ficheiros/docentes/curriculum/{{$admin->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename"></span>
-                                </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                        <label style="margin-right: 10px;color: #000000;">Email</label>
+                        <input class="shadow form-control" style="margin-right: 20px" value="{{$admin->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
+                        <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+                        <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
+                    </div>
+                    <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                        <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
+                        <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
+                        <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
+                        <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
+                    </div>
+                    <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                            <span class="input-group-addon btn btn-default btn-file">
+                                <span class="fileinput-new"><strong>Curriculum:</strong></span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" value="{{$admin->curriculum}}" accept="pdf/*" name="curriculum">{{$admin->curriculum}}
+                            </span>
+                            <a href="/ficheiros/docentes/curriculum/{{$admin->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            <div class="form-control" data-trigger="fileinput">
+                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                <span class="fileinput-filename"></span>
                             </div>
                         </div>
-                        <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                            <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                            <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
-                        </div>
-                        @endforeach
-                    </form>
+                    </div>
+                    <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                        <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
+                        <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+                    </div>
+                    @endforeach
+                </form>
 
+            </div>
+        </div>
+        @elseif(auth()->user()->is_drcurso)
+        <div class="container-fluid">
+            <div class="card shadow">
+                <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
+                <hr style="background-color: #3ba2dc;margin-top: 5px;">
+                <main>
+                    <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                        <div class="mensagem">
+                            @if(session('msgSucessUpdate'))
+                            <p class="msg"><Strong>{{ session('msgSucessUpdate') }}</Strong>
+                        </div>
+                        @endif
+                    </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem">
+                    @if(session('msgSucess'))
+                    <p class="msg"><Strong>{{ session('msgSucess') }}</Strong></p>
+                    @endif
                 </div>
             </div>
-            @elseif(auth()->user()->is_drcurso)
-            <div class="container-fluid">
-                <div class="card shadow">
-                    <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
-                    <hr style="background-color: #3ba2dc;margin-top: 5px;">
-                    <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessUpdate'))
-                            <Strong>{{ session('msgSucessUpdate') }}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucess'))
-                            <Strong>{{ session('msgSucess') }}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorUpdate'))
-                            <Strong>{{session('msgErrorUpdate')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgError'))
-                            <Strong>{{session('msgError')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgIncorrecta'))
-                            <Strong>{{session('msgIncorrecta')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('password_actual'))
-                            <Strong>{{session('password_actual')}}</Strong>
-                            @endif
-                        </div>
-                    </main>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('msgErrorUpdate'))
+                    <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('msgError'))
+                    <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('msgIncorrecta'))
+                    <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('password_actual'))
+                    <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            </main>
 
-                    <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateperfildrcurso/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        @foreach($perfil as $drcurso)
-                        <div class="form-row">
-                            <div class="col-4 d-flex justify-content-center">
-                                <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
-                                    <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                                    <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$drcurso->foto}}" width="290px">
-                                </label>
-                            </div>
-                            <div class="col">
-                                <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                                    <label style="width: 230px;color: #000000;">Nome</label>
-                                    <input class="shadow form-control" value="{{$drcurso->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
-                                </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                                    <input class="shadow form-control" value="{{$drcurso->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
-                                </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Curso</label>
-                                    <input class="shadow form-control" type="text" value="{{$drcurso->curso}}"data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                                    <input class="shadow form-control" type="hidden" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
-                                    <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
+            <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateperfildrcurso/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                @foreach($perfil as $drcurso)
+                <div class="form-row">
+                    <div class="col-4 d-flex justify-content-center">
+                        <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
+                            <input type="file" style="width: 0%;" accept="image/*" name="foto">
+                            <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$drcurso->foto}}" width="290px">
+                        </label>
+                    </div>
+                    <div class="col">
+                        <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
+                            <label style="width: 230px;color: #000000;">Nome</label>
+                            <input class="shadow form-control" value="{{$drcurso->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
+                        </div>
+                        <div class="form-group d-flex justify-content-center align-items-center">
+                            <label style="width: 230px;color: #000000;">Nome do Usuario</label>
+                            <input class="shadow form-control" value="{{$drcurso->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                        </div>
+                        <div class="form-group d-flex justify-content-center align-items-center">
+                            <label style="width: 230px;color: #000000;">Curso</label>
+                            <input class="shadow form-control" type="text" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
+                            <input class="shadow form-control" type="hidden" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
+                            <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
                                         <optgroup label="curso">
                                             <option selected="">{{$drcurso->curso}}</option>
                                             <option>Informatica</option>
@@ -406,108 +432,121 @@
                                             <option>Agropecuaria</option>
                                         </optgroup>
                                     </select>-->
-                                </div>
-                            </div>
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                            <label style="margin-right: 10px;color: #000000;">Email</label>
-                            <input class="shadow form-control" style="margin-right: 20px" value="{{$drcurso->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-                        </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                            <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
-                        </div>
-                        <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" value="{{$drcurso->curriculum}}" accept="pdf/*" name="curriculum">{{$drcurso->curriculum}}
-                                </span>
-                                <a href="/ficheiros/docentes/curriculum/{{$drcurso->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                            <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                            <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
-                        </div>
-                        @endforeach
-                    </form>
-
+                    </div>
                 </div>
-            </div>
-            @elseif(auth()->user()->is_docente)
-            <div class="container-fluid">
-                <div class="card shadow">
-                    <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
-                    <hr style="background-color: #3ba2dc;margin-top: 5px;">
-                    <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessUpdate'))
-                            <Strong>{{ session('msgSucessUpdate') }}</Strong>
-                            @endif
+                <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                    <label style="margin-right: 10px;color: #000000;">Email</label>
+                    <input class="shadow form-control" style="margin-right: 20px" value="{{$drcurso->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
+                    <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
+                </div>
+                <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                    <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
+                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
+                    <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
+                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
+                </div>
+                <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
+                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new"><strong>Curriculum:</strong></span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" value="{{$drcurso->curriculum}}" accept="pdf/*" name="curriculum">{{$drcurso->curriculum}}
+                        </span>
+                        <a href="/ficheiros/docentes/curriculum/{{$drcurso->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        <div class="form-control" data-trigger="fileinput">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                            <span class="fileinput-filename"></span>
                         </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucess'))
-                            <Strong>{{ session('msgSucess') }}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgErrorUpdate'))
-                            <Strong>{{session('msgErrorUpdate')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgError'))
-                            <Strong>{{session('msgError')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('msgIncorrecta'))
-                            <Strong>{{session('msgIncorrecta')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                            @if(session('password_actual'))
-                            <Strong>{{session('password_actual')}}</Strong>
-                            @endif
-                        </div>
-                    </main>
+                    </div>
+                </div>
+                <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                    <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
+                    <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+                </div>
+                @endforeach
+            </form>
 
-                    <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateperfildocente/{{auth()->user()->id}}" haref="/usuario/perfil/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        @foreach($perfildocente as $docente)
-                        <div class="form-row">
-                            <div class="col-4 d-flex justify-content-center">
-                                <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
-                                    <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                                    <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$docente->foto}}" width="290px">
-                                </label>
-                            </div>
-                            <div class="col">
-                                <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                                    <label style="width: 230px;color: #000000;">Nome</label>
-                                    <input class="shadow form-control" value="{{$docente->userDocente->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
-                                </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                                    <input class="shadow form-control" value="{{$docente->userDocente->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
-                                </div>
-                                <input class="form-check-input" type="hidden" value="{{$docente->userDocente->is_active}}" id="formCheck-1" value="1" name="is_active">
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Curso</label>
-                                    <input class="shadow form-control" type="text" value="{{$docente->curso}}"data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                                    <input class="shadow form-control" type="hidden" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
-                                    <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
+        </div>
+    </div>
+    @elseif(auth()->user()->is_docente)
+    <div class="container-fluid">
+        <div class="card shadow">
+            <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
+            <hr style="background-color: #3ba2dc;margin-top: 5px;">
+            <main>
+                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                    <div class="mensagem">
+                        @if(session('msgSucessUpdate'))
+                        <p class="msg"><Strong>{{ session('msgSucessUpdate') }}</Strong>
+                    </div>
+                    @endif
+                </div>
+        </div>
+        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+            <div class="mensagem">
+                @if(session('msgSucess'))
+                <p class="msg"><Strong>{{ session('msgSucess') }}</Strong></p>
+                @endif
+            </div>
+        </div>
+        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+            <div class="mensagem-error">
+                @if(session('msgErrorUpdate'))
+                <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
+                @endif
+            </div>
+        </div>
+        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+            <div class="mensagem-error">
+                @if(session('msgError'))
+                <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
+                @endif
+            </div>
+        </div>
+        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+            <div class="mensagem-error">
+                @if(session('msgIncorrecta'))
+                <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
+                @endif
+            </div>
+        </div>
+        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+            <div class="mensagem-error">
+                @if(session('password_actual'))
+                <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
+                @endif
+            </div>
+        </div>
+        </main>
+
+        <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateperfildocente/{{auth()->user()->id}}" haref="/usuario/perfil/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            @foreach($perfildocente as $docente)
+            <div class="form-row">
+                <div class="col-4 d-flex justify-content-center">
+                    <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
+                        <input type="file" style="width: 0%;" accept="image/*" name="foto">
+                        <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$docente->foto}}" width="290px">
+                    </label>
+                </div>
+                <div class="col">
+                    <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
+                        <label style="width: 230px;color: #000000;">Nome</label>
+                        <input class="shadow form-control" value="{{$docente->userDocente->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
+                    </div>
+                    <div class="form-group d-flex justify-content-center align-items-center">
+                        <label style="width: 230px;color: #000000;">Nome do Usuario</label>
+                        <input class="shadow form-control" value="{{$docente->userDocente->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                    </div>
+                    <input class="form-check-input" type="hidden" value="{{$docente->userDocente->is_active}}" id="formCheck-1" value="1" name="is_active">
+                    <div class="form-group d-flex justify-content-center align-items-center">
+                        <label style="width: 230px;color: #000000;">Curso</label>
+                        <input class="shadow form-control" type="text" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
+                        <input class="shadow form-control" type="hidden" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
+                        <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
                                         <optgroup label="curso">
                                             <option selected="">{{$docente->curso}}</option>
                                             <option>Informatica</option>
@@ -517,43 +556,43 @@
                                             <option>Agropecuaria</option>
                                         </optgroup>
                                     </select>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                            <label style="margin-right: 10px;color: #000000;">Email</label>
-                            <input class="shadow form-control" style="margin-right: 20px" value="{{$docente->userDocente->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-                        </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
-                            <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                            <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                            <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
-                        </div>
-                        <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" value="{{$docente->curriculum}}" accept="pdf/*" name="curriculum">{{$docente->curriculum}}
-                                </span>
-                                <a href="/ficheiros/docentes/curriculum/{{$docente->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                            <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                            <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
-                        </div>
-                        @endforeach
-                    </form>
-
+                    </div>
                 </div>
             </div>
-            @endif
-        </div>
+            <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                <label style="margin-right: 10px;color: #000000;">Email</label>
+                <input class="shadow form-control" style="margin-right: 20px" value="{{$docente->userDocente->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
+                <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+                <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
+            </div>
+            <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
+                <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
+                <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
+                <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
+            </div>
+            <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
+                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <span class="input-group-addon btn btn-default btn-file">
+                        <span class="fileinput-new"><strong>Curriculum:</strong></span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" value="{{$docente->curriculum}}" accept="pdf/*" name="curriculum">{{$docente->curriculum}}
+                    </span>
+                    <a href="/ficheiros/docentes/curriculum/{{$docente->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    <div class="form-control" data-trigger="fileinput">
+                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                        <span class="fileinput-filename"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
+                <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+            </div>
+            @endforeach
+        </form>
+
+    </div>
+</div>
+@endif
+</div>

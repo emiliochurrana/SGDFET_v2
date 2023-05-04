@@ -5,22 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Fet</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="../fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="../fonts/simple-line-icons.min.css">
-    <link rel="stylesheet" href="../fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../css/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.css">
-    <link rel="stylesheet" href="../css/Google-Style-Login.css">
+    <link rel="stylesheet" href="/../fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/../fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/../fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="/../fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/../fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/../css/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.css">
+    <link rel="stylesheet" href="/../css/Google-Style-Login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-    <link rel="stylesheet" href="../css/News-Cards.css">
-    <link rel="stylesheet" href="../css/slider-with-popup.css">
-    <link rel="stylesheet" href="../css/Team-with-rotating-cards.css">
+    <link rel="stylesheet" href="/../css/News-Cards.css">
+    <link rel="stylesheet" href="/../css/slider-with-popup.css">
+    <link rel="stylesheet" href="/../css/Team-with-rotating-cards.css">
 </head>
 
 <body>
@@ -45,15 +44,19 @@
                         </div>
                         <div class="col-lg-7 col-xl-7">
                             <main>
-                                <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
                                     @if(session('msgSucess'))
-                                    <Strong>{{session('msgSucess')}}</Strong>
+                                    <p class="msg"><Strong>{{session('msgSucess')}}</Strong></p>
                                     @endif
                                 </div>
-                                <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
+                                </div>
+                                <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem-error">
                                     @if(session('msgError'))
-                                    <Strong>{{session('msgError')}}</Strong>
+                                    <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
                                     @endif
+                                </div>
                                 </div>
                             </main>
                             <form class="text-center border rounded" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" role="form " style="background-image: url(&quot;../img/Background_Page.jpg&quot;);

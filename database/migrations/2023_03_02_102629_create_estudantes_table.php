@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('curso');
             $table->string('supervisor');
             $table->string('regime');
+            $table->string('nivel');
             $table->integer('ano_ingresso');
             $table->timestamps();
         });

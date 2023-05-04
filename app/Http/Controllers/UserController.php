@@ -1067,7 +1067,7 @@ class UserController extends Controller
         if ($drcurso->save()) {
             return redirect()->route('drcursoview')->with('msgSucessStore', 'Docente cadastrado com sucesso!');
         } else {
-            return redirect()->route('newdrcurso')->with('msgErrorStore', 'Erro no cadastro do docente!');
+            return redirect()->back()->with('msgErrorStore', 'Erro no cadastro do docente!');
         }
     }
 

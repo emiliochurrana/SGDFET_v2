@@ -307,7 +307,7 @@
                 </div>
                 <div class="col-lg-6 col-xl-5 offset-xl-0" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="padding-left: 0px;padding-right: 0px;">
                     <h2 class="text-justify" style="color: #1e2671;font-weight: bold;max-width: 100%;margin-bottom: 25px;">Galeria</h2>
-                    <div class="carousel slide carousel-fade shadow-lg" data-ride="carousel" data-aos="flip-left" data-aos-duration="450" data-aos-delay="450" id="carousel-4" style="border-radius: .90rem!important;">
+                    <div class="carousel slide shadow-lg" data-ride="carousel" data-aos="flip-left" data-aos-duration="450" data-aos-delay="450" id="carousel-4" style="border-radius: .90rem!important;">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
                                 <div class="row" style="padding: 20px;">
