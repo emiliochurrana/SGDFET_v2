@@ -2,48 +2,424 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DadosDefesa;
+use App\Models\Defesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Docente;
 use App\Models\Drcurso;
 use App\Models\Estudante;
-use App\Models\EstudanteDocente;
-use App\Models\UserDocente;
-use App\Models\UserDrcurso;
-use App\Models\UserEstudante;
+use App\Models\DadosDefesa;
+use App\Models\Visitante;
+use App\Models\Galeria;
+use App\Models\Monografia;
+use App\Models\Noticia;
+use DateTime;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
     //public $is_active = '0';
     //public $is_docente ='0';
+   
+    public function sobreAntes(){
+        $drcurso = User::all()->where('is_drcurso', 1);
+        $galerias = Galeria::all();
+        $defesa = Defesa::all();
+        $monografia = Monografia:: all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
 
-    public function dashboard()
+        return view('usuario.sobre', ['galerias' => $galerias, 
+        'monografia' => $monografia, 
+        'defesa' => $defesa,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso]);
+
+    }
+
+    public function sobreDepois(){
+        $drcurso = User::all()->where('is_drcurso', 1);
+        $galerias = Galeria::all();
+        $defesa = Defesa::all();
+        $monografia =Monografia:: all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+
+        return view('usuario.sobredepois', ['galerias' => $galerias,
+        'monografia' => $monografia, 
+        'defesa' => $defesa,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso]);
+
+    }
+    public function dashboard(Request $request)
     {
 
         $admin = User::where('is_admin', 1)->get();
+        $defesas = Defesa::all();
+        $monografias = Monografia::all();
+        $estudantes = User::all()->where('is_estudante',1);
+        $docentes = User::all()->where('is_docente', 1);
+        $query1 = Defesa::query();
+        $data_jan =DateTime::createFromFormat('m', $request->get('data',01));
+        if($data_jan){
+            $query1->whereMonth('data', '=', $data_jan);
+        }
+        $def_jan = $query1->paginate();
 
-        return view('admin.dashboard', ['admin' => $admin]);
+        $query2 = Defesa::query();
+        $data_feb =DateTime::createFromFormat('m', $request->get('data',02));
+        if($data_feb){
+            $query2->whereMonth('data', '=', $data_feb);
+        }
+        $def_feb = $query2->paginate();
+
+        $query3 = Defesa::query();
+        $data_mar =DateTime::createFromFormat('m', $request->get('data',03));
+        if($data_mar){
+            $query3->whereMonth('data', '=', $data_mar);
+        }
+        $def_mar = $query3->paginate();
+
+        $query4 = Defesa::query();
+        $data_apr =DateTime::createFromFormat('m', $request->get('data',04));
+        if($data_apr){
+            $query4->whereMonth('data', '=', $data_apr);
+        }
+        $def_apr = $query4->paginate();
+
+        $query5 = Defesa::query();
+        $data_may =DateTime::createFromFormat('m', $request->get('data',05));
+        if($data_may){
+            $query5->whereMonth('data', '=', $data_may);
+        }
+        $def_may = $query5->paginate();
+
+        $query6 = Defesa::query();
+        $data_jun =DateTime::createFromFormat('m', $request->get('data',06));
+        if($data_jun){
+            $query6->whereMonth('data', '=', $data_jun);
+        }
+        $def_jun = $query6->paginate();
+
+        $query7 = Defesa::query();
+        $data_jul = DateTime::createFromFormat('m', $request->get('data',07));
+        if($data_jul){
+            $query7->whereMonth('data', '=', $data_jul);
+        }
+        $def_jul = $query7->paginate();
+
+        $query8 = Defesa::query();
+        $data_aug =DateTime::createFromFormat('m', $request->get('data','08'));
+        if($data_aug){
+            $query8->whereMonth('data', '=', $data_aug);
+        }
+        $def_aug = $query8->paginate();
+
+        $query9 = Defesa::query();
+        $data_sep =DateTime::createFromFormat('m', $request->get('data','09'));
+        if($data_sep){
+            $query9->whereMonth('data', '=', $data_sep);
+        }
+        $def_sep = $query9->paginate();
+
+        $query10 = Defesa::query();
+        $data_out =DateTime::createFromFormat('m', $request->get('data',10));
+        if($data_out){
+            $query10->whereMonth('data', '=', $data_out);
+        }
+        $def_out = $query10->paginate();
+
+        $query11 = Defesa::query();
+        $data_nov =DateTime::createFromFormat('m', $request->get('data',11));
+        if($data_nov){
+            $query11->whereMonth('data', '=', $data_nov);
+        }
+        $def_nov = $query11->paginate();
+
+        $query12 = Defesa::query();
+        $data_dec =DateTime::createFromFormat('m', $request->get('data',12));
+        if($data_dec){
+            $query12->whereMonth('data', '=', $data_dec);
+        }
+        $def_dec = $query12->paginate();
+
+        return view('admin.dashboard', ['admin' => $admin, 'defesas' => $defesas, 'monografias' => $monografias, 'estudantes' => $estudantes, 'docentes' => $docentes, 
+        'def_jan' => $def_jan, 
+        'def_feb' => $def_feb,
+        'def_mar' => $def_mar,
+        'def_apr' => $def_apr,
+        'def_may' => $def_may,
+        'def_jun' => $def_jun,
+        'def_jul' => $def_jul,
+        'def_aug' => $def_aug,
+        'def_sep' => $def_sep,
+        'def_out' => $def_out,
+        'def_nov' => $def_nov,
+        'def_dec' => $def_dec]);
     }
 
-    public function dashboardDocente()
+    public function dashboardDocente(Request $request)
     {
 
         $docente = User::where('is_docente', 1)->get();
+        $defesas =Defesa::all();
+        $monografias = Monografia::all();
+        $estudantes = User::all()->where('is_estudante',1);
+        $docentes = User::all()->where('is_docente', 1);
+        $query1 = Defesa::query();
+        $data_jan =DateTime::createFromFormat('m', $request->get('data',01));
+        if($data_jan){
+            $query1->whereMonth('data', '=', $data_jan);
+        }
+        $def_jan = $query1->paginate();
 
-        return view('admin.dashboardocente', ['docente' => $docente]);
+        $query2 = Defesa::query();
+        $data_feb =DateTime::createFromFormat('m', $request->get('data',02));
+        if($data_feb){
+            $query2->whereMonth('data', '=', $data_feb);
+        }
+        $def_feb = $query2->paginate();
+
+        $query3 = Defesa::query();
+        $data_mar =DateTime::createFromFormat('m', $request->get('data',03));
+        if($data_mar){
+            $query3->whereMonth('data', '=', $data_mar);
+        }
+        $def_mar = $query3->paginate();
+
+        $query4 = Defesa::query();
+        $data_apr =DateTime::createFromFormat('m', $request->get('data',04));
+        if($data_apr){
+            $query4->whereMonth('data', '=', $data_apr);
+        }
+        $def_apr = $query4->paginate();
+
+        $query5 = Defesa::query();
+        $data_may =DateTime::createFromFormat('m', $request->get('data',05));
+        if($data_may){
+            $query5->whereMonth('data', '=', $data_may);
+        }
+        $def_may = $query5->paginate();
+
+        $query6 = Defesa::query();
+        $data_jun =DateTime::createFromFormat('m', $request->get('data',06));
+        if($data_jun){
+            $query6->whereMonth('data', '=', $data_jun);
+        }
+        $def_jun = $query6->paginate();
+
+        $query7 = Defesa::query();
+        $data_jul = DateTime::createFromFormat('m', $request->get('data',07));
+        if($data_jul){
+            $query7->whereMonth('data', '=', $data_jul);
+        }
+        $def_jul = $query7->paginate();
+
+        $query8 = Defesa::query();
+        $data_aug =DateTime::createFromFormat('m', $request->get('data','08'));
+        if($data_aug){
+            $query8->whereMonth('data', '=', $data_aug);
+        }
+        $def_aug = $query8->paginate();
+
+        $query9 = Defesa::query();
+        $data_sep =DateTime::createFromFormat('m', $request->get('data','09'));
+        if($data_sep){
+            $query9->whereMonth('data', '=', $data_sep);
+        }
+        $def_sep = $query9->paginate();
+
+        $query10 = Defesa::query();
+        $data_out =DateTime::createFromFormat('m', $request->get('data',10));
+        if($data_out){
+            $query10->whereMonth('data', '=', $data_out);
+        }
+        $def_out = $query10->paginate();
+
+        $query11 = Defesa::query();
+        $data_nov =DateTime::createFromFormat('m', $request->get('data',11));
+        if($data_nov){
+            $query11->whereMonth('data', '=', $data_nov);
+        }
+        $def_nov = $query11->paginate();
+
+        $query12 = Defesa::query();
+        $data_dec =DateTime::createFromFormat('m', $request->get('data',12));
+        if($data_dec){
+            $query12->whereMonth('data', '=', $data_dec);
+        }
+        $def_dec = $query12->paginate();
+
+
+        return view('admin.dashboardocente', ['docente' => $docente, 'defesas' => $defesas, 'monografias' => $monografias, 'estudantes' => $estudantes, 'docentes' => $docentes,
+        'def_jan' => $def_jan, 
+        'def_feb' => $def_feb,
+        'def_mar' => $def_mar,
+        'def_apr' => $def_apr,
+        'def_may' => $def_may,
+        'def_jun' => $def_jun,
+        'def_jul' => $def_jul,
+        'def_aug' => $def_aug,
+        'def_sep' => $def_sep,
+        'def_out' => $def_out,
+        'def_nov' => $def_nov,
+        'def_dec' => $def_dec]);
     }
 
-    public function dashboardDrcurso()
+    public function dashboardDrcurso(Request $request)
     {
 
         $drcurso = User::where('is_drcurso', 1)->get();
+        $defesas = Defesa::all();
+        $monografias = Monografia::all();
+        $estudantes = User::all()->where('is_estudante',1);
+        $docentes = User::all()->where('is_docente', 1);
+        $query1 = Defesa::query();
+        $data_jan =DateTime::createFromFormat('m', $request->get('data',01));
+        if($data_jan){
+            $query1->whereMonth('data', '=', $data_jan);
+        }
+        $def_jan = $query1->paginate();
 
-        return view('admin.dashboardrcurso', ['drcurso' => $drcurso]);
+        $query2 = Defesa::query();
+        $data_feb =DateTime::createFromFormat('m', $request->get('data',02));
+        if($data_feb){
+            $query2->whereMonth('data', '=', $data_feb);
+        }
+        $def_feb = $query2->paginate();
+
+        $query3 = Defesa::query();
+        $data_mar =DateTime::createFromFormat('m', $request->get('data',03));
+        if($data_mar){
+            $query3->whereMonth('data', '=', $data_mar);
+        }
+        $def_mar = $query3->paginate();
+
+        $query4 = Defesa::query();
+        $data_apr =DateTime::createFromFormat('m', $request->get('data',04));
+        if($data_apr){
+            $query4->whereMonth('data', '=', $data_apr);
+        }
+        $def_apr = $query4->paginate();
+
+        $query5 = Defesa::query();
+        $data_may =DateTime::createFromFormat('m', $request->get('data',05));
+        if($data_may){
+            $query5->whereMonth('data', '=', $data_may);
+        }
+        $def_may = $query5->paginate();
+
+        $query6 = Defesa::query();
+        $data_jun =DateTime::createFromFormat('m', $request->get('data',06));
+        if($data_jun){
+            $query6->whereMonth('data', '=', $data_jun);
+        }
+        $def_jun = $query6->paginate();
+
+        $query7 = Defesa::query();
+        $data_jul = DateTime::createFromFormat('m', $request->get('data',07));
+        if($data_jul){
+            $query7->whereMonth('data', '=', $data_jul);
+        }
+        $def_jul = $query7->paginate();
+
+        $query8 = Defesa::query();
+        $data_aug =DateTime::createFromFormat('m', $request->get('data','08'));
+        if($data_aug){
+            $query8->whereMonth('data', '=', $data_aug);
+        }
+        $def_aug = $query8->paginate();
+
+        $query9 = Defesa::query();
+        $data_sep =DateTime::createFromFormat('m', $request->get('data','09'));
+        if($data_sep){
+            $query9->whereMonth('data', '=', $data_sep);
+        }
+        $def_sep = $query9->paginate();
+
+        $query10 = Defesa::query();
+        $data_out =DateTime::createFromFormat('m', $request->get('data',10));
+        if($data_out){
+            $query10->whereMonth('data', '=', $data_out);
+        }
+        $def_out = $query10->paginate();
+
+        $query11 = Defesa::query();
+        $data_nov =DateTime::createFromFormat('m', $request->get('data',11));
+        if($data_nov){
+            $query11->whereMonth('data', '=', $data_nov);
+        }
+        $def_nov = $query11->paginate();
+
+        $query12 = Defesa::query();
+        $data_dec =DateTime::createFromFormat('m', $request->get('data',12));
+        if($data_dec){
+            $query12->whereMonth('data', '=', $data_dec);
+        }
+        $def_dec = $query12->paginate();
+
+
+        return view('admin.dashboardrcurso', ['drcurso' => $drcurso, 'defesas' => $defesas, 'monografias' => $monografias, 'estudantes' => $estudantes, 'docentes' => $docentes,
+        'def_jan' => $def_jan, 
+        'def_feb' => $def_feb,
+        'def_mar' => $def_mar,
+        'def_apr' => $def_apr,
+        'def_may' => $def_may,
+        'def_jun' => $def_jun,
+        'def_jul' => $def_jul,
+        'def_aug' => $def_aug,
+        'def_sep' => $def_sep,
+        'def_out' => $def_out,
+        'def_nov' => $def_nov,
+        'def_dec' => $def_dec]);
+    }
+
+    public function inicio()
+    {
+        $drcurso = User::all()->where('is_drcurso', 1);
+        $noticias = Noticia::all();
+        $galerias = Galeria::all();
+        $defesa = Defesa::all();
+        $monografia =Monografia:: all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $defesas = Defesa::with('estudanteDefesa')->orderBy('id', 'desc')->limit(4)->get();
+        $monografias = Monografia::with('estudanteMonografia')->orderBy('id', 'desc')->limit(4)->get();
+
+        return view('usuario.inicio', ['noticias' => $noticias, 'galerias' => $galerias, 'defesas' => $defesas, 'monografias' => $monografias, 
+        'monografia' => $monografia, 
+        'defesa' => $defesa,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso]);
+    }
+
+    public function home()
+    {
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1);
+        $noticias = Noticia::all();
+        $galerias = Galeria::all();
+        $defesas = Defesa::with('estudanteDefesa')->orderBy('id', 'desc')->limit(4)->get();
+        $monografias = Monografia::with('estudanteMonografia')->orderBy('id', 'desc')->limit(4)->get();
+        
+        return view('usuario.home', ['noticias' => $noticias, 'galerias' => $galerias, 'defesas' => $defesas, 'monografias' => $monografias, 
+        'monografia' => $monografia, 
+        'defesa' => $defesa,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso]);
     }
 
     /**
@@ -57,35 +433,36 @@ class UserController extends Controller
     public function indexEstudantes()
     {
 
-        $userauth = auth()->user();
+        $search = request('search');
 
-        $estudantes = $userauth->estudanteDocente;
-        //$estudantesUser = $user->estudanteUser;
-        //$estudantes = User::with('estudanteDocente')->where(['is_estudante' => 1])->get();
-        return view('admin.estudantesview', ['estudantes' => $estudantes]);
+        if ($search) {
+            $userlog = auth()->user()->id;
+            $estudantes = Estudante::where([
+                   ['id_docente',$userlog], ['num_estudante', 'like', '%' .$search . '%'],
+            ])->get();
+        }else{
+            $userauth = auth()->user();
+
+            $estudantes = $userauth->estudanteDocente;
+        }     
+        return view('admin.estudantesview', ['estudantes' => $estudantes, 'search' => $search]);
     }
 
     public function indexEstudante()
+    
     {
-        $estudantes = User::with('estudanteUser')->where(['is_estudante' => 1])->get();
-        return view('admin.estudantesview', ['estudantes' => $estudantes]);
-    }
-
-    /**
-     * Funcao para pesquisa de estudantes 
-     */
-    public function searchEstudante()
-    {
-
         $search = request('search');
 
         if ($search) {
             $estudantes = User::with('estudanteUser')->where([
-                'is_estudante', 1, ['name', 'like', '%', $search . '%']
+                ['is_estudante', 1], ['name', 'like', '%' .$search . '%']
             ])->get();
+        }else{
+            $estudantes = User::with('estudanteUser')->where(['is_estudante' => 1])->get();
         }
-        return view('admin.estudanteview', ['estudantes' => $estudantes, 'search' => $search]);
+        return view('admin.estudantesview', ['estudantes' => $estudantes, 'search' => $search]);
     }
+
     /**
      * Funcao para carregar o formulario de cadastro de um estudante .
      */
@@ -95,27 +472,51 @@ class UserController extends Controller
         return view('admin.newestudante');
     }
 
-    public function perfilEstudante($id)
-    {
-        $user = User::findOrFail($id);
-        $estudantes = $user->estudanteUser()->get();
-        $dados = $user->dadoUser()->get();
-        return view('usuario.perfilestudante', ['estudantes' => $estudantes, 'dados' => $dados]);
-    }
-
-
     /**
      * Funcao para salvar dados de cadsatro de um do estudante na base de dados.
      */
     public function storeEstudante(Request $request)
     {
         //$this->is_active = '0';
+       $validateData = $request->validate(
+           [
+            'name' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+            'num_estudante' => 'required',
+            'regime' => 'required',
+            'foto' => 'required',
+            'ano_ingresso' => 'required',
+            'supervisor' => 'required',
+            'curso' => 'required',
+            'nivel' => 'required',
+            'tema' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required'
+           ], 
+            [
+            'name.required' => 'Campo nome é obrigatório',
+            'email.required' => 'Campo email é obrigatório',
+            'username.required' => 'Campo nome do usuario é obrigatório',
+            'num_estudante.required' => 'Campo numero do estudante é obrigatório',
+            'regime.required' => 'Campo regime é obrigatório',
+            'foto.required' => 'Campo foto é obrigatório',
+            'ano_ingresso.required' => 'Campo ano é obrigatório',
+            'supervisor.required' => 'Campo supervisor é obrigatório',
+            'curso.required' => 'campo curso é obrigatório',
+            'nivel.required' => 'Campo nivel é obrigatório',
+            'tema.required' => 'Campo tema é obrigatório',
+            'password.required' => 'Campo senha é obrigatório',
+            'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
+        ]);
+    
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $confirPass = $request->confirm_password;
         $pass = $request->password;
         $active = $request->is_active;
+        $autorize = $request->is_autorize;
         if ($pass == $confirPass) {
             if (strlen($pass) >= 6) {
                 $user->password = Hash::make($request->password);
@@ -130,10 +531,16 @@ class UserController extends Controller
         } else {
             $user->is_active = '0';
         }
+        if ($autorize == '1') {
+            $user->is_autorize = $request->input('is_autorize');
+        } else {
+            $user->is_autorize = '0';
+        }
         $user->is_estudante = '1';
         $user->is_docente = '0';
         $user->is_admin = '0';
         $user->is_drcurso = '0';
+        $user->is_visitante = '0';
         $user->username = $request->num_estudante;
         $email = User::all()->where('email', '=', $user->email)->count();
         if ($email > 0) {
@@ -163,6 +570,7 @@ class UserController extends Controller
         $estudante->ano_ingresso = $request->input('ano_ingresso');
         $estudante->supervisor = $request->input('supervisor');
         $estudante->curso = $request->input('curso');
+        $estudante->nivel = $request->input('nivel');
         $userauth = auth()->user();
         $estudante->id_docente = $userauth->id;
         $estudante->id_user = $id_user;
@@ -211,6 +619,7 @@ class UserController extends Controller
         $estudante = $user->estudanteUser;
         $userPassword = $user->password;
         $active = $request->is_active;
+        $autorize = $request->is_autorize;
 
         if ($request->password_actual != "") {
 
@@ -218,9 +627,13 @@ class UserController extends Controller
             $confirPass = $request->confirm_password;
             $name = $request->name;
             $email = $request->email;
-            $username = $request->username;
             $curso = $request->curso;
+            $username = $request->num_estudante;
+            $tema = $request->tema;
+            $nivel = $request->nivel;
+            $regime = $request->regime;
             $is_active = $request->is_active;
+            $is_autorize = $request->is_autorize;
 
             if (Hash::check($request->password_actual, $userPassword)) {
                 if ($newPass == $confirPass) {
@@ -229,8 +642,11 @@ class UserController extends Controller
                         DB::table('users')
                             ->where('id', $user->id)
                             ->update(['password' => $user->password]);
+                            DB::table('users')
+                            ->where('id', $user->id)
+                            ->update(['username' => $username]);
 
-                        $data = $request->all('name', 'email', 'username');
+                        $data = $request->all('name', 'email');
                         $foto = $request->all('foto');
                         
                         if ($active == '1') {
@@ -238,6 +654,13 @@ class UserController extends Controller
                             $user->update($is_active);
                         } else {
                             $user->is_active = '0';
+                        }
+
+                        if ($autorize == '1') {
+                            $is_autorize = $request->all('is_autorize');
+                            $user->update($is_autorize);
+                        } else {
+                            $user->is_autorize = '0';
                         }
                         // upload de foto 
                         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
@@ -255,6 +678,10 @@ class UserController extends Controller
                         }
                         $user->update($data);
                         DB::table('estudantes')->where('id', $estudante->id)->update(['curso' => $curso]);
+                        DB::table('estudantes')->where('id', $estudante->id)->update(['tema' => $tema]);
+                        DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $username]);
+                        DB::table('estudantes')->where('id', $estudante->id)->update(['nivel' => $nivel]);
+                        DB::table('estudantes')->where('id', $estudante->id)->update(['regime' => $regime]);
 
                         return redirect()->route('estudanteview')->with(['msgSucessUpdate' => 'A palavra passe foi combinada correctamente']);
                     } else {
@@ -268,13 +695,25 @@ class UserController extends Controller
             }
         } else {
             $curso = $request->curso;
+            $tema = $request->tema;
+            $username = $request->num_estudante;
+            $nivel = $request->nivel;
+            $regime = $request->regime;
             $foto = $request->all('foto');
-            $data = $request->all('name', 'email', 'username', 'foto');
+            $data = $request->all('name', 'email', 'foto');
+           
             if ($active == '1') {
                 $is_active = $request->all('is_active');
                 $user->update($is_active);
             } else{
                 $user->is_active = '0';   
+            }
+
+            if ($autorize == '1') {
+                $is_autorize = $request->all('is_autorize');
+                $user->update($is_autorize);
+            } else {
+                $user->is_autorize = '0';
             }
             
 
@@ -292,7 +731,13 @@ class UserController extends Controller
                 $foto['foto'] = $imageName;
                 $estudante->update($foto);
             }
+
             DB::table('estudantes')->where('id', $estudante->id)->update(['curso' => $curso]);
+            DB::table('estudantes')->where('id', $estudante->id)->update(['tema' => $tema]);
+            DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $username]);
+            DB::table('estudantes')->where('id', $estudante->id)->update(['nivel' => $nivel]);
+            DB::table('estudantes')->where('id', $estudante->id)->update(['regime' => $regime]);
+            DB::table('users')->where('id', $user->id)->update(['username' => $username]);
 
             $user->update($data);
 
@@ -301,13 +746,45 @@ class UserController extends Controller
         return redirect()->back()->with(['msgError' => 'Erro ao actualizar os dados']);
     }
 
+    public function perfilEstudante($id)
+    {
+        $user = User::findOrFail($id);
+        $estudantes = $user->estudanteUser()->get();
+        $dados = $user->dadoUser()->get();
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.perfilestudante', ['estudantes' => $estudantes, 'dados' => $dados,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
+    }
+
     public function editPerfilEstudante($id)
     {
 
         $user = User::findOrFail($id);
         $estudantes = $user->estudanteUser()->get();
         $dados = $user->dadoUser()->get();
-        return view('usuario.editperfilestudante', ['estudantes' => $estudantes, 'dados' => $dados]);
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.editperfilestudante', ['estudantes' => $estudantes, 'dados' => $dados,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
     }
 
 
@@ -338,7 +815,7 @@ class UserController extends Controller
                     DB::table('users')->where('id', $user->id)->update(['password' => $user->password]); 
                     DB::table('users')->where('id', $user->id)->update(['name' => $name]);
                     DB::table('users')->where('id', $user->id)->update(['email' => $email]);
-                    DB::table('users')->where('id', $user->id)->update(['username' => $username]);
+                    //DB::table('users')->where('id', $user->id)->update(['username' => $username]);
                      // upload de foto 
                      if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
 
@@ -419,7 +896,7 @@ class UserController extends Controller
                     DB::table('estudantes')->where('id', $estudante->id)->update(['curso' => $curso]);
                     DB::table('estudantes')->where('id', $estudante->id)->update(['ano_ingresso' => $ano]);
                     DB::table('estudantes')->where('id', $estudante->id)->update(['regime' => $regime]);
-                    DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $num_estudante]);
+                    //DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $num_estudante]);
 
                     return redirect()->back()->with(['msgSucessUpdate' => 'A palavra passe foi combinada correctamente']);
                 }else {
@@ -442,7 +919,7 @@ class UserController extends Controller
 
         DB::table('users')->where('id', $user->id)->update(['name' => $name]);
         DB::table('users')->where('id', $user->id)->update(['email' => $email]);
-        DB::table('users')->where('id', $user->id)->update(['username' => $username]);
+        //DB::table('users')->where('id', $user->id)->update(['username' => $username]);
 
                 // upload de foto 
                 if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
@@ -523,7 +1000,7 @@ class UserController extends Controller
         DB::table('estudantes')->where('id', $estudante->id)->update(['curso' => $curso]);
         DB::table('estudantes')->where('id', $estudante->id)->update(['ano_ingresso' => $ano]);
         DB::table('estudantes')->where('id', $estudante->id)->update(['regime' => $regime]);
-        DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $num_estudante]);
+        //DB::table('estudantes')->where('id', $estudante->id)->update(['num_estudante' => $num_estudante]);
         return redirect()->back()->with(['msgSucess' => 'Dados actualizados com sucesso']);
     }
     return redirect()->back()->with(['msgError' => 'Erro ao actualizar os dados']);
@@ -535,10 +1012,13 @@ class UserController extends Controller
 
     public function destroyEstudante($id)
     {
-        $user = User::findOrFail($id);
-        $user->estudanteUser()->delete();
-        $user->dadoUser()->delete();
-        $user->delete();
+        $user = User::where('id',$id);
+        $estudante = Estudante::where('id_user', $id);
+        $dado = DadosDefesa::where('id_estudante', $id);
+        $estudante->firstorfail()->delete();
+        $dado->firstorfail()->delete();
+        $user->firstorfail()->delete();
+
         return redirect()->route('estudanteview')->with(['Mensagem' => 'Estudante eliminado com sucesso!']);
     }
 
@@ -560,31 +1040,31 @@ class UserController extends Controller
      */
     public function indexDocentes()
     {
+        $search = request('search');
+
+        if ($search) {
+            $userlog = auth()->user()->id;
+            $docentes = Docente::where([
+                ['id_drcurso', $userlog], ['nome', 'like', '%' .$search . '%']
+            ])->get();
+        }else{
         $userauth = auth()->user();
         $docentes = $userauth->docenteDrcurso;
+        }
         //User::with('docenteUser')->with('docenteDrcurso')->where(['is_docente'=> 1])->get();
-        return view('admin.docenteview', ['docentes' => $docentes]);
+        return view('admin.docenteview', ['docentes' => $docentes, 'search' => $search]);
     }
 
     public function indexDocente()
     {
-        $docentes = User::with('docenteUser')->with('docenteDrcurso')->where(['is_docente' => 1])->get();
-        return view('admin.docenteview', ['docentes' => $docentes]);
-    }
-
-
-    /**
-     * Funcao para pesquisa de docentes
-     */
-    public function searchDocente()
-    {
-
         $search = request('search');
 
         if ($search) {
             $docentes = User::with('docenteUser')->where([
-                'is_docente', 1, ['name', 'like', '%', $search . '%']
+                ['is_docente', 1], ['name', 'like', '%' .$search . '%']
             ])->get();
+        }else{
+            $docentes = User::with('docenteUser')->with('docenteDrcurso')->where(['is_docente' => 1])->get();
         }
         return view('admin.docenteview', ['docentes' => $docentes, 'search' => $search]);
     }
@@ -610,8 +1090,29 @@ class UserController extends Controller
                      */
     public function storeDocente(Request $request)
     {
-        //$this->is_active = '0';
-        //$this->is_docente = '0';
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email', 
+                'username' => 'required',
+                'password' => 'required',
+                'confirm_password' => 'required',
+                'foto' => 'required',
+                'curso' => 'required',
+                'curriculum' => 'required'
+            ],
+            
+            [
+                'name.required' => 'Campo nome é obrigatório',
+                'email.required' => 'Campo email é obrigatório',
+                'username.required' => 'Campo nome do usuario é obrigatório',
+                'password.required' => 'Campo senha é obrigatório',
+                'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
+                'foto.required' => 'Campo foto é obrigatório',
+                'curso.required' => 'Campo curso é obrigatório',
+                'curriculum.required' => 'Campo curriculum é obrigatório'
+
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -637,6 +1138,8 @@ class UserController extends Controller
         $user->is_estudante = '0';
         $user->is_admin = '0';
         $user->is_drcurso = '0';
+        $user->is_autorize = '0';
+        $user->is_visitante ='0';
         $email = User::all()->where('email', '=', $user->email)->count();
         if ($email > 0) {
             $addDocente['success'] = false;
@@ -649,6 +1152,7 @@ class UserController extends Controller
 
         $docente = new Docente();
         $docente->curso = $request->curso;
+        $docente->nome = $request->name;
 
         // upload de foto 
         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
@@ -735,8 +1239,9 @@ class UserController extends Controller
                 $newPass = $request->password;
                 $confirPass = $request->confirm_password;
                 $name = $request->name;
+                $nome =$request->name;
                 $email = $request->email;
-                $username = $request->username;
+                $username = $request->email;
                 $curso = $request->curso;
             
             if(Hash::check($request->password_actual, $userPassword)){
@@ -779,6 +1284,7 @@ class UserController extends Controller
                         }
 
                         DB::table('docentes')->where('id', $docente->id)->update(['curso' => $curso]);
+                        DB::table('docentes')->where('id', $docente->id)->update(['nome' => $nome]);
 
                         return redirect()->back()->with(['msgSucessUpdate' => 'A palavra passe foi combinada correctamente']);
                     }else {
@@ -792,8 +1298,9 @@ class UserController extends Controller
             }
         }else{
             $name = $request->name;
+            $nome = $request->name;
             $email = $request->email;
-            $username = $request->username;
+            $username = $request->email;
             $curso = $request->curso;
 
             DB::table('users')->where('id', $user->id)->update(['name' => $name]);
@@ -829,7 +1336,8 @@ class UserController extends Controller
                     DB::table('docentes')->where('id', $docente->id)->update(['curriculum' => $curriculum]);
 
                     }
-            DB::table('docentes')->where('id', $docente->id)->update(['curso' => $curso]);
+                    DB::table('docentes')->where('id', $docente->id)->update(['curso' => $curso]);
+                    DB::table('docentes')->where('id', $docente->id)->update(['nome' => $nome]);
             return redirect()->back()->with(['msgSucess' => 'Dados actualizados com sucesso']);
         }
         return redirect()->back()->with(['msgError' => 'Erro ao actualizar os dados']);
@@ -851,8 +1359,9 @@ class UserController extends Controller
             $confirPass = $request->confirm_password;
             $name = $request->name;
             $email = $request->email;
-            $username = $request->username;
+            $username = $request->email;
             $curso = $request->curso;
+            $nome = $request->name;
             $active = $request->is_active;
 
             if (Hash::check($request->password_actual, $userPassword)) {
@@ -862,7 +1371,10 @@ class UserController extends Controller
                         DB::table('users')
                             ->where('id', $user->id)
                             ->update(['password' => $user->password]);
-                        $data = $request->all('name', 'email', 'username');
+                        DB::table('users')
+                            ->where('id', $user->id)
+                            ->update(['username' => $username]);
+                        $data = $request->all('name', 'email');
                         if ($active == '1') {
                             $is_active = $request->all('is_active');
                             $user->update($is_active);
@@ -871,6 +1383,7 @@ class UserController extends Controller
                         }
                         $user->update($data);
                         DB::table('docentes')->where('id', $docente->id)->update(['curso' => $curso]);
+                        DB::table('docentes')->where('id', $docente->id)->update(['nome' => $nome]);
 
                         return redirect()->route('docenteview')->with(['msgSucessUpdate' => 'A palavra passe foi combinada correctamente']);
                     } else {
@@ -884,8 +1397,10 @@ class UserController extends Controller
             }
         } else {
             $curso = $request->curso;
+            $nome = $request->name;
             $active = $request->is_active;
-            $data = $request->all('name', 'email', 'username');
+            $username = $request->email;
+            $data = $request->all('name', 'email');
             if ($active == '1') {
                 $is_active = $request->all('is_active');
                 $user->update($is_active);
@@ -893,6 +1408,8 @@ class UserController extends Controller
                 $user->is_active = '0';   
             }
             DB::table('docentes')->where('id', $docente->id)->update(['curso' => $curso]);
+            DB::table('docentes')->where('id', $docente->id)->update(['nome' => $nome]);
+            DB::table('users')->where('id', $user->id)->update(['username' => $username]);
             $user->update($data);
             return redirect()->route('docenteview')->with(['msgSucess' => 'Dados actualizados com sucesso']);
         }
@@ -934,26 +1451,19 @@ class UserController extends Controller
      */
     public function indexDrcurso()
     {
-
-        $drcurso = User::with('drcursoUser')->where('is_drcurso', 1)->get();
-        return view('admin.drcurso', compact('drcurso'));
-    }
-    /**
-     * Funcao para pesquisa de drs. cursos
-     */
-    public function searchDrcurso()
-    {
-
         $search = request('search');
 
         if ($search) {
-            $drcursos = User::with('drcursoUser')->where([
-                'is_drcurso', 1, ['name', 'like', '%', $search . '%']
+            $drcurso = User::with('drcursoUser')->where([
+               ['is_drcurso', 1], ['name', 'like', '%' .$search . '%']
             ])->get();
-        }
-        return view('admin.docenteview', ['drcursos' => $drcursos, 'search' => $search]);
-    }
+        }else{
 
+        $drcurso = User::with('drcursoUser')->where('is_drcurso', 1)->get();
+        }
+        return view('admin.drcurso', ['drcurso' => $drcurso, 'search' => $search]);
+    }
+  
     /**
      * Funcao para carregar o formulario de cadastro de um docente.
      */
@@ -974,6 +1484,27 @@ class UserController extends Controller
                              */
     public function storeDrcurso(Request $request)
     {
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'username' => 'required',
+                'password' => 'required',
+                'confirm_password' => 'required',
+                'curso' => 'required',
+                'image' => 'required',
+                'curriculum' => 'required'
+            ], 
+        [
+            'name.required' => 'Campo nome é obrigatório', 
+            'email.required' => 'Campo email é obrigatório',
+            'username.required' => 'Campo nome do usuario é obrigatório',
+            'password.required' => 'Campo senha é obrigatório',
+            'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
+            'curso.required' => 'Campo curso é obrigatório',
+            'image.required' => 'Campo foto é obrigatório',
+            'curriculum.required' => 'Campo curriculum é obrigatório'
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -999,7 +1530,8 @@ class UserController extends Controller
         $user->is_docente = '0';
         $user->is_estudante = '0';
         $user->is_admin = '0';
-
+        $user->is_autorize = '0';
+        $user->is_visitante = '0';
         if ($drcur == '1') {
             $user->is_drcurso = $request->input('is_active');
         } else {
@@ -1117,7 +1649,7 @@ class UserController extends Controller
             $confirPass = $request->confirm_password;
             $name = $request->name;
             $email = $request->email;
-            $username = $request->username;
+            $username = $request->email;
             $curso = $request->curso;
             $active = $request->is_active;
             $drcur = $request->is_drcurso;
@@ -1129,7 +1661,10 @@ class UserController extends Controller
                         DB::table('users')
                             ->where('id', $user->id)
                             ->update(['password' => $user->password]);
-                        $data = $request->all('name', 'email', 'username');
+                            DB::table('users')
+                            ->where('id', $user->id)
+                            ->update(['username' => $username]);
+                        $data = $request->all('name', 'email');
                         if ($active == '1') {
                             $is_active = $request->all('is_active');
                             $user->update($is_active);
@@ -1159,7 +1694,8 @@ class UserController extends Controller
             $curso = $request->curso;
             $active = $request->is_active;
             $drcur =$request->is_drcurso;
-            $data = $request->all('name', 'email', 'username');
+            $username = $request->email;
+            $data = $request->all('name', 'email');
             if ($active == '1') {
                 $is_active = $request->all('is_active');
                 $user->update($is_active);
@@ -1172,6 +1708,7 @@ class UserController extends Controller
             } else{
                 $user->is_drcurso = '0';   
             }
+            DB::table('users')->where('id', $user->id)->update(['username' => $username]);
             DB::table('drcursos')->where('id', $drcurso->id)->update(['curso' => $curso]);
             $user->update($data);
             return redirect()->route('drcursoview')->with(['msgSucess' => 'Dados actualizados com sucesso']);
@@ -1342,6 +1879,8 @@ class UserController extends Controller
         $user->is_estudante = '0';
         $user->is_docente = '0';
         $user->is_drcurso = '0';
+        $user->is_autorize = '0';
+        $user->is_visitante = '0';
         $user->is_active = $request->is_active;
         $user->is_admin = $request->is_admin;
         $user->save();
@@ -1407,7 +1946,7 @@ class UserController extends Controller
             $confirPass = $request->confirm_password;
             $name = $request->name;
             $email = $request->email;
-            $username = $request->username;
+            $username = $request->email;
             $curso = $request->curso;
         
         if(Hash::check($request->password_actual, $userPassword)){
@@ -1464,7 +2003,7 @@ class UserController extends Controller
     }else{
         $name = $request->name;
         $email = $request->email;
-        $username = $request->username;
+        $username = $request->email;
         $curso = $request->curso;
 
         DB::table('users')->where('id', $user->id)->update(['name' => $name]);
@@ -1512,4 +2051,268 @@ class UserController extends Controller
      * ------------------------------------------------------Fim Administraor----------------------------------------------------------
      * --------------------------------------------------------------------------------------------------------------------------------
      */
+
+
+
+ /**
+     * --------------------------------------------------------------------------------------------------------------------------------
+     * --------------------------------------------Visitante---------------------------------------------------------------------------
+     * --------------------------------------------------------------------------------------------------------------------------------
+     */
+    /**
+     * Funcao para listar todos estudantes.
+     */
+
+    public function indexVisitantes()
+    
+    {
+        $search = request('search');
+
+        if ($search) {
+            $visitantes = User::with('visitanteUser')->where([
+                ['is_visitante', 1], ['name', 'like', '%' .$search . '%']
+            ])->get();
+        }else{
+            $visitantes = User::with('visitanteUser')->where(['is_visitante' => 1])->get();
+        }
+        return view('admin.visitanteview', ['visitantes' => $visitantes, 'search' => $search]);
+    }
+
+    /**
+     * Funcao para carregar o formulario de cadastro de um estudante .
+     */
+    public function createVisitante()
+    {
+        //
+        return view('usuario.formcadastro');
+    }
+
+    /**
+     * Funcao para salvar dados de cadsatro de um do visitante na base de dados.
+     */
+    public function storeVisitante(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $confirPass = $request->confirm_password;
+        $pass = $request->password;
+        if ($pass == $confirPass) {
+            if (strlen($pass) >= 6) {
+                $user->password = Hash::make($request->password);
+            } else {
+                return redirect()->back()->with(['msgErrorPass' => 'A palavra passe tem ter no minimo 6 digitos']);
+            }
+        } else {
+            return redirect()->back()->with(['msgPass' => 'Erro a palavra passe não coincide']);
+        }
+    
+        $user->is_active = '1';
+        $user->is_estudante = '0';
+        $user->is_docente = '0';
+        $user->is_admin = '0';
+        $user->is_drcurso = '0';
+        $user->is_visitante = '1';
+        $user->is_autorize = '0';
+        $user->username = $request->email;
+        $email = User::all()->where('email', '=', $user->email)->count();
+        if ($email > 0) {
+            $addEstudante['success'] = false;
+            return redirect()->back()->with(['msgEmail' => 'O email inserido já esta associado a uma conta no sistema!']);
+        }
+        $user->save();
+        $id_user = $user->id;
+
+        $visitante = new Visitante();
+        // upload de foto 
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+
+            $requestImage = $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('ficheiros/visitantes/fotos'), $imageName);
+
+            $visitante->foto = $imageName;
+        }
+        
+        $visitante->id_user = $id_user;
+        ///$utilizador->save();
+        //$id_utilizador = $utilizador->id;
+
+        /* $estudante = new UserEstudante();
+                $estudante->id_user = $id_user;
+                $estudante->id_estudante = $id_utilizador;*/
+
+        if ($visitante->save()) {
+
+            return redirect()->route('login')->with(['msgSucessStore' => 'Estudante cadastrado com sucesso!']);
+        } else {
+            return redirect()->back()->with(['msgErrorStore' => 'Erro no cadastro do estudante!']);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showVisitante($id)
+    {
+        //
+        $user = User::findOrFail($id);
+        $visitantes = $user->visitanteUser()->get();
+        return view('admin.showvisitante', ['visitantes' => $visitantes]);
+    }
+
+    /*
+      Funcao para carregar o formulario para editar dados de um estudante.
+    
+    public function editVisitante($id)
+    {
+
+        $user = User::findOrFail($id);
+        $estudantes = $user->estudanteUser()->get();
+        $dados = $user->dadoUser()->get();
+        return view('admin.editestudante', ['estudantes' => $estudantes, 'dados' => $dados]);
+    }
+
+*/
+    public function perfilVisitante($id)
+    {
+        $user = User::findOrFail($id);
+        $visitantes = $user->visitanteUser()->get();
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.perfilvisitante', ['visitantes' => $visitantes,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
+    }
+
+    public function editPerfilVisitante($id)
+    {
+
+        $user = User::findOrFail($id);
+        $visitantes = $user->visitanteUser()->get();
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.editperfilvisitante', ['visitantes' => $visitantes,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
+    }
+
+
+    public function updatePerfilVisitante(Request $request)
+    {
+
+        $user = auth()->user();
+        $visitante = $user->visitanteUser;
+        $userPassword = $user->password;
+        if ($request->password_actual != "") {
+            $newPass = $request->password;
+            $confirPass = $request->confirm_password;
+            $name = $request->name;
+            $email = $request->email;
+            $username = $request->username;
+        
+        if(Hash::check($request->password_actual, $userPassword)){
+
+            if($newPass == $confirPass){
+                if(strlen($newPass) >= 6){
+                    $user->password = Hash::make($request->password);
+                    DB::table('users')->where('id', $user->id)->update(['password' => $user->password]); 
+                    DB::table('users')->where('id', $user->id)->update(['name' => $name]);
+                    DB::table('users')->where('id', $user->id)->update(['email' => $email]);
+                    DB::table('users')->where('id', $user->id)->update(['username' => $username]);
+                    //DB::table('users')->where('id', $user->id)->update(['username' => $username]);
+                     // upload de foto 
+                     if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+
+                        $requestImage = $request->foto;
+
+                        $extension = $requestImage->extension();
+
+                        $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+                        $requestImage->move(public_path('ficheiros/visitantes/fotos'), $imageName);
+
+                        $foto = $imageName;
+                        DB::table('visitantes')->where('id', $visitante->id)->update(['foto' => $foto]);
+                    }
+
+                    return redirect()->back()->with(['msgSucessUpdate' => 'A palavra passe foi combinada correctamente']);
+                }else {
+                    return redirect()->back()->with(['msgErrorUpdate' => 'A palavra passe deve ter mais de 6 digitos']);
+                }
+            }else {
+                return redirect()->back()->with(['msgIncorrecta' => 'Por favor verifique a palavra passe não coincide']);
+            }
+        }else {
+            return redirect()->back()->with(['password_actual' => 'A palavra passe actual não coincide']);
+        }
+    }else{
+        $name = $request->name;
+        $email = $request->email;
+        $username = $request->username;
+
+        DB::table('users')->where('id', $user->id)->update(['name' => $name]);
+        DB::table('users')->where('id', $user->id)->update(['email' => $email]);
+        DB::table('users')->where('id', $user->id)->update(['username' => $username]);
+
+                // upload de foto 
+                if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+
+                    $requestImage = $request->foto;
+
+                    $extension = $requestImage->extension();
+
+                    $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+                    $requestImage->move(public_path('ficheiros/visitantes/fotos'), $imageName);
+
+                    $foto = $imageName;
+                    DB::table('visitantes')->where('id', $visitante->id)->update(['foto' => $foto]);
+                }
+                 
+        return redirect()->back()->with(['msgSucess' => 'Dados actualizados com sucesso']);
+    }
+    return redirect()->back()->with(['msgError' => 'Erro ao actualizar os dados']);
+    }
+
+    /**
+     * Funcao para eliminar um estudante.
+     */
+
+    public function destroyVisitante($id)
+    {
+        $user = User::findOrFail($id);
+        $docente = $user->visitanteUser();
+        $docente->delete();
+
+        return redirect()->route('visitanteview')->with(['visitanteDelete' => 'Visitante eliminado com sucesso!']);
+    }
+
+
+    /**
+     * --------------------------------------------------------------------------------------------------------------------------------
+     * ----------------------------------------------------Fim Visitante---------------------------------------------------------------
+     * --------------------------------------------------------------------------------------------------------------------------------
+     */
+
 }

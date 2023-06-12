@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_drcurso');
+            $table->string('nome');
             $table->string('foto');
             $table->string('curso');
             $table->string('curriculum');

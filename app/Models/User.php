@@ -33,7 +33,9 @@ class User extends Authenticatable
         'is_estudante',
         'is_docente',
         'is_admin',
-        'is_drcurso'
+        'is_drcurso',
+        'is_autorize',
+        'is_visitante'
     ];
 
     /**
@@ -111,7 +113,13 @@ class User extends Authenticatable
 
     }
     public function defesaParticipante(){
-        return $this->belongsToMany(Defesa::class);
+        return $this->belongsToMany(Defesa::class, 'defesa_participantes', 'id_participante', 'id_defesa');
+    }
+    public function monografiaDownload(){
+        return $this->belongsToMany(Monografia::class, 'monografia_downloads', 'id_user', 'id_monografia');
+    }
+    public function visitanteUser(){
+        return $this->hasOne(Visitante::class, 'id_user', 'id');
     }
 
     /**

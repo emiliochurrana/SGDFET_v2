@@ -4,6 +4,7 @@
 @section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,21 +49,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -66,32 +68,24 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <div class="container-fluid">
+                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button">
+                        <i class="fas fa-bars"></i>
+                    </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
-                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
-                            <div class="dropdown-menu show dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto navbar-search w-100">
-                                    <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                        <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -193,18 +187,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -221,8 +215,41 @@
             </nav>
             <div class="container-fluid">
                 <div class="card shadow">
-                    <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-bottom: 0px;margin-top: 20px;margin-right: 20px;margin-left: 20px;">Nova Defesa</h2>
+                    <h3 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-bottom: 0px;margin-top: 20px;margin-right: 20px;margin-left: 20px;">Nova Defesa</h3>
                     <hr style="background-color: #3ba2dc;">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("input[name='num_estudante']").blur(function() {
+
+                                var $name = $("input[name='name']");
+                                var $id_estudante = $("input[name='id_estudante']");
+                                var $supervisor = $("input[name='supervisor']");
+                                var $nivel = $("input[name='nivel']");
+                                var $curso = $("input[name='curso']");
+                                var $regime = $("input[name='regime']");
+                                var $tema = $("input[name='tema']");
+                                var $foto = $("input[name='foto']");
+                                var $monografia = $("input[name='monografia']");
+                                var username = $(this).val();
+
+                                $.getJSON("{{route('getestudante')}}", {
+                                        username
+                                    },
+                                    function(json) {
+                                        $name.val(json.name);
+                                        $id_estudante.val(json.id_estudante);
+                                        $supervisor.val(json.supervisor);
+                                        $nivel.val(json.nivel);
+                                        $curso.val(json.curso);
+                                        $regime.val(json.regime);
+                                        $tema.val(json.tema);
+                                        $foto.val(json.foto);
+                                        $monografia.val(json.monografia);
+                                    });
+
+                            });
+                        });
+                    </script>
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
                             <div class="mensagem-error">
@@ -231,112 +258,70 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgInput'))
+                                <p class="msg"><Strong>{{session('msgInput')}}</Strong></p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgMonografia'))
+                                <p class="msg"><Strong>{{session('msgMonografia')}}</Strong></p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgErrorName'))
+                                <p class="msg"><Strong>{{session('msgErrorName')}}</Strong></p>
+                                @endif
+                            </div>
+                        </div>
                     </main>
-                    <script type="text/javascript">
-                           /* var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                            $(document).ready(function(){
-                                $("#num_estudante").on({
-                                    source: function(request, response){
-                                        $.ajax({
-                                            url:"{{route('getestudante')}}", type: 'post', dataType: "json",
-                                            data:{
-                                                _token: CSRF_TOKEN, userneme: request.term
-                                            },
-                                            success:function(data){
-                                                
-                                                response(data);
-                                            }
-                                        });
-                                    },
-                                    select: function (event, ui){
-                                        $('#num_estudante'). val(ui.item.label);
-                                        $('#id_estudante').val(ui.item.value);
-                                        $('#curso').val(ui.item.value);
-                                        $('#supervisor').val(ui.item.value);
-                                        $('#nivel').val(ui.item.value);
-                                        $('#regime').val(ui.item.value);
-                                        return false;
-                                    }
-                                });
-                            });*/
-                          $(document).ready(function() {
-                                $("input[name='num_estudante']").blur(function() {
-                                    var $name = $("input[name='name']");
-                                    var $id_estudante = $("input[name='id_estudante']");
-                                    var $supervisor = $("input[name='supervisor']");
-                                    var $nivel = $("input[name='nivel']");
-                                    var $regime = $("input[name='regime']");
-                                    var username = $(this).val();
-                                    $.getJSON("{{route('getestudante')}}",{username}, 
-                                        function(json) {
-                                            $name.val(json.name);
-                                            $id_estudante.val(json.id);
-                                            $supervisor.val(json.supervisor);
-                                            $nivel.val(json.nivel);
-                                            $regime.val(json.regime);
-                                        });
-                                });
-                            });
-                        </script>
-
-                    <form style="padding: 40px;padding-top: 10px;" method="post" action="" enctype="multipart/form-data" role="form">
-                        <div class="form-group d-flex justify-content-center align-items-center">
-                            <label style="margin-right: 5px;width: 200px;">Numero de estudante*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" id="num_estudante" data-aos-delay="800" autofocus="" required="" placeholder="Numero do Estudante" style="background-color: #ffffff;" name="num_estudante">
+                    <form class="needs-validation" style="padding: 30px;padding-top: 10px;" role="form" method="post" action="{{ route('storedefesa') }}" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;width: 400px;">Numero de estudante*</label>
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" id="num_estudante" data-aos-delay="800" autofocus="" required placeholder="Busque pelo numero do estudante" style="background-color: #ffffff;margin-right:20px;" name="num_estudante">
+                            <label style="margin-right: 5px;">Foto*</label>
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" id="foto" data-aos-delay="800" required autofocus="" placeholder="Foto do estudante" style="background-color: #ffffff;" name="foto">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
-                            <input class="shadow form-control" type="hidden" name="id_estudante"  readonly>
+
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <input class="shadow form-control" type="hidden" name="id_estudante" readonly>
                             <label style="margin-right: 5px;">Nome*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" id="name" autofocus="" required="" placeholder="Nome do Estudante" style="background-color: #ffffff; margin-right: 20px;" name="name" readonly>
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" required id="name" autofocus="" placeholder="Nome do Estudante" style="background-color: #ffffff; margin-right: 20px;" name="name">
                             <label style="margin-right: 5px;">Regime*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" id="regime" data-aos-delay="800" autofocus="" autocomplete="on" required="" placeholder="Regime" style="background-color: #ffffff;" name="regime">
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" id="regime" required data-aos-delay="800" autofocus="" autocomplete="on" placeholder="Regime" style="background-color: #ffffff;" name="regime">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
+
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Tema*</label>
-
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="tema" placeholder="Tema da monografia" autofocus="" autocomplete="on" required="" style="background-color: #ffffff;margin-right: 20px;">
-
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" id="tema" data-aos-duration="800" required data-aos-delay="800" name="tema" placeholder="Tema da monografia" autofocus="" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;">
                             <label style="margin-right: 5px;">Curso*</label>
-                            <input class="shadow form-control" type="text" vadata-aos="zoom-in" id="curso" data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" required="" placeholder="Curso" style="background-color: #ffffff;" name="curso">
-                            <!-- <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
-                                <optgroup label="curso">
-                                    <option selected="">Seleccione</option>
-                                    
-                                    <option value="Informatica">Informatica</option>
-                                    <option value="">Engenharia Civil</option>
-                                    <option>Engenharia Electronica</option>
-                                    <option>Design Multimidia</option>
-                                    <option>Agropecuaria</option>
-                                </optgroup>
-                            </select>-->
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" id="curso" data-aos-duration="800" required data-aos-delay="800" autofocus="" autocomplete="on" placeholder="Curso" style="background-color: #ffffff;" name="curso">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
+
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Descrição*<br></label>
-                            <textarea class="shadow form-control form-control-sm" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" placeholder="Resumo" name="descricao" autofocus="" style="background-color: #ffffff;margin-right: 20px;" required=""></textarea>
+                            <textarea class="shadow form-control form-control-sm" data-aos="zoom-in" id="descricao" required data-aos-duration="800" data-aos-delay="800" placeholder="Resumo" name="descricao" autofocus="" style="background-color: #ffffff;margin-right: 20px;"></textarea>
                             <label style="margin-right: 5px;">Nivel*</label>
-                            <input class="shadow form-control" type="text" vadata-aos="zoom-in" id="nivel" data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" required="" placeholder="Nivel" style="background-color: #ffffff;" name="nivel">
-                            <!--<select class="shadow form-control" data-aos="fade"  data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" name="nivel" required="">
-                                <optgroup label="nivel">
-                                    <option selected="">Seleccione</option>
-                                    <option>Licenciatura</option>
-                                    <option>Mestrado</option>
-                                    <option>Dotoramento</option>
-                                </optgroup>
-                            </select>-->
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" id="nivel" required data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" placeholder="Nivel" style="background-color: #ffffff;" name="nivel">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
+
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Supervisor*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" id="supervisor" name="supervisor" placeholder="Nome do supervisor" autofocus="" autocomplete="on" required="" style="background-color: #ffffff;margin-right: 20px;">
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" id="supervisor" name="supervisor" placeholder="Nome do supervisor" autofocus="" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;">
                             <label class="text-nowrap" style="margin-right: 5px;">Sala*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" autocomplete="on" required="" placeholder="Nome da Sala" style="background-color: #ffffff;" name="sala">
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" id="sala" required data-aos-duration="800" data-aos-delay="800" autocomplete="on" placeholder="Nome da Sala" style="background-color: #ffffff;" name="sala">
                         </div>
-
-                        <div class="form-group d-flex justify-content-center align-items-center">
-
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Oponente*</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff; margin-right: 20px;" required="" name="oponente">
+                            <select class="shadow form-control" data-aos="zoom-in" id="oponente" required data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff; margin-right: 20px;" name="oponente">
                                 <optgroup label="Oponente">
-                                    <option selected="">Seleccione</option>
+                                    <option>Seleccione</option>
                                     @foreach($docentes as $docente)
                                     <option value="{{$docente->name}}">{{$docente->name}}</option>
                                     @endforeach
@@ -344,9 +329,9 @@
                             </select>
 
                             <label style="margin-right: 5px;">Presidente*</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="presidente">
+                            <select class="shadow form-control" data-aos="zoom-in" id="presidente" required data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" name="presidente">
                                 <optgroup label="Presidente">
-                                    <option selected="">Seleccione</option>
+                                    <option>Seleccione</option>
                                     @foreach($docentes as $docente)
                                     <option value="{{$docente->name}}">{{$docente->name}}</option>
                                     @endforeach
@@ -354,21 +339,36 @@
                             </select>
 
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label class="text-nowrap" style="margin-right: 5px;">Data*</label>
-                            <input class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="date" name="data" style="background-color: #ffffff;margin-right: 20px;">
+                            <input class="shadow form-control" data-aos="zoom-in" id="data" required data-aos-duration="800" data-aos-delay="800" type="date" name="data" style="background-color: #ffffff;margin-right: 20px;">
                             <label class="text-nowrap" style="margin-right: 5px;">Hora*</label>
-                            <input class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="time" name="hora" style="background-color: #ffffff;">
+                            <input class="shadow form-control" id="hora" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" type="time" name="hora" style="background-color: #ffffff;">
+                            <input class="shadow form-control" id="monografia" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="hidden" name="monografia" style="background-color: #ffffff;">
                         </div>
-                        <div class="form-group d-flex justify-content-end align-items-center">
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;">Cadastrar</button>
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: #3f9bc3;margin-right: 20px;color: #ffffff;">Limpar Campos</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;">Cancelar</a>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-center">
+                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;margin-bottom: 10px;">Cadastrar</button>
+                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: #3f9bc3;margin-right: 20px;color: #ffffff;margin-bottom: 10px;">Limpar Campos</button>
+                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" href="{{ ('/defesa/index') }}" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
                         </div>
                         <label class="d-flex" style="margin-top: 20px;padding: 10px;padding-left: 20px;background-color: #aff5ff;">Obs: O * representa campos obrigatórios<br></label>
-                        
-                    </form>
 
+                    </form>
+                    <script type="text/javascript">
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const forms = document.querySelectorAll('.needs-validation');
+                            Array.prototype.slice.call(forms).forEach((form) => {
+                                form.addEventListener('submit', (event) => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        // alert('Por favor carregue os ficheiros');
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

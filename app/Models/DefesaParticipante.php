@@ -9,7 +9,12 @@ class DefesaParticipante extends Model
 {
     use HasFactory;
 
-    protected $table = 'defesa_participante';
+    protected $table = 'defesa_participantes';
 
-    protected $fillable = ['id_defesa', 'id_participante'];
+    protected $fillable = [
+        'id_defesa', 
+        'id_participante'
+    ];
+
 }
+

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('num_estudante');
             $table->string('foto');
             $table->string('curso');
+            $table->string('tema');
             $table->string('supervisor');
             $table->string('regime');
             $table->string('nivel');

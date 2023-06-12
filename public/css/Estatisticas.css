@@ -1,0 +1,76 @@
+.estatisticas{
+background: #ffffff;
+max-width: 960px;
+width: 90%;
+padding: 30px 0;
+margin: -40px auto 0 auto;
+text-align: center;
+
+display: flex;
+display: -webkit-flex;
+align-items: center;
+
+-webkit-border-radius:10px;
+border-radius: 10px;
+-webkit-box-shadow: 0px 0px 30px 0px rgb(0,0,0,.3);
+box-shadow: 0px 0px 30px 0px rgb(0,0,0,.3);
+}
+
+.estatistica-item span{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.estatistica-item p{
+    font-size: 18px;
+
+}
+
+@media (max-width:767.9px){
+    .estatisticas{
+        flex-direction: column;
+    }
+    .estatistica-item{
+        min-width: 90%;
+    }
+    .estatistica-item:not(:last-of-type){
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+@media (min-width:768px){
+    .estatisticas{
+        margin-top: -65px;
+    }
+    .estatistica-item{
+        text-align: center;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+    .estatistica-item:not(:last-of-type){
+        border-right: 1px solid #ccc;
+    }
+}
+
+.estudante{
+    color: #5269ae;
+}
+
+.docentes{
+    color: #1e96c9;
+}
+
+.defesas{
+    color: #06c8e4;
+}
+
+.monografias{
+    color: #0e89e1;
+}
+.cursos{
+    color: #02192a;   
+}
+

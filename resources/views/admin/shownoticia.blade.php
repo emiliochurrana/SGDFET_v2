@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Noticia')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -16,64 +17,65 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_docente)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                    </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_docente)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                </li>
 
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                    </li>
-                    @if(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    </li>
-                        @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    </li>
-                    @endif
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                    </li>
-                    </li>
-                    @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                    </li>
-                    @endif
-                </ul>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                </li>
+                @endif
+            </ul>
             <div class="text-center d-none d-md-inline">
                 <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
             </div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -83,7 +85,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -101,17 +103,15 @@
                                 </form>
 
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -216,18 +216,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -244,12 +244,12 @@
             </nav>
             <div class="container-fluid">
                 <div class="card shadow">
-                    <div class="row" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;">
+                    <div class="row" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;margin-bottom:20px">
                         <div class="col-xl-8 offset-xl-0">
-                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #3ba2dc;padding-left: 20px;">Detalhes da noticia</h2>
+                            <h3 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #3ba2dc;padding-left: 20px;">Detalhes da noticia</h3>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
-                        @if(auth()->user()->is_drcurso)
+                            @if(auth()->user()->is_drcurso)
                             <a class="btn btn-primary border-success" href="/noticia/edit/{{$noticias->id}}" type="button" style="background-color: #0ccf94;margin-right: 15px;">Editar</a>
                             <a class="btn btn-primary border-warning" href="{{ ('/noticias') }}" type="button" style="background-color: #da2d22;">Cancelar</a>
                             @elseif(auth()->user()->is_admin || auth()->user()->is_docente)
@@ -258,13 +258,14 @@
                         </div>
                     </div>
                     <div class="row no-gutters text-justify" style="padding-top: 10px;padding-bottom: 20px;max-width: 100%;padding-left: 40px;">
-                        <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;">
-                            <img class="rounded img-fluid" style="background-size: cover;" src="/ficheiros/noticias/{{$noticias->foto}}" width="250px" height="100px">
+                        <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;margin-bottom:25px">
+                            <img class="rounded img-galeria-ver" style="background-size: cover;" src="/ficheiros/noticias/{{$noticias->foto}}">
                         </div>
-                        <div class="col" style="height: 100%;padding-bottom: 0px;padding-left: 20px;">
-                            <h5 data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;color: #000000;font-weight: bold;">
-                            <i class="fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;Titulo: {{$noticias->titulo}}</h5>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;Data:  {{date('d/m/y', strtotime($noticias->data))}}</p>
+                        <div class="col" style="height: 100%;padding-bottom: 0px;padding-right: 100px;padding-left: 40px;">
+                            <h5 data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;color: #000000;">
+                                <i class="fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;<strong style="color: #68c7ef;">Titulo:</strong> {{$noticias->titulo}}
+                            </h5>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;<strong style="color: #68c7ef;">Data:</strong> {{date('d/m/y', strtotime($noticias->updated_at))}}</p>
                             <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;font-family: Roboto, sans-serif;">Para mais informações&nbsp;clique&nbsp;<a class="text-primary" href="{{$noticias->link}}" target="_blank" style="font-size: 16px;">aqui</a></p>
                         </div>
                     </div>
@@ -277,3 +278,4 @@
                 </div>
             </div>
         </div>
+        @endsection

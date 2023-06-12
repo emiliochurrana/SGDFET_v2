@@ -55,20 +55,25 @@ class ComentarioController extends Controller
         $comentario->name =$request->input('name');
         $comentario->email = $request->input('email');
         $comentario->mensagem = $request->input('mensagem');
+        if(auth()->user()->is_estudante){
         $comentario->is_estudante = '1';
         $comentario->is_visitante = '0';
+        }else{
+            $comentario->is_estudante = '0';
+            $comentario->is_visitante = '1';  
+        }
         $user = auth()->user();
         $comentario->id_estudante = $user->id;
         if($comentario->save()){
-            return redirect()->back()->with('msgSucess', 'Comentario enviado com sucesso');
+            return redirect()->back()->with('msgSucessComent', 'Comentario enviado com sucesso');
         }else{
-            return redirect()->back()->with('msgError', 'Erro no envio do comentario');
+            return redirect()->back()->with('msgErrorComent', 'Erro no envio do comentario');
         }
     }
     
-      /**
-     * Funcao para salavar dados de um comentario.
-     */
+      /*
+     Funcao para salavar dados de um comentario.
+     
     public function storeComentario(Request $request)
     {
         //
@@ -81,11 +86,11 @@ class ComentarioController extends Controller
        // $user = auth()->user();
         $comentario->id_estudante = '2';
         if($comentario->save()){
-            return redirect()->back()->with('msgSucess', 'Comentario enviado com sucesso');
+            return redirect()->back()->with('msgSucessMens', 'Comentario enviado com sucesso');
         }else{
-            return redirect()->back()->with('msgError', 'Erro no envio do comentario');
+            return redirect()->back()->with('msgErrorMens', 'Erro no envio do comentario');
         }
-    }
+    }*/
 
     /**
      * Funcao para visualisar um comentario.

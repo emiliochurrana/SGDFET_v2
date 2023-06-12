@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_drcurso');
             $table->string('foto');
             $table->string('titulo');
-            $table->string('data');
             $table->text('descricao');
             $table->timestamps();
         });

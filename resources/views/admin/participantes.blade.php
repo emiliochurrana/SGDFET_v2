@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title', 'Comentarios')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
         <div class="container-fluid d-flex flex-column p-0">
@@ -271,3 +271,4 @@
                 </div>
             </div>
         </div>
+        @endsection

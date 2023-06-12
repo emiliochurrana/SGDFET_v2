@@ -15,7 +15,6 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-
     $userLog  = User::all()->where('username', '=', $request->input('username'))->first();
     if($userLog){
 
@@ -25,7 +24,7 @@ class AuthController extends Controller
  * ----------------------------------------------------------------------------------------------------------------------------------------------------------
  */
       
-        if($userLog->is_estudante == '1'){
+        if($userLog->is_estudante == '1' || $userLog->is_visitante == '1'){
             if($userLog->is_active == '1'){
 
                 $credencias = [
@@ -46,12 +45,12 @@ class AuthController extends Controller
 
                 $login['success'] = false;
                 $login['mensagem'] = 'Dados invalidos';
-                return redirect('/login');
+                return redirect('/login')->with(['msg' => 'Dados invalidos!']);
 
             }
             $login['success'] = false;
             $login['mensagem'] = 'Dados invalidos';
-            return redirect('/login');
+            return redirect('/login')->with(['msg' => 'Dados invalidos!']);
         }
 /**
  * ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,12 +86,12 @@ class AuthController extends Controller
 
                 $login['success'] = false;
                 $login['mensagem'] = 'Dados invalidos';
-                return redirect('/login');
+                return redirect('/login')->with(['msg' => 'Dados invalidos!']);
 
             }
             $login['success'] = false;
             $login['mensagem'] = 'Dados invalidos';
-            return redirect('/login');
+            return redirect('/login')->with(['msg' => 'Dados invalidos!']);
         }
 
 /**
@@ -131,12 +130,12 @@ class AuthController extends Controller
 
                     $login['success'] = false;
                     $login['mensagem'] = 'Dados invalidos';
-                    return redirect('/login');
+                    return redirect('/login')->with(['msg' => 'Dados invalidos!']);
 
                 }
                 $login['success'] = false;
                 $login['mensagem'] = 'Dados invalidos';
-                return redirect('/login');
+                return redirect('/login')->with(['msg' => 'Dados invalidos!']);
             }
 
 /**
@@ -174,12 +173,12 @@ class AuthController extends Controller
 
                     $login['success'] = false;
                     $login['mensagem'] = 'Dados invalidos';
-                    return redirect('/login');
+                    return redirect('/login')->with(['msg' => 'Dados invalidos!']);
 
                 }
                 $login['success'] = false;
                 $login['mensagem'] = 'Dados invalidos';
-                return redirect('/login');
+                return redirect('/login')->with(['msg' => 'Dados invalidos!']);
             }
 
 /**
@@ -192,7 +191,7 @@ class AuthController extends Controller
     }
     $login['success'] = false;
     $login['mensagem'] = 'Dados invalidos';
-    return redirect('/login');
+    return redirect('/login')->with(['msg' => 'Dados invalidos!']);
         
     }
 

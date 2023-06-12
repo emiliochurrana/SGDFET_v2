@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Defesa;
 use App\Models\Galeria;
+use App\Models\Monografia;
 use App\Models\Noticia;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,21 +17,17 @@ class NoticiasController extends Controller
      */
     public function index()
     {
+        $search = request('search');
+
+        if($search){
+            $noticias = Noticia::where([
+                ['titulo', 'like', '%' .$search. '%']
+            ])->get();
+        }else{
         $noticias = Noticia::all();
-
-        return view('admin.noticiaview', ['noticias' => $noticias]);
+        }
+        return view('admin.noticiaview', ['noticias' => $noticias, 'search' => $search]);
     }
-
-    public function indexNoticia()
-    {
-        $noticias = Noticia::all();
-        $galerias = Galeria::all();
-
-        return view('usuario.inicio', ['noticias' => $noticias, 'galerias' => $galerias]);
-    }
-
-
-
 
     /**
      * Funcao para carregar formulario de cadastro de uma noticia.
@@ -84,6 +83,48 @@ class NoticiasController extends Controller
     {
         $noticias = Noticia::findOrFail($id);
         return view('admin.shownoticia', ['noticias' => $noticias]);
+    }
+
+    /**
+     * Funcao para trazer dados de uma noticia.
+     */
+    public function showAntes($id)
+    {
+        $noticias = Noticia::findOrFail($id);
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.shownoticiantes', ['noticias' => $noticias,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
+    }
+
+    /**
+     * Funcao para trazer dados de uma noticia.
+     */
+    public function showDepois($id)
+    {
+        $noticias = Noticia::findOrFail($id);
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.shownoticia', ['noticias' => $noticias,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
     }
 
 

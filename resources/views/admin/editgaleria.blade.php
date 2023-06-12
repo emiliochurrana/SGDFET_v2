@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Galeria')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,21 +49,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -66,13 +68,14 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                 <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
                             <div class="dropdown-menu show dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto navbar-search w-100">
                                     <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
@@ -80,11 +83,15 @@
                                     </div>
                                 </form>
                             </div>
+                        </li>-->
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
+                            </div>
                         </li>
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a><span class="dropdown-item-text" role="presentation">Text Item</span></div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!-- <li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw" style="color: #ffffff;"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in" role="menu">
                                     <h6 class="dropdown-header">alerts center</h6>
@@ -158,18 +165,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -186,7 +193,7 @@
             </nav>
             <div class="container-fluid">
                 <div class="card shadow">
-                    <h2 style="margin-bottom: 15px;color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar {{$galeria->titulo}}</h2>
+                    <h3 style="margin-bottom: 15px;color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar {{$galeria->titulo}}</h3>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -201,37 +208,33 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" value="{{auth()->user()->id}}" name="id_drcurso">
-                        <div class="form-group" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new"><strong>Imagem:</strong></span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" value="{{$galeria->foto}}" accept="image/*" name="foto">{{$galeria->foto}}
-                                </span>
-                                <a href="/ficheiros/galeria/{{$galeria->foto}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                            <label style="margin-right: 5px;">Imagem*</label>
+                            <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="foto" style="background-color: #ffffff;" data-provides="fileinput">
+                                <input class="form-control  file-input" accept="image/*" value="{{$galeria->foto}}" type="file" id="foto" name="foto">{{$galeria->foto}}
+                                <div for="foto" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                     <span class="fileinput-filename"></span>
                                 </div>
-
                             </div>
                         </div>
-                        <div class="form-group d-flex">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;color: #000000;">Titulo</label>
                             <input class="shadow form-control" value="{{$galeria->titulo}}" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="titulo" autofocus="" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;">
-                            <label class="text-nowrap" style="margin-right: 5px;color: #000000;">Data da&nbsp;Publicação<br></label>
-                            <input class="shadow form-control" value="{{$galeria->data}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="date" name="data" required="" style="background-color: #ffffff;">
+                            <!--<label class="text-nowrap" style="margin-right: 5px;color: #000000;">Data da&nbsp;Publicação<br></label>
+                            <input class="shadow form-control" value="{{$galeria->data}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="date" name="data" required="" style="background-color: #ffffff;">-->
                         </div>
-                        <div class="form-group d-flex">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;color: #000000;">Descrição<br></label>
                             <textarea class="shadow form-control form-control-sm" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="descricao" style="background-color: #ffffff;">{{$galeria->descricao}}</textarea>
                         </div>
-                        <div class="form-group d-flex justify-content-end align-items-end">
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;">Actualizar</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" href="{{('/galeria')}}" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;">Cancelar</a>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-end">
+                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;margin-bottom: 10px;">Actualizar</button>
+                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" href="{{('/galeria')}}" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
                         </div>
                     </form>
 
                 </div>
             </div>
         </div>
+        @endsection

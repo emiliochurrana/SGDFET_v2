@@ -6,6 +6,7 @@
   margin-top: 50px;
   border-radius: 2px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  opacity: 0.97;
 }
 
 .login-card .profile-img-card {
@@ -64,7 +65,7 @@
   height: 36px;
   line-height: 36px;
   font-size: 14px;
-  background: rgb(104, 145, 162);
+  background: rgb(88,195,239);
   border-radius: 3px;
   border: none;
   transition: all 0.218s;
@@ -72,14 +73,33 @@
 }
 
 .login-card .btn.btn-signin:hover, .login-card .btn.btn-signin:active, .login-card .btn.btn-signin:focus {
-  background: rgb(12, 97, 33);
+  background: #056ab3;
 }
 
 .login-card .forgot-password {
-  color: rgb(104, 145, 162);
+  color: #5accfb;
 }
 
 .login-card .forgot-password:hover, .login-card .forgot-password:active, .login-card .forgot-password:focus {
-  color: rgb(12, 97, 33);
+  color: #056ab3;
 }
 
+.header-login-div {
+  padding: 20px;
+  width: 250px;
+}
+
+.footer-login {
+  margin-right: -40px;
+  margin-left: -40px;
+  padding: 10px;
+  height: 46px;
+  background-color: #4c85ae;
+  margin-bottom: -40px;
+  margin-top: 10px;
+}
+
+.login-header{
+  color: #68c7ef;
+  
+}

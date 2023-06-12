@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('autor');
             $table->string('tema');
             $table->string('curso');
+            $table->string('foto');
             $table->text('resumo');
             $table->string('nivel');
             $table->string('supervisor');

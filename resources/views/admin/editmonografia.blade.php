@@ -2,8 +2,10 @@
 
 @section('title', 'Monografia')
 
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +37,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,21 +50,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -66,13 +69,14 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                 <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
                             <div class="dropdown-menu show dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto navbar-search w-100">
                                     <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
@@ -80,17 +84,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw" style="color: #ffffff;"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in" role="menu">
                                     <h6 class="dropdown-header">alerts center</h6>
@@ -165,18 +167,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -193,76 +195,90 @@
             </nav>
             <div class="container-fluid">
                 <div class="card shadow">
-                    <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="margin-bottom: 15px;color: #3ba2dc;padding-left: 20px;padding-right: 20px;padding-top: 10px;">Editar [Tema da Monografia]</h2>
+                    <h3 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="margin-bottom: 15px;color: #3ba2dc;padding-left: 20px;padding-right: 20px;padding-top: 10px;">Editar {{$monografia->tema}}</h3>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
+
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
                             <div class="mensagem-error">
                                 @if(session('msgErrorUpdate'))
                                 <p class="msg"><Strong>{{session('msgErrorUpdate')}}</Strong></p>
-                                @enfif
+                                @endif
                             </div>
                         </div>
                     </main>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("input[name='num_estudante']").blur(function() {
 
-                    <form style="padding: 40px;">
-                        <div class="form-group d-flex">
+                                var $name = $("input[name='autor']");
+                                var $id_estudante = $("input[name='id_estudante']");
+                                var $supervisor = $("input[name='supervisor']");
+                                var $nivel = $("input[name='nivel']");
+                                var $descricao = $("input[name='descricao']");
+                                var $curso = $("input[name='curso']");
+                                var $tema = $("input[name='tema']");
+                                var $foto = $("input[name='foto']");
+                                var $monografia = $("input[name='ficheiro']");
+                                var username = $(this).val();
+
+                                $.getJSON("{{route('monoestudante')}}", {
+                                        username
+                                    },
+                                    function(json) {
+                                        $name.val(json.name);
+                                        $id_estudante.val(json.id_estudante);
+                                        $supervisor.val(json.supervisor);
+                                        $nivel.val(json.nivel);
+                                        $descricao.val(json.descricao);
+                                        $curso.val(json.curso);
+                                        $tema.val(json.tema);
+                                        $foto.val(json.foto);
+                                        $monografia.val(json.monografia);
+                                    });
+                            });
+                        });
+                    </script>
+
+                    <form style="padding: 30px;" method="post" action="/monografia/update/{{$monografia->id}}" enctype="multipart/form-data" role="form">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;color: #000000;width:190px;">Numero do estudante</label>
+                            <input class="shadow form-control" type="text" placeholder="Pesquisa actualizações pelo numero de estudante" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" autocomplete="on" name="num_estudante" style="background-color: #ffffff;">
+                            <input class="shadow form-control" type="hidden" value="{{$monografia->estudanteMonografia->id}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="id_estudante" style="background-color: #ffffff;">
+                        </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;color: #000000;">Nome</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" required="" name="nome" style="background-color: #ffffff;">
-                        </div>
-                        <div class="form-group d-flex">
-                            <label style="margin-right: 5px;color: #000000;">Tema</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="tema" autofocus="" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;">
-                            <label style="margin-right: 5px;color: #000000;">Curso</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
-                                <optgroup label="curso">
-                                    <option selected="">Seleccione</option>
-                                    <option>Informatica</option>
-                                    <option>Engenharia Civil</option>
-                                    <option>Engenharia Electronica</option>
-                                    <option>Design Multimidia</option>
-                                    <option>Agropecuaria</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        <div class="form-group d-flex">
-                            <label style="margin-right: 5px;color: #000000;">Resumo</label>
-                            <textarea class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="decricao" style="background-color: #ffffff;margin-right: 20px;"></textarea>
-                            <label style="margin-right: 5px;color: #000000;">Nivel</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="nivel">
-                                <optgroup label="nivel">
-                                    <option value="12" selected="">Seleccione</option>
-                                    <option value="13">Licenciatura</option>
-                                    <option value="14">Mestrado</option>
-                                    <option value="">Dotoramento</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        <div class="form-group d-flex">
+                            <input class="shadow form-control" type="text" value="{{$monografia->autor}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="autor" style="background-color: #ffffff; margin-right: 20px;">
                             <label style="margin-right: 5px;color: #000000;">Supervisor</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="supervisor" autocomplete="on" style="margin-right: 20px;">
-                            <label class="text-nowrap" style="margin-right: 5px;color: #000000;">Data da&nbsp;Publicação<br></label>
-                            <input class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="date" style="background-color: #ffffff;" name="data">
+                            <input class="shadow form-control" type="text" value="{{$monografia->supervisor}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="supervisor" style="background-color: #ffffff;">
                         </div>
-                        <div class="form-group" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new">Ficheiro em pdf</span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="ficheiro"></span>
-                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename"></span>
-                                </div>
-                            </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;color: #000000;">Tema</label>
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" value="{{$monografia->tema}}" data-aos-duration="800" data-aos-delay="800" name="tema" style="background-color: #ffffff;margin-right: 20px;margin-bottom:10px">
+                            <label style="margin-right: 5px;color: #000000;">Curso</label>
+                            <input class="shadow form-control" type="text" value="{{$monografia->curso}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="curso" style="background-color: #ffffff;margin-right: 20px;">
                         </div>
-                        <div class="form-group d-flex justify-content-end">
-                            <button class="btn shadow-lg" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;color: #ffffff;background-color: #0ccf94;">Actualizar</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;">Cancelar</a>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;color: #000000;">Resumo</label>
+                            <textarea class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="descricao" style="margin-right: 20px;margin-bottom:10px">{{$monografia->resumo}}</textarea>
+                            <label style="margin-right: 5px;color: #000000;">Nivel</label>
+                            <input class="shadow form-control" type="text" value="{{$monografia->nivel}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="nivel" style="background-color: #ffffff;margin-right: 20px;">
+                        </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;color: #000000;">Foto</label>
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" value="{{$monografia->foto}}" data-aos-duration="800" data-aos-delay="800" name="foto" style="background-color: #ffffff;margin-right: 20px;margin-bottom:10px">
+                            <label style="margin-right: 5px;color: #000000;">Monografia</label>
+                            <input class="shadow form-control" type="text" value="{{$monografia->ficheiro}}" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="ficheiro" style="background-color: #ffffff;margin-right: 20px;">
+                        </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end">
+                            <button class="btn shadow-lg" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;color: #ffffff;background-color: #0ccf94;margin-bottom: 10px;">Actualizar</button>
+                            <a class="btn shadow" data-aos="fade-right" href="{{ ('/monografias/index') }}" data-aos-duration="800" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
                         </div>
                     </form>
 
                 </div>
             </div>
         </div>
+        @endsection

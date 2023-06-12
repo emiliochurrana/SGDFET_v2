@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Perfil')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,21 +49,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -66,6 +68,7 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -73,7 +76,7 @@
                 <div class="container-fluid">
                     <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -86,17 +89,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!-- <li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -198,18 +199,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -227,7 +228,7 @@
             @if(auth()->user()->is_admin)
             <div class="container-fluid">
                 <div class="card shadow">
-                    <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
+                    <h3 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">{{auth()->user()->name}}</h3>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -275,72 +276,55 @@
                 </div>
                 </main>
 
-                <form style="width: 100%;padding: 40px;padding-top: 10px;" role="form" action="/usuario/updateadmin/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
+                <form style="width: 100%;padding: 40px;;" role="form" action="/usuario/updateadmin/{{auth()->user()->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     @foreach($perfil as $admin)
-                    <div class="form-row">
-                        <div class="col-4 d-flex justify-content-center">
+                    <div class="form-row justify-content-center align-items-center">
+                        <div class="col-12 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-center">
                             <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
                                 <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                                <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$admin->foto}}" width="290px">
+                                <img class="rounded-circle shadow-lg img-perfilver" src="/ficheiros/docentes/fotos/{{$admin->foto}}">
                             </label>
                         </div>
                         <div class="col">
-                            <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                                <label style="width: 230px;color: #000000;">Nome</label>
+                            <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="width: 100%;">
+                                <label style="width: 100px;color: #000000;">Nome</label>
                                 <input class="shadow form-control" value="{{$admin->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
                             </div>
-                            <div class="form-group d-flex justify-content-center align-items-center">
-                                <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                                <input class="shadow form-control" value="{{$admin->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                            <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                <label style="width: 100px;color: #000000;">Email</label>
+                                <input class="shadow form-control" value="{{$admin->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
                             </div>
-                            <div class="form-group d-flex justify-content-center align-items-center">
-                                <label style="width: 230px;color: #000000;">Curso</label>
-                                <input class="shadow form-control" type="text" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                                <input class="shadow form-control" type="hidden" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
-                                <!-- <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
-                                        <optgroup label="curso">
-                                            <option selected="">{{$admin->curso}}</option>
-                                            <option>Informatica</option>
-                                            <option>Engenharia Civil</option>
-                                            <option>Engenharia Electronica</option>
-                                            <option>Design Multimidia</option>
-                                            <option>Agropecuaria</option>
-                                        </optgroup>
-                                    </select>-->
+                            <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                <label style="width: 100px;color: #000000;">Curso</label>
+                                <input class="shadow form-control" type="text" value="{{$admin->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" style="background-color: #ffffff;" name="curso" readonly>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                        <label style="margin-right: 10px;color: #000000;">Email</label>
-                        <input class="shadow form-control" style="margin-right: 20px" value="{{$admin->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                        <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+                    <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                        <label style="margin-right: 10px;width: 250px;color: #000000;">Senha actual</label>
                         <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-                    </div>
-                    <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
-                        <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
+                        <label style="margin-right: 5px;width: 220px;color: #000000;">Nova senha</label>
                         <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                        <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                        <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
                     </div>
-                    <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                            <span class="input-group-addon btn btn-default btn-file">
-                                <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                                <span class="fileinput-exists">Change</span>
-                                <input type="file" value="{{$admin->curriculum}}" accept="pdf/*" name="curriculum">{{$admin->curriculum}}
-                            </span>
-                            <a href="/ficheiros/docentes/curriculum/{{$admin->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                            <div class="form-control" data-trigger="fileinput">
+
+                    <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                        <label style="margin-right: 5px;">Curriculum*</label>
+                        <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
+                            <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" value="{{$admin->curriculum}}" name="curriculum">{{$admin->curriculum}}
+                            <div for="curriculum" data-trigger="fileinput">
                                 <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                 <span class="fileinput-filename"></span>
                             </div>
+                            <div class="invalid-tooltip">
+                                <p class="msg text-danger">seleccione um arquivo!</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                        <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                        <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+                    <div class="form-group d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                        <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;margin-bottom: 10px;">Actualizar</button>
+                        <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;margin-bottom: 10px;">Cancelar</a>
                     </div>
                     @endforeach
                 </form>
@@ -350,7 +334,7 @@
         @elseif(auth()->user()->is_drcurso)
         <div class="container-fluid">
             <div class="card shadow">
-                <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
+                <h3 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">{{auth()->user()->name}}</h3>
                 <hr style="background-color: #3ba2dc;margin-top: 5px;">
                 <main>
                     <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -402,68 +386,50 @@
                 @csrf
                 @method('PUT')
                 @foreach($perfil as $drcurso)
-                <div class="form-row">
-                    <div class="col-4 d-flex justify-content-center">
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="col-12 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-center">
                         <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
                             <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                            <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$drcurso->foto}}" width="290px">
+                            <img class="rounded-circle shadow-lg img-perfilver" src="/ficheiros/docentes/fotos/{{$drcurso->foto}}">
                         </label>
                     </div>
                     <div class="col">
-                        <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                            <label style="width: 230px;color: #000000;">Nome</label>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="width: 100%;">
+                            <label style="width: 100px;color: #000000;">Nome</label>
                             <input class="shadow form-control" value="{{$drcurso->userDrcurso->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
-                            <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                            <input class="shadow form-control" value="{{$drcurso->userDrcurso->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                            <label style="width: 100px;color: #000000;">Email</label>
+                            <input class="shadow form-control" value="{{$drcurso->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center">
-                            <label style="width: 230px;color: #000000;">Curso</label>
-                            <input class="shadow form-control" type="text" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                            <input class="shadow form-control" type="hidden" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
-                            <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
-                                        <optgroup label="curso">
-                                            <option selected="">{{$drcurso->curso}}</option>
-                                            <option>Informatica</option>
-                                            <option>Engenharia Civil</option>
-                                            <option>Engenharia Electronica</option>
-                                            <option>Design Multimidia</option>
-                                            <option>Agropecuaria</option>
-                                        </optgroup>
-                                    </select>-->
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                            <label style="width: 100px;color: #000000;">Curso</label>
+                            <input class="shadow form-control" type="text" value="{{$drcurso->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso" readonly style="background-color: #ffffff;">
                         </div>
                     </div>
                 </div>
-                <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                    <label style="margin-right: 10px;color: #000000;">Email</label>
-                    <input class="shadow form-control" style="margin-right: 20px" value="{{$drcurso->userDrcurso->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                    <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                    <label style="margin-right: 10px;width: 220px;color: #000000;">Senha actual</label>
                     <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-                </div>
-                <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
                     <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
-                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                    <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
+                    <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password">
                 </div>
-                <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                        <span class="input-group-addon btn btn-default btn-file">
-                            <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                            <span class="fileinput-exists">Change</span>
-                            <input type="file" value="{{$drcurso->curriculum}}" accept="pdf/*" name="curriculum">{{$drcurso->curriculum}}
-                        </span>
-                        <a href="/ficheiros/docentes/curriculum/{{$drcurso->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                        <div class="form-control" data-trigger="fileinput">
+                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                    <label style="margin-right: 5px;">Curriculum*</label>
+                    <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
+                        <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" value="{{$drcurso->curriculum}}" name="curriculum">{{$drcurso->curriculum}}
+                        <div for="curriculum" data-trigger="fileinput">
                             <i class="glyphicon glyphicon-file fileinput-exists"></i>
                             <span class="fileinput-filename"></span>
                         </div>
+                        <div class="invalid-tooltip">
+                            <p class="msg text-danger">seleccione um arquivo!</p>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                    <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                    <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+                <div class="form-group d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                    <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;margin-bottom: 10px;">Actualizar</button>
+                    <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;margin-bottom: 10px;">Cancelar</a>
                 </div>
                 @endforeach
             </form>
@@ -473,7 +439,7 @@
     @elseif(auth()->user()->is_docente)
     <div class="container-fluid">
         <div class="card shadow">
-            <h2 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">Editar Perfil de {{auth()->user()->name}}</h2>
+            <h3 style="color: #3ba2dc;padding-top: 10px;padding-right: 20px;padding-left: 20px;">{{auth()->user()->name}}</h3>
             <hr style="background-color: #3ba2dc;margin-top: 5px;">
             <main>
                 <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -525,27 +491,26 @@
             @csrf
             @method('PUT')
             @foreach($perfildocente as $docente)
-            <div class="form-row">
-                <div class="col-4 d-flex justify-content-center">
+            <div class="form-row justify-content-center align-items-center">
+                <div class="col-12 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-center">
                     <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
                         <input type="file" style="width: 0%;" accept="image/*" name="foto">
-                        <img class="rounded-circle shadow-lg" src="/ficheiros/docentes/fotos/{{$docente->foto}}" width="290px">
+                        <img class="rounded-circle shadow-lg img-perfilver" src="/ficheiros/docentes/fotos/{{$docente->foto}}">
                     </label>
                 </div>
                 <div class="col">
-                    <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
-                        <label style="width: 230px;color: #000000;">Nome</label>
+                    <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="width: 100%;">
+                        <label style="width: 100px;color: #000000;">Nome</label>
                         <input class="shadow form-control" value="{{$docente->userDocente->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
                     </div>
-                    <div class="form-group d-flex justify-content-center align-items-center">
-                        <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                        <input class="shadow form-control" value="{{$docente->userDocente->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                    <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                        <label style="width: 100px;color: #000000;">Email</label>
+                        <input class="shadow form-control" value="{{$docente->userDocente->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
                     </div>
                     <input class="form-check-input" type="hidden" value="{{$docente->userDocente->is_active}}" id="formCheck-1" value="1" name="is_active">
-                    <div class="form-group d-flex justify-content-center align-items-center">
-                        <label style="width: 230px;color: #000000;">Curso</label>
-                        <input class="shadow form-control" type="text" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" disabled="" name="curso">
-                        <input class="shadow form-control" type="hidden" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso">
+                    <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                        <label style="width: 100px;color: #000000;">Curso</label>
+                        <input class="shadow form-control" type="text" value="{{$docente->curso}}" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="curso" style="background-color: #ffffff;" readonly>
                         <!--<select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
                                         <optgroup label="curso">
                                             <option selected="">{{$docente->curso}}</option>
@@ -559,35 +524,28 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
-                <label style="margin-right: 10px;color: #000000;">Email</label>
-                <input class="shadow form-control" style="margin-right: 20px" value="{{$docente->userDocente->email}}" type="email" data-aos="zoom-in-right" name="email" data-aos-duration="500" data-aos-delay="500">
-                <label style="margin-right: 10px;width: 210px;color: #000000;">Senha actual</label>
+            <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                <label style="margin-right: 10px;width: 250px;color: #000000;">Senha actual</label>
                 <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password_actual" style="margin-right: 20px;">
-            </div>
-            <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
                 <label style="margin-right: 10px;width: 210px;color: #000000;">Nova senha</label>
-                <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password" style="margin-right: 20px;">
-                <label style="margin-right: 10px;width: 300px;color: #000000;">Confirmar Senha</label>
-                <input class="shadow form-control" type="password" data-aos="zoom-in-right" name="confirm_password" data-aos-duration="500" data-aos-delay="500">
+                <input class="shadow form-control" type="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="password">
             </div>
-            <div class="form-group" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
-                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                    <span class="input-group-addon btn btn-default btn-file">
-                        <span class="fileinput-new"><strong>Curriculum:</strong></span>
-                        <span class="fileinput-exists">Change</span>
-                        <input type="file" value="{{$docente->curriculum}}" accept="pdf/*" name="curriculum">{{$docente->curriculum}}
-                    </span>
-                    <a href="/ficheiros/docentes/curriculum/{{$docente->curriculum}}" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                    <div class="form-control" data-trigger="fileinput">
+            <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                <label style="margin-right: 5px;">Curriculum*</label>
+                <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
+                    <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" value="{{$docente->curriculum}}" name="curriculum">{{$docente->curriculum}}
+                    <div for="curriculum" data-trigger="fileinput">
                         <i class="glyphicon glyphicon-file fileinput-exists"></i>
                         <span class="fileinput-filename"></span>
                     </div>
+                    <div class="invalid-tooltip">
+                        <p class="msg text-danger">seleccione um arquivo!</p>
+                    </div>
                 </div>
             </div>
-            <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+            <div class="form-group d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;margin-bottom: 10px;">Actualizar</button>
+                <a class="btn text-white shadow-lg" href="/usuario/perfil/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;margin-bottom: 10px;">Cancelar</a>
             </div>
             @endforeach
         </form>
@@ -596,3 +554,4 @@
 </div>
 @endif
 </div>
+@endsection

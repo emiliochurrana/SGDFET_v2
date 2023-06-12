@@ -1,72 +1,76 @@
 @extends('layouts.master')
 
 @section('title', 'Estudantes')
-
+@section('content')
 <div id="wrapper">
+    
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
-        <div class="container-fluid d-flex flex-column p-0">
-            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
-                <div class="sidebar-brand-text mx-3"><span>SGDFET</span><small class="text-center border rounded border-white" style="font-size: 10px;font-weight: bold;background-color: rgb(248,248,248);font-style: normal;font-family: ABeeZee, sans-serif;padding: 5px;padding-top: 1px;padding-bottom: 1px;color: rgb(27,147,198);">v.1.0</small></div>
-            </a>
-            <hr class="sidebar-divider my-0">
-            <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                </li>
-                @elseif(auth()->user()->is_drcurso)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                </li>
-                @elseif(auth()->user()->is_docente)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                </li>
-                @endif
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                </li>
+         <div class="fixed-left">    
+            <div class="container-fluid d-flex flex-column p-0">
+                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                        <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
+                        <div class="sidebar-brand-text mx-3"><span>SGDFET</span><small class="text-center border rounded border-white" style="font-size: 10px;font-weight: bold;background-color: rgb(248,248,248);font-style: normal;font-family: ABeeZee, sans-serif;padding: 5px;padding-top: 1px;padding-bottom: 1px;color: rgb(27,147,198);">v.1.0</small></div>
+                    </a>
+                    <hr class="sidebar-divider my-0">
+                    <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                        @if(auth()->user()->is_admin)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                        </li>
+                        @elseif(auth()->user()->is_drcurso)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                        </li>
+                        @elseif(auth()->user()->is_docente)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                        </li>
+                        @endif
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                        </li>
 
-                @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                </li>
-                @endif
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                </li>
-                @if(auth()->user()->is_drcurso)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
-                </li>
-                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                </li>
-                @endif
-            </ul>
-            <div class="text-center d-none d-md-inline">
-                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-            </div>
+                        @if(auth()->user()->is_admin)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                        </li>
+                        @endif
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                        </li>
+                        @if(auth()->user()->is_drcurso)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                        </li>
+                        @endif
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                        </li>
+                        @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                        </li>
+                        @endif
+                    </ul>
+                    <div class="text-center d-none d-md-inline">
+                        <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                    </div>
+                </div>
         </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
@@ -77,7 +81,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -90,17 +94,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -202,18 +204,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -231,94 +233,110 @@
             @if(auth()->user()->is_docente)
             <div class="container-fluid">
                 <div class="card shadow">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3 d-md-flex d-lg-flex d-xl-flex">
                         <h2 class="d-xl-flex mr-auto" style="color: #3ba2dc;font-family: Roboto, sans-serif;">Estudantes<br></h2>
+                        <p class="" style="color:#2694c1;font-size:14px"><strong>Tens um total de {{count($estudantes)}} Supervisandos</strong></p>
                     </div>
-                    @if(auth()->user()->is_docente)
-                    <main>
-                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            <div class="mensagem">
-                                @if(session('msgSucessStore'))
-                                <p class="msg"><Strong>{{session('msgSucessStore')}}</Strong></p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            <div class="mensagem">
-                                @if(session('msgSucessUpdate'))
-                                <p class="msg"><Strong>{{session('msgSucessUpdate')}}</Strong></p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            <div class="mensagem">
-                                @if(session('msgSucess'))
-                                <p class="msg"><Strong>{{session('msgSucess')}}</Strong></p>
-                                @endif
-                            </div>
-                        </div>
-                    </main>
-                    @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-xl-5 offset-xl-0 justify-content-end align-items-center" style="width: 100%;">
-                                <div class="text-md-right justify-content-start align-items-center dataTables_filter" id="dataTable_filter" style="width: 100%;padding-right: 10px;padding-left: 10px;height: 50px;"><label style="width: 100%;"><input class="border rounded border-primary shadow form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Pesquisa..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search"></label></div>
+                                <form method="get" action="{{ ('/usuario/estudantes') }}" enctype="multipart/form-data">
+                                    <div class="text-md-right justify-content-start align-items-center dataTables_filter" id="dataTable_filter" style="width: 100%;padding-right: 10px;padding-left: 10px;height: 50px;">
+                                        <label style="width: 100%;">
+                                            <input class="border rounded border-primary shadow form-control form-control-sm" type="search" aria-controls="dataTable" id="search" placeholder="Pesquisar estudante pelo numero de estudante..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search">
+                                        </label>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-md-6 col-xl-7 offset-xl-0 d-flex justify-content-end align-items-center">
                                 @if(auth()->user()->is_docente)
                                 <div class="btn-group" role="group">
-                                    <a class="btn border rounded" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="{{ ('/estudante/create') }}"><i class="fas fa-user-plus"></i>&nbsp; Novo&nbsp;Usuário<br></a>
+                                    <a class="btn border rounded" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="{{ route('newestudante') }}"><i class="fas fa-user-plus"></i>&nbsp; Novo&nbsp;Usuário<br></a>
                                 </div>
                                 @endif
                             </div>
                         </div>
+                        @if(auth()->user()->is_docente)
+                        <main>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
+                                    @if(session('msgSucessStore'))
+                                    <p class="msg"><Strong>{{session('msgSucessStore')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
+                                    @if(session('msgSucessUpdate'))
+                                    <p class="msg"><Strong>{{session('msgSucessUpdate')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                <div class="mensagem">
+                                    @if(session('msgSucess'))
+                                    <p class="msg"><Strong>{{session('msgSucess')}}</Strong></p>
+                                    @endif
+                                </div>
+                            </div>
+                        </main>
+                        @endif
                         <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="color: #3a3a3b;">Nome</th>
-                                        <th style="color: #3a3a3b;">Email</th>
-                                        <th style="color: #3a3a3b;">Nome do&nbsp;Usuário<br></th>
-                                        <th style="color: #3a3a3b;">Curso</th>
-                                        <th style="color: #3a3a3b;">Supervisor</th>
-                                        <th style="color: #3a3a3b;">Activo</th>
+                                        <th style="color: #2694c1;"><strong>Nome</strong></th>
+                                        <th style="color: #2694c1;"><strong>Email</strong></th>
+                                        <th style="color: #2694c1;"><strong>Nome do&nbsp;Usuário</strong><br></th>
+                                        <th style="color: #2694c1;"><strong>Curso</strong></th>
+                                        <th style="color: #2694c1;"><strong>Supervisor</strong></th>
+                                        <th style="color: #2694c1;"><strong>Activo</strong></th>
+                                        <th style="color: #2694c1;"><strong>Autorizado</strong></th>
                                         @if(auth()->user()->is_docente)
-                                        <th class="text-left" style="color: #3a3a3b;">Acção<br></th>
+                                        <th class="text-left" style="color: #2694c1;"><strong>Acção</strong><br></th>
                                         @endif
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($estudantes as $estudante)
                                     <tr>
-                                        <td class="d-flex align-items-center" style="color: #3a3a3b;">
-                                            <img class="rounded-circle" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}" width="40px" style="margin-right: 10px;" height="40px">{{$estudante->userEstudante->name}}
+                                        <td class="d-flex align-items-center" style="color: #3a3a3b;min-width:200px">
+                                            <img class="rounded-circle img-perfil" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}" style="margin-right: 10px;">{{$estudante->userEstudante->name}}
                                         </td>
                                         <td style="color: #3a3a3b;">{{$estudante->userEstudante->email}}</td>
                                         <td style="color: #3a3a3b;">{{$estudante->userEstudante->username}}</td>
                                         <td style="color: #3a3a3b;">{{$estudante->curso}}</td>
                                         <td style="color: #3a3a3b;">{{$estudante->docenteEstudante->name}}</td>
                                         <td>@if($estudante->userEstudante->is_active)<i class="fa fa-check" style="color: #3a3a3b;margin-top: 6px;"></i>@endif</td>
+                                        <td>@if($estudante->userEstudante->is_autorize)<i class="fa fa-check" style="color: #3a3a3b;margin-top: 6px;"></i>@endif</td>
                                         <td>
                                             <div class="col d-flex  align-items-start align-content-start">
                                                 @if(auth()->user()->is_docente)
-                                                <a class="btn btn-sm" type="button" href="/usuario/editarestudante/{{ $estudante->userEstudante->id }}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;">Editar</a>
+                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/usuario/editarestudante/{{ $estudante->userEstudante->id }}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
 
                                                 <form action="/usuario/deletestudante/{{ $estudante->userEstudante->id }}" method="post" enctype="multipart/form-data" role="form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><icon-icon name="trash-outline"></icon-icon>Eliminar</button>
+                                                    <button class="btn btn-sm d-flex align-items-center" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
 
                                                 </form>
                                                 @endif
-                                                <a class="btn btn-sm" type="button" href="/usuario/showestudante/{{ $estudante->userEstudante->id }}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;">Ver</a>
+                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/usuario/showestudante/{{ $estudante->userEstudante->id }}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
                                             </div>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="container-fluid">
+                                @if(count($estudantes) == 0 && $search)
+                                <p class="msg" style="color:#2390be;"><Strong>Não existe estudante com o número {{$search}}!</Strong><a style="font-size:16px" href="{{ ('/usuario/estudantes') }}"> Ver todos estudantes</a></p>
+                                @elseif(count($estudantes) == 0)
+                                <p class="msg"><Strong>Nenhum estudante cadsatrado</Strong></p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-md-6 align-self-center">
                                 <p id="dataTable_info" class="dataTables_info" role="status" aria-liveolit="pe">Showing 1 to 10 of 27</p>
                             </div>
@@ -333,86 +351,101 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
             @elseif(auth()->user()->is_drcurso || auth()->user()->is_admin)
             <div class="container-fluid">
                 <div class="card shadow">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3 d-md-flex d-lg-flex d-xl-flex">
                         <h2 class="d-xl-flex mr-auto" style="color: #3ba2dc;font-family: Roboto, sans-serif;">Estudantes<br></h2>
+                        <p class="" style="color:#2694c1;font-size:14px"><strong>Estão inscritos no sistema {{count($estudantes)}} estudantes</strong></p>
                     </div>
-                    @if(auth()->user()->is_docente)
-                    <main>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessStore'))
-                            <Strong>{{session('msgSucessStore')}}</Strong>
-                            @endif
-                        </div>
-                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
-                            @if(session('msgSucessUpdate'))
-                            <Strong>{{session('msgSucessUpdate')}}</Strong>
-                            @endif
-                        </div>
-                    </main>
-                    @endif
+
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-xl-5 offset-xl-0 justify-content-end align-items-center" style="width: 100%;">
-                                <div class="text-md-right justify-content-start align-items-center dataTables_filter" id="dataTable_filter" style="width: 100%;padding-right: 10px;padding-left: 10px;height: 50px;"><label style="width: 100%;"><input class="border rounded border-primary shadow form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Pesquisa..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search"></label></div>
+                                <form method="get" action="{{ ('/usuario/estudanteview') }}" enctype="multipart/form-data">
+                                    <div class="text-md-right justify-content-start align-items-center dataTables_filter" id="dataTable_filter" style="width: 100%;padding-right: 10px;padding-left: 10px;height: 50px;">
+                                        <label style="width: 100%;">
+                                            <input class="border rounded border-primary shadow form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Pesquisar estudante pelo nome..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search">
+                                        </label>
+                                    </div>
+                                </form>
+
                             </div>
                             <div class="col-md-6 col-xl-7 offset-xl-0 d-flex justify-content-end align-items-center">
                                 @if(auth()->user()->is_docente)
                                 <div class="btn-group" role="group">
-                                    <a class="btn border rounded" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="{{ ('/estudante/create') }}"><i class="fas fa-user-plus"></i>&nbsp; Novo&nbsp;Usuário<br></a>
+                                    <a class="btn border rounded" role="button" style="background-color: #3ba2dc;height: 40px;color: #ffffff;" href="{{ route('newestudante') }}"><i class="fas fa-user-plus"></i>&nbsp; Novo&nbsp;Usuário<br></a>
                                 </div>
                                 @endif
                             </div>
                         </div>
+                        @if(auth()->user()->is_docente)
+                        <main>
+                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                @if(session('msgSucessStore'))
+                                <Strong>{{session('msgSucessStore')}}</Strong>
+                                @endif
+                            </div>
+                            <div class="alert alert-success beautiful" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                                @if(session('msgSucessUpdate'))
+                                <Strong>{{session('msgSucessUpdate')}}</Strong>
+                                @endif
+                            </div>
+                        </main>
+                        @endif
                         <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="color: #3a3a3b;">Nome</th>
-                                        <th style="color: #3a3a3b;">Email</th>
-                                        <th style="color: #3a3a3b;">Nome do&nbsp;Usuário<br></th>
-                                        <th style="color: #3a3a3b;">Curso</th>
-                                        <th style="color: #3a3a3b;">Activo</th>
-                                        <th class="text-left" style="color: #3a3a3b;">Acção<br></th>
+                                        <th style="color: #2694c1;"><strong>Nome</strong></th>
+                                        <th style="color: #2694c1;"><strong>Email</strong></th>
+                                        <th style="color: #2694c1;"><strong>Nome do&nbsp;Usuário</strong><br></th>
+                                        <th style="color: #2694c1;"><strong>Curso</strong></th>
+                                        <th style="color: #2694c1;"><strong>Activo</strong></th>
+                                        <th class="text-left" style="color: #2694c1;"><strong>Acção</strong><br></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($estudantes as $estudante)
                                     <tr>
-                                        <td class="d-flex align-items-center" style="color: #3a3a3b;">
-                                            <img class="rounded-circle" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}" width="40px" style="margin-right: 10px;" height="40px">{{$estudante->name}}
+                                        <td class="d-flex align-items-center" style="color: #3a3a3b;min-width:200px">
+                                            <img class="rounded-circle img-perfil" src="/ficheiros/estudantes/fotos/{{$estudante->estudanteUser->foto}}" style="margin-right: 10px;">{{$estudante->name}}
                                         </td>
                                         <td style="color: #3a3a3b;">{{$estudante->email}}</td>
                                         <td style="color: #3a3a3b;">{{$estudante->username}}</td>
-                                        <td style="color: #3a3a3b;">{{$estudante->curso}}</td>
+                                        <td style="color: #3a3a3b;">{{$estudante->estudanteUser->curso}}</td>
                                         <td>@if($estudante->is_active)<i class="fa fa-check" style="color: #3a3a3b;margin-top: 6px;"></i>@endif</td>
                                         <td>
                                             <div class="col d-flex  align-items-start align-content-start">
                                                 @if(auth()->user()->is_docente)
-                                                <a class="btn btn-sm" type="button" href="/usuario/editarestudante/{{ $estudante->id }}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;">Editar</a>
+                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/usuario/editarestudante/{{ $estudante->id }}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
 
                                                 <form action="/usuario/deletestudante/{{ $estudante->id }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><icon-icon name="trash-outline"></icon-icon>Eliminar</button>
+                                                    <button class="btn btn-sm d-flex align-items-center" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
 
                                                 </form>
                                                 @endif
-                                                <a class="btn btn-sm" type="button" href="/usuario/showestudante/{{ $estudante->id }}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;">Ver</a>
+                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/usuario/showestudante/{{ $estudante->id }}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
                                             </div>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="row">
+                            <div class="container-fluid">
+                                @if(count($estudantes) == 0 && $search)
+                                <p class="msg" style="color:#2390be;"><Strong>Não existe estudante com o nome {{$search}}!</Strong><a style="font-size:16px" href="{{ ('/usuario/estudanteview') }}"> Ver todos estudantes</a></p>
+                                @elseif(count($estudantes) == 0)
+                                <p class="msg"><Strong>Nenhum estudante cadsatrado</Strong></p>
+                                @endif
+                            </div>
+                            <!--<div class="row">
                             <div class="col-md-6 align-self-center">
                                 <p id="dataTable_info" class="dataTables_info" role="status" aria-liveolit="pe">Showing 1 to 10 of 27</p>
                             </div>
@@ -427,10 +460,11 @@
                                     </ul>
                                 </nav>
                             </div>
+                        </div>-->
                         </div>
                     </div>
                 </div>
             </div>
-
             @endif
         </div>
+        @endsection

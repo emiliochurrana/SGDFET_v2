@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\Defesa;
 use Illuminate\Http\Request;
 use App\Models\Galeria;
+use App\Models\Monografia;
+use App\Models\User;
 use Illuminate\Http\Response;
 
 class GaleriaController extends Controller
@@ -14,8 +17,16 @@ class GaleriaController extends Controller
      */
     public function index()
     {
+        $search = request('search');
+
+        if($search){
+            $galerias = Galeria::where([
+                ['titulo', 'like', '%' .$search. '%']
+            ])->get();
+        }else{
         $galerias = Galeria::all();
-        return view('admin.galeria', ['galerias' => $galerias]);
+        }
+        return view('admin.galeria', ['galerias' => $galerias, 'search' => $search]);
     }
 
     /**
@@ -69,6 +80,48 @@ class GaleriaController extends Controller
     {
         $galeria = Galeria::findOrFail($id);
         return view('admin.showgaleria', ['galeria' => $galeria]);
+    }
+
+        /**
+     * Funcao para visualizar dados da galeria.
+     */
+    public function showAntes($id)
+    {
+        $galeria = Galeria::findOrFail($id);
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.showgaleriantes', ['galeria' => $galeria,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
+    }
+
+        /**
+     * Funcao para visualizar dados da galeria.
+     */
+    public function showDepois($id)
+    {
+        $galeria = Galeria::findOrFail($id);
+        $defesa = Defesa::all();
+        $monografia = Monografia::all();
+        $galerias = Galeria::all();
+        $estudante = User::all()->where('is_estudante', 1);
+        $docente = User::all()->where('is_docente', 1);
+        $drcurso = User::all()->where('is_drcurso', 1); 
+        return view('usuario.showgaleria', ['galeria' => $galeria,
+        'defesa' => $defesa,
+        'monografia' => $monografia,
+        'estudante' => $estudante,
+        'docente' => $docente,
+        'drcurso' => $drcurso,
+        'galerias' => $galerias]);
     }
 
     /**

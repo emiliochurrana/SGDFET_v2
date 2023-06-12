@@ -4,8 +4,8 @@
 
 @section('content')
 <section style="background-repeat: no-repeat;background-size: cover;">
-    <div class="container" style="background-image: url(&quot;../img/Background_Page.jpg&quot;);background-repeat: no-repeat;background-size: cover;max-width: 100%;padding-right: 0px;padding-left: 0px;">
-        <nav class="navbar navbar-light navbar-expand-md shadow-lg navigation-clean" style="background-color: rgba(255,255,255,0);padding: 8px;">
+    <div class="container" style="background-image: url(&quot;/../img/Background_Page.jpg&quot;);background-repeat: no-repeat;background-size: cover;max-width: 100%;padding-right: 0px;padding-left: 0px;padding-bottom:70px">
+        <nav class="navbar navbar-light navbar-expand-md shadow-lg navigation-clean fixed-top" style="background-color: #68c7ef;padding: 8px;">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="#" style="background-size: cover;background-position: center;padding-right: 10px;padding-left: 10px;font-family: Roboto, sans-serif;font-weight: bold;"><i class="fas fa-user-graduate"></i>SGDFET&nbsp;&nbsp;
                     <small class="text-center border rounded border-white" style="font-size: 10px;font-weight: bold;background-color: rgb(248,248,248);font-style: normal;font-family: ABeeZee, sans-serif;padding: 5px;padding-top: 1px;padding-bottom: 1px;color: rgb(27,147,198);">v.1.0</small>
@@ -16,21 +16,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
+                        @if(auth()->user())
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" href="{{('/inicio')}}" style="color: rgb(255,255,255);font-size: 16px;">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{('/defesas')}}" style="color: rgb(255,255,255);font-size: 16px;">Defesas</a>
-                           <!-- <a class="dropdown-toggle nav-link text-white" data-toggle="dropdown" aria-expanded="false" href="#" style="font-size: 16px;">Mais&nbsp;</a>
-                            <div class="dropdown-menu bg-white" role="menu">
-                                <a class="dropdown-item" role="presentation" data-bs-hover-animate="pulse" href="defesas.html" style="color: rgb(90,161,220);">Defesas</a>
-                                <a class="dropdown-item" role="presentation" data-bs-hover-animate="pulse" href="monografias.html" style="color: rgb(90,161,220);">Monografias</a>
-                            </div>-->
+                            <a class="nav-link" data-bs-hover-animate="pulse" href="{{('/inicio')}}" style="color: rgb(255,255,255);font-size: 16px;">Inicio</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-white" href="{{('/sobre/depois')}}" style="font-size: 16px;">Sobre</a>
+                            <a class="nav-link" data-bs-hover-animate="pulse" href="{{('/defesas')}}" style="color: rgb(255,255,255);font-size: 16px;">Defesas</a>
                         </li>
                         <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-hover-animate="pulse" href="{{('/participacoes')}}" style="color: rgb(255,255,255); font-size:16px;">Participações</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" data-bs-hover-animate="pulse" href="{{('/sobre/depois')}}" style="font-size: 16px;">Sobre</a>
+                        </li>
+                        <!--<li class="nav-item" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter" style="font-size: 12px;">3+</span>
@@ -74,15 +73,23 @@
                                     <a class="text-center dropdown-item small text-gray-500" href="{{('/notificacoes')}}">Visualizar todas alertas</a>
                                 </div>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown no-arrow" role="presentation">
-                            <div class="nav-item dropdown no-arrow">
-                                <a class="dropdown-toggle text-white nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                                <div class="nav-item dropdown no-arrow ">
+                                    <a class="dropdown-toggle text-white nav-link" data-bs-hover-animate="pulse" style="font-size: 16px" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span style="margin-right: 5px; font-size:16px;">{{auth()->user()->name}}</span>
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/estudantes/fotos/{{auth()->user()->estudanteUser->foto}}" width="30px" height="30px">
+                                    @if(auth()->user()->is_estudante)
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/estudantes/fotos/{{auth()->user()->estudanteUser->foto}}">
+                                    @else
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/visitantes/fotos/{{auth()->user()->visitanteUser->foto}}">
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                    <a class="dropdown-item" style="font-size:16px;" role="presentation" href="usuario/perfilestudante/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                @if(auth()->user()->is_estudante)
+                                <a class="dropdown-item" style="font-size: 14px" role="presentation" href="/usuario/perfilestudante/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                @else
+                                    <a class="dropdown-item" style="font-size: 14px" role="presentation" href="/usuario/perfilvisitante/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                    @endif
                                     <!--<a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                     <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>-->
                                     <div class="dropdown-divider"></div>
@@ -90,490 +97,443 @@
                                 </div>
                             </div>
                         </li>
+                        @else
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{{ ('/') }}" style="color: rgb(255,255,255);font-size: 16px;">Inicio</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{{('/defesas')}}" style="font-size:16px;">Defesas</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{{ ('/sobre') }}" style="font-size: 16px;">Sobre</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{{ ('/login') }}" style="font-size: 16px;"><i class="fas fa-user-circle"></i>&nbsp; Entrar</a>
+                        </li>
+                        @endif
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="row" style="padding: 20px;padding-bottom: 20px;">
-            <div class="col-12 col-sm-11 col-md-6 col-lg-8 col-xl-7 offset-xl-1" style="padding-right: 300px;">
-                <small class="form-text text-white" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="font-size: 20px;color: rgb(237,238,239);width: 250px;padding: 10px;padding-right: 0px;padding-left: 0px;font-family: ABeeZee, sans-serif;">Sistema de Gestão de Defesas FET<br></small>
-                <small class="form-text text-justify text-white" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: rgb(229,236,242);font-size: 14px;padding-bottom: 10px;width: 320px;">
-                    Agora ficou fácil, agende a sua defesa hoje e&nbsp; deixe tudo nas nossas mãos. Juntos com a tecnologia, por um futuro melhor, Engenheiros bem formados e informados, prontos para servir e responder a demanda da sociedade.<br>
-                </small>
-            </div>
-            <div class="col-sm-5 col-md-6 col-lg-4 col-xl-4 offset-xl-0 text-center" style="padding-top: 5px;padding-bottom: 15px;">
-                <img data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="width: 160px;height: 210px;background-size: cover;background-repeat: no-repeat;background-position: center;" src="../img/image1.png" loading="eager">
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-11 offset-xl-1 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-inline-flex justify-content-md-start justify-content-lg-start" style="max-width: 100%;">
-                <small class="form-text text-left text-light" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #ffffff;font-size: 16px;margin-bottom: 4px;margin-right: 5px;">Submeta já a tua defesa dando um click no&nbsp;botão <br></small>
-                
-                <form method="post" role="form" action="/dados" enctype="multipart/form-data">
-                    @csrf
+        <div class="row" style="padding: 20px;padding-bottom: 20px;padding-top:80px">
+            <div class="col-12 col-sm-11 col-md-12 col-lg-5 col-xl-5 offset-xl-0" style="padding-left: 50px;"><small class="form-text text-white" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="font-size: 20px;color: rgb(237,238,239);width: 250px;padding: 10px;padding-right: 0px;padding-left: 0px;font-family: ABeeZee, sans-serif;">Sistema de Gestão de Defesas FET<br></small>
+                <small class="form-text text-justify text-white" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: rgb(229,236,242);font-size: 14px;padding-bottom: 10px;max-width: 400px;min-width: 250px;margin-bottom:40px">Agora ficou fácil, agende a sua defesa hoje e&nbsp; deixe tudo nas nossas mãos. Juntos com a tecnologia, por um futuro melhor, Engenheiros bem formados e informados, prontos para servir e responder a demanda da sociedade.<br></small>
+                <div class="d-flex" style="width: 100%;padding-bottom:20px">
+                    <small class="form-text text-left text-light" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #ffffff;font-size: 12px;margin-bottom: 4px;margin-right: 5px;">Submeta já a tua defesa dando um click no&nbsp;botão <br></small>
                     <div class="modal fade centro" role="dialog" tabindex="-1" id="modal">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h6 style="color: rgb(134,134,135);">Submeta</h6>
+                                <div class="modal-header" style="background-color: #68c7ef;">
+                                    <h6 class="titulos" style="color:#ffffff">Submeta os documentos necessários</h6>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
+                                <form class="needs-validation" method="POST" action="/dados" enctype="multipart/form-data" novalidate>
+                                    @csrf
+                                    <div class="modal-body">
+                                        <h3 class="titulos">Formulário de Submissão</h3>
+                                        <div class="alert alert-danger" style="display:none"></div>
 
-                                <form>
-                                <div class="modal-body">
-                                    <h3 class="titulos" style="color: rgb(127,129,132);">Formulário de Submissão: </h3> 
-                                    <div class="col text-left d-flex padMar">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Bi</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="bi">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
+                                        <div class="col text-left d-flex padMar">
+                                            <div class="form-group" style="width:100%">
+                                                <div class="d-flex justify-content-center align-items-center fileinput fileinput-new input-group" for="bi" style="background-color: #68c7ef;" data-provides="fileinput">
+                                                    <label class="btn" style="color: #ffffff;"><i class="fa fa-file-pdf-o"></i>&nbsp;Bi</label>
+                                                    <input class="form-control file-input" accept="application/pdf" type="file" id="bi" name="bi" required onchange="return fileBi()">
+                                                    <div style="background-color: #68c7ef;" for="bi" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+                                                    <div class="invalid-tooltip">
+                                                        <p class="msg text-danger ">Seleccione um arquivo!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col text-left d-flex padMar">
+                                            <div class="form-group" style="width:100%">
+                                                <div class="d-flex justify-content-center align-items-center fileinput fileinput-new input-group" for="declaracao_nota" style="background-color: #68c7ef;" data-provides="fileinput">
+                                                    <label class="btn" style="color: #ffffff;"><i class="fa fa-file-pdf-o"></i>&nbsp;Declaração de Notas</label>
+                                                    <input class="form-control file-input" accept="application/pdf" type="file" id="declaracao_nota" required="" name="declaracao_nota" onchange="return fileDeclaracao()">
+                                                    <div style="background-color: #68c7ef;" for="bi" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+                                                    <div class="invalid-tooltip">
+                                                        <p class="msg text-danger">seleccione um arquivo!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 d-flex">
+                                            <div class="form-group" style="width:100%">
+                                                <div class="form-group d-flex justify-content-center align-items-center fileinput fileinput-new input-group" for="monografia" style="background-color: #68c7ef;" data-provides="fileinput">
+                                                    <label class="btn" style="color: #ffffff;"><i class="fa fa-file-pdf-o"></i>&nbsp;Monografia</label>
+                                                    <input class="form-control file-input" accept="application/pdf" type="file" id="monografia" required="" name="monografia" onchange="return fileMonografia()">
+                                                    <div style="background-color: #68c7ef;" for="bi" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+                                                    <div class="invalid-tooltip">
+                                                        <p class="msg text-danger">seleccione um arquivo!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group" style="width:100%">
+                                                <div class="form-group d-flex justify-content-center align-items-center fileinput fileinput-new input-group" for="curriculum" style="background-color: #68c7ef;" data-provides="fileinput">
+                                                    <label class="btn" style="color: #ffffff;"><i class="fa fa-file-pdf-o"></i>&nbsp;Curriculum</label>
+                                                    <input class="form-control file-input" accept="application/pdf" type="file" id="curriculum" required="" name="curriculum" onchange="return fileCurriculum()">
+                                                    <div style="background-color: #68c7ef;" for="bi" data-trigger="fileinput">
+                                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+                                                    <div class="invalid-tooltip">
+                                                        <p class="msg text-danger">seleccione um arquivo!</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <main>
-                                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                            @if(session('msgErrorBi'))
-                                            <Strong>{{session('msgErrorBi')}}</Strong>
-                                            @endif
-                                        </div>  
-                                    </main>
-                                    <div class="col text-left d-flex padMar">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Declaração de Notas</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="declaracao_nota">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
-
-                                        </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-sm text-white border rounded btn-Oscuro" id="ajaxSubmit" type="submit" style="background-color: #2a81a6;">Submeter</button>
                                     </div>
-                                    <main>
-                                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                            @if(session('msgErrorDeclaracao'))
-                                            <Strong>{{session('msgErrorDeclaracao')}}</Strong>
-                                            @endif
-                                        </div>  
-                                    </main>
-                                    <div class="col-xl-12 d-flex">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Monografia</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="monografia">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <main>
-                                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                            @if(session('msgErrorMonografia'))
-                                            <Strong>{{session('msgErrorMonografia')}}</Strong>
-                                            @endif
-                                        </div>  
-                                    </main>
-                                    <div class="col">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Upload de Curriculum Vitae</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="curriculum">
-                                            </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <main>
-                                        <div class="alert alert-success beautiful" role="alert" style="width: 100%;background-color: rgb(254,163,163);padding-top: 7px;padding-bottom: 7px;">
-                                            @if(session('msgErrorCurriculum'))
-                                            <Strong>{{session('msgErrorCurriculum')}}</Strong>
-                                            @endif
-                                        </div>  
-                                    </main>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-sm text-white-50 border rounded btn-Oscuro" type="submit" style="background-color: #2a81a6;color: #f4eeee;">Submeter</button>
-                                </div>
+                                </form>
                             </div>
+
                         </div>
                     </div>
-                    </form>
+                    <button class="btn btn-sm text-body border rounded border-success shadow-lg btn-Oscuro" data-bs-hover-animate="tada" data-toggle="modal" data-target="#modal" id="open" type="button" style="background-color: #ffffff;">Submeter</button>
+                    <script type="text/javascript">
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const forms = document.querySelectorAll('.needs-validation');
+                            Array.prototype.slice.call(forms).forEach((form) => {
+                                form.addEventListener('submit', (event) => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        // alert('Por favor carregue os ficheiros');
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        });
 
-                <button class="btn btn-sm text-body border rounded border-success shadow-lg btn-Oscuro" data-bs-hover-animate="tada" data-toggle="modal" data-target="#modal" type="button" style="background-color: #ffffff;">Submeter</button>
+                        function fileBi() {
+                            var fileBi = document.getElementById('bi');
+                            var filePathBi = fileBi.value;
+                            var allowedExtensions = /(\.pdf)$/i;
+                            if (!allowedExtensions.exec(filePathBi)) {
+                                alert('O ficheiro que escolheu é invalido, o bi tem que estar no formato pdf!');
+                                fileBi.value = '';
+                                return false;
+                            }
+                        }
+
+                        function fileDeclaracao() {
+                            var fileDeclaracao = document.getElementById('declaracao_nota');
+                            var filePathDeclaracao = fileDeclaracao.value;
+                            var allowedExtensions = /(\.pdf)$/i;
+                            if (!allowedExtensions.exec(filePathDeclaracao)) {
+                                alert('O ficheiro que escolheu é invalido, a declaracao tem que estar no formato pdf!');
+                                fileDeclaracao.value = '';
+                                return false;
+                            }
+                        }
+
+                        function fileMonografia() {
+                            var fileMonografia = document.getElementById('monografia');
+                            var filePathMonografia = fileMonografia.value;
+                            var allowedExtensions = /(\.pdf)$/i;
+                            if (!allowedExtensions.exec(filePathMonografia)) {
+                                alert('O ficheiro que escolheu é invalido, a monografia tem que estar no formato pdf!');
+                                fileMonografia.value = '';
+                                return false;
+                            }
+                        }
+
+                        function fileCurriculum() {
+                            var fileCurriculum = document.getElementById('curriculum');
+                            var filePathCurriculum = fileCurriculum.value;
+                            var allowedExtensions = /(\.pdf)$/i;
+                            if (!allowedExtensions.exec(filePathCurriculum)) {
+                                alert('O ficheiro que escolheu é invalido, O curriculum tem que estar no formato pdf!');
+                                fileCurriculum.value = '';
+                                return false;
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="col-sm-11 col-md-12 col-lg-7 col-xl-7 offset-xl-0 text-center" style="padding-top: 5px;padding-bottom: 15px;">
+                <!-- Paradise Slider -->
+                <div id="fw_al_001" class="carousel slide ps_slide_y ps_indicators_y swipe_y ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2500" data-aos="slide-left" data-aos-duration="800" data-aos-delay="800">
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#fw_al_001" data-slide-to="0" class="active"></li>
+                        <li data-target="#fw_al_001" data-slide-to="1"></li>
+                        <li data-target="#fw_al_001" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper For Slides -->
+                    <div class="carousel-inner" role="listbox">
+
+                        <!-- First Slide -->
+                        <?php $index = 0; ?>
+                        @foreach($galerias as $galeria)
+                        <div class="carousel-item {{$index == 0? "active" : "" }}">
+
+                            <!-- Slide Background -->
+                            <img src="/ficheiros/galeria/{{$galeria->foto}}" alt="fw_al_001_01">
+
+                            <!-- Slide Text Layer -->
+                            <div class="fw_al_001_slide">
+                                <p data-animation="animated fadeInUp"><strong>{{date('d/m/y', strtotime($galeria->updated_at))}}</strong></p>
+                                <h2 data-animation="animated fadeInUp"><strong class="block-wiyh-text">{{$galeria->titulo}}</strong></h2>
+                                @if(auth()->user())
+                                <a href="/galeria/showdepois/{{$galeria->id}}" type="button" data-bs-hover-animate="pulse" style="background-color: #16e8f5;border:none;border-radius: .35rem;" data-animation="animated fadeInUp">Saber mais</a>
+                                @else
+                                <a href="/galeria/showantes/{{$galeria->id}}" type="button" data-bs-hover-animate="pulse" style="background-color: #16e8f5;border:none;border-radius: .35rem;" data-animation="animated fadeInUp">Saber mais</a>
+                                @endif
+                            </div>
+                        </div>
+                        <!-- End of Slide -->
+                        <?php $index++; ?>
+                        @endforeach
+
+                    </div><!-- End of Wrapper For Slides -->
+
+                </div> <!-- End Paradise Slider -->
+
+
+
+
+                <!-- End -->
             </div>
         </div>
     </div>
 </section>
+<div class="estatisticas" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="950">
+        <div class="estatistica-item">
+            <ul class="align-items-center">
+                <div class="d-flex justify-content-center">
+                    <ion-icon size="large" class="estudante" name="people"></ion-icon>
+                    &nbsp;&nbsp;<span id="estudantes" class="estudante"></span>
+                </div>
+                <p  class="estudante">+ Estudantes</p>
+            </ul>
+        </div>
+        <div class="estatistica-item">
+            <ul class="align-items-center">
+                <div class="d-flex justify-content-center">
+                    <ion-icon size="large" class="docentes" name="people"></ion-icon>
+                    &nbsp;&nbsp;<span id="docentes" class="docentes"></span>
+                </div>
+                    <p class="docentes">+ Docentes</p>
+            </ul>
+        </div>
+        <div class="estatistica-item">
+            <ul class="align-items-center">
+                <div class="d-flex justify-content-center">
+                    <ion-icon size="large" class="defesas" name="book"></ion-icon>
+                    &nbsp;&nbsp;<span id="defesas" class="defesas"></span>
+                </div>
+                    <p class="defesas">+ Defesas</p>
+            </ul>
+        </div>
+        <div class="estatistica-item">
+            <ul class="align-items-center">
+                <div class="d-flex justify-content-center">
+                    <ion-icon size="large" class="monografias" name="library"></ion-icon>
+                    &nbsp;&nbsp;<span id="monografias" class="monografias"></span>
+                </div>
+                    <p class="monografias">+ Monografias</p>
+            </ul>
+        </div>
+        <div class="estatistica-item">
+            <ul class="align-items-center">
+                <div class="d-flex justify-content-center">
+                    <ion-icon size="large" class="cursos" name="bookmark"></ion-icon>
+                    &nbsp;&nbsp;<span id="cursos" class="cursos"></span>
+                </div>
+                    <p class="cursos">+ Cursos</p>
+            </ul>
+        </div>
+        <script>
+      function animate(obj, initVal, lastVal, duration) {
+         let startTime = null;
+
+      //obtém o carimbo de data/hora atual e o atribui à variável currentTime
+      let currentTime = Date.now();
+
+      
+    //passa o timestamp atual para a função step
+      const step = (currentTime ) => {
+
+      //se a hora inicial for nula, atribui a hora atual a startTime
+      if (!startTime) {
+         startTime = currentTime ;
+      }
+
+      //calcula o valor a ser usado no cálculo do número a ser exibido
+      const progress = Math.min((currentTime - startTime)/ duration, 1);
+
+      
+        //calcula o que será exibido usando o valor obtido acima
+      obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
+
+      //verificando se o contador não excede o último valor (lastVal)
+      if (progress < 1) {
+         window.requestAnimationFrame(step);
+      } else {
+            window.cancelAnimationFrame(window.requestAnimationFrame(step));
+         }
+      };
+      //inicia a animação
+         window.requestAnimationFrame(step);
+      }
+      let text1 = document.getElementById('estudantes');
+      let text2 = document.getElementById('docentes');
+      let text3 = document.getElementById('defesas');
+      let text4 = document.getElementById('monografias');
+      let text5 = document.getElementById('cursos');
+      const load = () => {
+         animate(text1, 0, '{{count($estudante)}}', 2000);
+         animate(text2, 0, '{{count($docente)}}', 2000);
+         animate(text3, 0, '{{count($defesa)}}', 2000);
+         animate(text4, 0, '{{count($monografia)}}', 2000);
+         animate(text5, 0, '{{count($drcurso)}}', 2000);
+      }
+   </script>
+
+
+    </div>
+
 <section>
-    <div class="container" style="max-width: 100%;background-image: url(&quot;../img/fundo3.png&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;padding-bottom: 300px;padding-top: 300px;">
-        <div class="row d-xl-flex" style="margin-right: 10px;margin-left: 10px;padding-bottom: 20px;margin-top: 20px;">
-            <div class="col">
+    <div class="container" style="max-width: 100%;background-image: url(&quot;../img/fundo3.png&quot;);background-repeat: no-repeat;background-size: cover;background-position: center;padding-bottom: 250px;padding-top: 30px;margin-top:50px">
+        <main>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem">
+                    @if(session('msgSucessStore'))
+                    <p class="msg"><Strong>{{session('msgSucessStore')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('msgErrorName'))
+                    <p class="msg"><Strong>{{session('msgErrorName')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                <div class="mensagem-error">
+                    @if(session('msgErrorStore'))
+                    <p class="msg"><Strong>{{session('msgErrorStore')}}</Strong></p>
+                    @endif
+                </div>
+            </div>
+            <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+        <div class="mensagem-error">
+            @if(session('msgAutorize'))
+            <p class="msg"><Strong>{{session('msgAutorize')}}</Strong></p>
+            @endif
+        </div>
+    </div>
+    <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+        <div class="mensagem-error">
+            @if(session('msgEstudante'))
+            <p class="msg"><Strong>{{session('msgEstudante')}}</Strong></p>
+            @endif
+        </div>
+    </div>
+        </main>
+        <div class="row d-xl-flex conteiner-shadow" style="margin-right: 10px;margin-left: 10px;padding-bottom: 20px;margin-top: 20px;">
+            <div class="col" style="padding-bottom:100px">
                 <h2 style="color: #68c7ef;font-weight: bold;width: 100%;">Pesquisa de Monografias</h2>
                 <hr style="background-color: #68c7ef;margin-top: 5px;">
             </div>
-            <div class="col-12 col-xl-12 offset-3 offset-xl-0 d-inline-flex d-sm-inline-flex d-md-inline-flex d-lg-inline-flex d-xl-inline-flex m-auto m-sm-auto m-md-auto m-lg-auto justify-content-xl-end m-xl-auto" style="padding-top: 20px;padding-bottom: 20px;">
-                <form class="d-inline-flex d-sm-inline-flex d-md-inline-flex d-lg-inline-flex d-xl-inline-flex m-sm-auto m-md-auto m-lg-auto m-xl-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="/" enctype="multipart/form-data" style="padding-bottom: 0px;padding-top: 0px;max-width: 200%;min-width: 50%;">
-                    <div class="input-group">
-                        <input class="bg-white shadow-lg form-control form-control-lg border-0 small" type="text" place holder="Procura..." name="search" autocomplete="on">
+            <div class="col-12 col-xl-12 offset-3 offset-xl-0 d-inline-flex d-sm-inline-flex d-md-inline-flex d-lg-inline-flex d-xl-inline-flex m-auto m-sm-auto m-md-auto m-lg-auto justify-content-xl-end m-xl-auto" style="padding-top: 20px;padding-bottom: 100px;">
+                <form class="d-inline-flex d-sm-inline-flex d-md-inline-flex d-lg-inline-flex d-xl-inline-flex m-sm-auto m-md-auto m-lg-auto m-xl-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="/monografias" enctype="multipart/form-data" style="padding-bottom: 0px;padding-top: 0px;max-width: 200%;min-width: 50%;">
+                    <div class="input-group dataTables_filter" id="dataTable_filter">
+                        <input style="padding-right:20px;height: 40px;" class=" shadow-lg form-control form-control-sm border-0 small" id="search" type="search" aria-controls="dataTable" placeholder="Pesquisar monografia pelo tema ..." name="search" autocomplete="on">
                         <div class="input-group-append">
-                            <button class="btn py-0" type="button" style="background-color: #28a8de;">
+                            <button class="btn py-0" type="submit" style="background-color: #28a8de;">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <section class="card-section-imagia" style="padding-top: 15px;padding-bottom: 10px;background-color: rgba(241,241,241,0);">
-                    <div class="container" style="padding-right: 0px;padding-left: 0px;">
-                        <p style="font-family: Roboto, sans-serif;color: #021b34;">Nenhuma monografia encontrada como: titulo!</p>
-                        <div class="row" style="margin: 0px;padding: 20px;padding-right: 10px;padding-left: 10px;">
-                            <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                <div class="shadow card-container-imagia">
-                                    <div class="card-imagia">
-                                        <div class="front-imagia">
-                                            <div class="cover-imagia">
-                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                            </div>
-                                            <div class="user-imagia">
-                                                <img class="rounded-circle img-circle" alt="" src="../img/img-2.jpg" style="width: 100px;height: 100px;">
-                                            </div>
-                                            <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Yolanda Emidio</h3>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao de Arquivo</p>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dra. Martina Barros</p>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 02/05/2022</p>
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: normal;"><i class="fa fa-plus"></i> Mais</span>
-                                            </div>
-                                        </div>
-                                        <div class="back-imagia">
-                                            <div class="content-imagia content-back-imagia">
-                                                <div>
-                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                    <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.&nbsp;</p>
+            <div class="container" style="max-width: 100%;">
+                <div class="row text-center" style="padding-right: 40px;padding-left: 40px;">
+                    <div class="col" data-aos="fade-down" data-aos-duration="800" data-aos-delay="800" style="padding-right: 0px;padding-left: 0px;">
+                        <section class="card-section-imagia" style="padding-top: 15px;padding-bottom: 10px;background-color: rgba(241,241,241,0);">
+                            <div class="container" style="padding-right: 0px;padding-left: 0px;">
+                                <div class="row" style="margin: 0px;padding: 20px;padding-right: 10px;padding-left: 10px;">
+                                    @foreach($monografias as $monografia)
+                                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
+                                        <div class="shadow card-container-imagia">
+                                            <div class="card-imagia">
+                                                <div class="front-imagia">
+                                                    <div class="cover-imagia">
+                                                        <img alt="" src="../img/cardimg.jpg">
+                                                    </div>
+                                                    <div class="user-imagia">
+                                                        <img class="rounded-circle img-circle" alt="" src="../img/img-2.jpg" style="width: 100px;height: 100px;">
+                                                    </div>
+                                                    <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
+                                                        <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">{{$monografia->autor}}</h3>
+                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Tema: {{$monografia->tema}}</strong></p>
+                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="person" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Supervisor: {{$monografia->supervisor}}</strong></p>
+                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="calendar" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Data: {{date('d/m/y', strtotime($monografia->created_at))}}</strong></p>
+                                                    </div>
+                                                    <div class="footer-imagia">
+                                                        <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: normal;"><i class="fa fa-plus"></i> Mais</span>
+                                                    </div>
+                                                </div>
+                                                <div class="back-imagia">
+                                                    <div class="content-imagia content-back-imagia">
+                                                        <div>
+                                                            <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;"><ion-icon name="speedometer" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Nivel: {{$monografia->nivel}}</strong></p>
+                                                            <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Curso: {{$monografia->curso}}</strong></p>
+                                                            <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 14px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon style="color: #68c7ef;" name="cloud-download"></ion-icon> &nbsp;{{count($monografia->downloadMonografia)}} Downloads</p>
+                                                            <label class="d-flex align-items-center" for=""><ion-icon name="document-text" style="color: #68c7ef;"></ion-icon>&nbsp; Resumo:</label>
+                                                            <p class="block-wiyh-text-resumo">{{$monografia->resumo}}.&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="footer-imagia">
+                                                        <div class="social-imagia text-center">
+                                                            @if(auth()->user())
+                                                            <a class="btn btn-sm border rounded" href="/monografia/showdepois/{{$monografia->id}}" type="button" style="font-family: Roboto, sans-serif;font-size:14px; background-color: #16e8f5;">Saber mais</a>
+                                                            @else
+                                                            <a class="btn btn-sm border rounded" href="/monografia/showantes/{{$monografia->id}}" type="button" style="font-family: Roboto, sans-serif;font-size:14px; background-color: #16e8f5;">Saber mais</a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="footer-imagia">
-                                                <div class="social-imagia text-center">
-                                                    <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;">Saber Mais</button>
-                                                </div>
-                                            </div>
                                         </div>
+                                    </div>
+                                    @endforeach
+                                    <div class="container-fluid">
+                                        @if(count($monografias) == 0 && $search)
+                                        <p class="msg" style="color:#ffffff;"><Strong>Nao foi possivel encontrar nenhuma monografia com o tema {{$search}}!</Strong><a style="font-size:16px" href="/monografias"> Ver Todas monografias</a></p>
+                                        @elseif(count($monografias) == 0)
+                                        <p class="msg"><Strong>Nao ha monografias disponiveis</Strong></p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                <div class="shadow card-container-imagia">
-                                    <div class="card-imagia">
-                                        <div class="front-imagia">
-                                            <div class="cover-imagia">
-                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                            </div>
-                                            <div class="user-imagia">
-                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i>&nbsp;Mais</span>
-                                            </div>
-                                            <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Nunes Jose Churrana</h3>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao Farmaceutico</p>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: Msc. Claudia Jovo Gune</p>
-                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 04/04/2022</p>
-                                            </div>
-                                        </div>
-                                        <div class="back-imagia">
-                                            <div class="content-imagia content-back-imagia">
-                                                <div>
-                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                    <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar</p>
-                                                </div>
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <div class="social-imagia text-center"><button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;">Saber Mais</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                <div class="shadow card-container-imagia">
-                                    <div class="card-imagia">
-                                        <div class="front-imagia">
-                                            <div class="cover-imagia">
-                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                            </div>
-                                            <div class="user-imagia">
-                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
-                                            </div>
-                                            <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                <h3 class="text-center name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Marcela Capezulo</h3>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistemas Electricos&nbsp;</p>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dr. Sansao Timbane</p>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 10/05/2022</p>
-                                            </div>
-                                        </div>
-                                        <div class="back-imagia">
-                                            <div class="content-imagia content-back-imagia">
-                                                <div>
-                                                    <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                    <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Engenharia Electronica</p>
-                                                    <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.&nbsp;</p>
-                                                </div>
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <div class="social-imagia text-center">
-                                                    <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;">Saber Mais</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;width: 100%;">
-                                <div class="shadow card-container-imagia">
-                                    <div class="card-imagia">
-                                        <div class="front-imagia">
-                                            <div class="cover-imagia">
-                                                <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                            </div>
-                                            <div class="user-imagia">
-                                                <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
-                                            </div>
-                                            <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                <h3 class="text-center name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Emilio Jose Churrana</h3>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao de Defesas</p>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dr. Aurelio Ribeiro</p>
-                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 06/05/2022</p>
-                                            </div>
-                                        </div>
-                                        <div class="back-imagia">
-                                            <div class="content-imagia content-back-imagia">
-                                                <div>
-                                                    <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura&nbsp;</p>
-                                                    <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                    <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.</p>
-                                                </div>
-                                            </div>
-                                            <div class="footer-imagia">
-                                                <div class="social-imagia text-center">
-                                                    <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;">Saber Mais</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="container" style="max-width: 100%;">
-        <div class="row text-center" style="padding-right: 40px;padding-left: 40px;">
-            <div class="col" data-aos="fade-down" data-aos-duration="800" data-aos-delay="800" style="padding-right: 0px;padding-left: 0px;">
-                <h2 class="text-justify" style="color: #68c7ef;font-weight: bold;padding-top: 10px;">FET Monografias</h2>
-                <hr style="background-color: #68c7ef;margin-top: 5px;">
-                <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel-2" style="padding-bottom: 10px;padding-right: 30px;padding-left: 30px;">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <section class="card-section-imagia" style="padding-top: 15px;padding-bottom: 10px;background-color: rgba(241,241,241,0);">
-                                <div class="container" style="padding-right: 0px;padding-left: 0px;">
-                                    <div class="row" style="margin: 0px;padding: 20px;padding-right: 10px;padding-left: 10px;">
-                                        <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                            <div class="shadow card-container-imagia">
-                                                <div class="card-imagia">
-                                                    <div class="front-imagia">
-                                                        <div class="cover-imagia">
-                                                            <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                                        </div>
-                                                        <div class="user-imagia">
-                                                            <img class="rounded-circle img-circle" alt="" src="../img/img-2.jpg" style="width: 100px;height: 100px;">
-                                                        </div>
-                                                        <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                            <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Yolanda Emidio</h3>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao de Arquivo</p>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dra. Martina Barros</p>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 02/05/2022</p>
-                                                        </div>
-                                                        <div class="footer-imagia"><span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: normal;"><i class="fa fa-plus"></i> Mais</span></div>
-                                                    </div>
-                                                    <div class="back-imagia">
-                                                        <div class="content-imagia content-back-imagia">
-                                                            <div>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.&nbsp;</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <div class="social-imagia text-center">
-                                                                <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;color: #ffffff;">Saber mais</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                            <div class="shadow card-container-imagia">
-                                                <div class="card-imagia">
-                                                    <div class="front-imagia">
-                                                        <div class="cover-imagia">
-                                                            <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                                        </div>
-                                                        <div class="user-imagia">
-                                                            <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i>&nbsp;Mais</span>
-                                                        </div>
-                                                        <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                            <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Nunes Jose Churrana</h3>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao Farmaceutico</p>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: Msc. Claudia Jovo Gune</p>
-                                                            <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 04/04/2022</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="back-imagia">
-                                                        <div class="content-imagia content-back-imagia">
-                                                            <div>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <div class="social-imagia text-center">
-                                                                <button class="btn btn-sm border rounded" type="button">Saber mais</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;max-width: 100%;">
-                                            <div class="shadow card-container-imagia">
-                                                <div class="card-imagia">
-                                                    <div class="front-imagia">
-                                                        <div class="cover-imagia">
-                                                            <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                                        </div>
-                                                        <div class="user-imagia">
-                                                            <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
-                                                        </div>
-                                                        <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                            <h3 class="text-center name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Marcela Capezulo</h3>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistemas Electricos&nbsp;</p>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dr. Sansao Timbane</p>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 10/05/2022</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="back-imagia">
-                                                        <div class="content-imagia content-back-imagia">
-                                                            <div>
-                                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura</p>
-                                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Engenharia Electronica</p>
-                                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.&nbsp;</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <div class="social-imagia text-center">
-                                                                <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;color: #ffffff;">Saber mais</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4 col-lg-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;width: 100%;">
-                                            <div class="shadow card-container-imagia">
-                                                <div class="card-imagia">
-                                                    <div class="front-imagia">
-                                                        <div class="cover-imagia">
-                                                            <img alt="" src="../img/8sl6Q86gsfM.jpg">
-                                                        </div>
-                                                        <div class="user-imagia">
-                                                            <img class="rounded-circle img-circle" alt="" src="../img/img-1.jpg" style="width: 100px;height: 100px;">
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;"><i class="fa fa-plus"></i> Mais</span>
-                                                        </div>
-                                                        <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                            <h3 class="text-center name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">Emilio Jose Churrana</h3>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Tema: Sistema de Gestao de Defesas</p>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Supervisor: dr. Aurelio Ribeiro</p>
-                                                            <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;">Data: 06/05/2022</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="back-imagia">
-                                                        <div class="content-imagia content-back-imagia">
-                                                            <div>
-                                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;">Nivel: Licenciatura&nbsp;</p>
-                                                                <p class="text-left subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Curso: Informatica</p>
-                                                                <p class="text-center">Et hanc quidem praeter oppida multa duae civitates exornant Seleucia opus Seleuci regis, et Claudiopolis quam deduxit coloniam Claudius Caesar.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="footer-imagia">
-                                                            <div class="social-imagia text-center">
-                                                                <button class="btn btn-sm border rounded" type="button" style="font-weight: bold;font-family: Roboto, sans-serif;background-color: #16e8f5;color: #ffffff;">Saber mais</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="carousel-item"></div>
-                        <div class="carousel-item"></div>
-                    </div>
-                    <div>
-                        <a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev" style="width: 100px;">
-                            <span class="carousel-control-prev-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/back_48px.png&quot;);"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel-2" role="button" data-slide="next" style="width: 100px;">
-                            <span class="carousel-control-next-icon" style="width: 50px;height: 50px;background-image: url(&quot;../img/forward_48px.png&quot;);"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        </section>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
+@endsection

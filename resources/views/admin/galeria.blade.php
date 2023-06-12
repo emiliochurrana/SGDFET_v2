@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Galeria')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,21 +49,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
                     @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -66,13 +68,14 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                 <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><i class="fas fa-search"></i></a>
                             <div class="dropdown-menu show dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto navbar-search w-100">
                                     <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
@@ -80,17 +83,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -192,20 +193,20 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
-                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
-                                    <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
-                                    @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
-                                    @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
-                                    @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
-                                    @endif
-                                </a>
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                                        <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
+                                        @if(auth()->user()->is_docente)
+                                        <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                        @elseif(auth()->user()->is_drcurso)
+                                        <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                        @elseif(auth()->user()->is_admin)
+                                        <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                        @endif
+                                    </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                     <a class="dropdown-item" role="presentation" href="/usuario/perfil/{{auth()->user()->id}}"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
                                     <!--<a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
@@ -239,11 +240,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="color: #3a3a3b;">Imagem</th>
-                                        <th style="color: #3a3a3b;">Data</th>
-                                        <th style="color: #3a3a3b;">Titulo</th>
-                                        <th style="color: #3a3a3b;"><strong>Breve&nbsp;Descrição</strong><br></th>
-                                        <th class="text-left" style="color: #3a3a3b;">Acção<br></th>
+                                        <th style="color: #2694c1;"><strong>Imagem</strong></th>
+                                        <th style="color: #2694c1;"><string>Data</string></th>
+                                        <th style="color: #2694c1;"><strong>Titulo</strong></th>
+                                        <th style="color: #2694c1;"><strong>Breve&nbsp;Descrição</strong><br></th>
+                                        <th class="text-left" style="color: #2694c1;"><strong>Acção</strong><br></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -252,15 +253,15 @@
                                         <td class="d-flex align-items-center" style="color: #3a3a3b;">
                                             <img class="img-thumbnail" src="/ficheiros/galeria/{{$galeria->foto}}" width="40px" style="margin-right: 10px;" height="40px">
                                         </td>
-                                        <td style="color: #3a3a3b;">{{$galeria->data}}</td>
+                                        <td style="color: #3a3a3b;">{{date('d/m/y', strtotime($galeria->updated_at))}}</td>
                                         <td style="color: #3a3a3b;">{{$galeria->titulo}}<br></td>
                                         <td>{{$galeria->descricao}}<br></td>
                                         <td>
                                             <div class="col d-flex justify align-items-start align-content-start">
                                                 @if(auth()->user()->is_drcurso)
-                                                <a class="btn btn-sm" type="button" href="/galeria/edit/{{$galeria->id}}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;">Editar</a>
+                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/galeria/edit/{{$galeria->id}}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
                                                 @endif
-                                                <a class="btn btn-sm" href="/galeria/show/{{$galeria->id}}" type="button" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;">Ver</a>
+                                                <a class="btn btn-sm d-flex align-items-center" href="/galeria/show/{{$galeria->id}}" type="button" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -268,7 +269,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-md-6 align-self-center">
                                 <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
                             </div>
@@ -283,8 +284,9 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
+        @endsection

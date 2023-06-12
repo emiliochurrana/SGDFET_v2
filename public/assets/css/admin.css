@@ -18,17 +18,61 @@
   box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
 }
 
-.mensagem{
-  background-color: #d2f4e8;
-  text-align: center;
+@media only screen and (max-width:480px) {
+  .rounded-circle {
+    width: 150px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 100;
+  }
 }
 
-.msg{
-  padding-top: 5px;
-  padding-bottom: 5px;
+h3{
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 6em;
+  margin-right: -1em;
+  padding-right: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  opacity: 0.9;
 }
 
-.mensagem-error{
-  background-color: #fadbd8;
-  text-align: center;
+h3::before{
+  position: absolute;
+right: 0;
+bottom: 0;
 }
+
+.img-perfil{
+  max-width: 30px;
+  min-width: 30px;
+  max-height: 30px;
+  min-height: 30px;
+  }
+  
+  .img-perfilver{
+    display: block;
+    max-width: 250px;
+    min-width: 250px;
+  max-height: 250px;
+  min-height: 250px;
+  background-size: cover;
+  }
+
+  .img-galeria{
+    max-width: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    min-height: 40px;
+  }
+
+  .img-galeria-ver{
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 200px;
+    min-height: 200px;
+  }

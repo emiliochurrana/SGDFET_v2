@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Estudante')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -16,64 +17,65 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    @elseif(auth()->user()->is_docente)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
-                    </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboard') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardrcurso') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                @elseif(auth()->user()->is_docente)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/dashboardocente') }}"><i class="fas fa-home"></i><span>Pagina Inicial</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/usuario/estudantes') }}"><i class="fas fa-users"></i><span>Estudantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/monografias/index') }}"><i class="fas fa-book"></i><span>Monografias</span></a>
+                </li>
 
-                    @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
-                    </li>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
-                    </li>
-                    @if(auth()->user()->is_drcurso)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    </li>
-                        @if(auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    </li>
-                    @endif
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                    </li>
-                    </li>
-                    @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
-                    </li>
-                    @endif
-                </ul>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                @endif
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
+                </li>
+                @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                </li>
+                @endif
+            </ul>
             <div class="text-center d-none d-md-inline">
                 <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
             </div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -83,7 +85,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -100,17 +102,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -215,18 +215,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -244,9 +244,9 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     @foreach($estudantes as $estudante)
-                    <div class="row" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;">
+                    <div class="row" style="padding-top: 0px;padding-bottom: 0px;margin-top: 20px;margin-bottom:20px">
                         <div class="col-xl-9 offset-xl-0" style="height: 40px;">
-                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;margin-left: 20px;">{{$estudante->userEstudante->name}}</h2>
+                            <h3 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;margin-left: 20px;">{{$estudante->userEstudante->name}}</h3>
                         </div>
                         <div class="col-xl-3" style="height: 40px;">
                             <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="margin-right: 25px;">
@@ -254,7 +254,7 @@
                                 <a class="btn" href="/usuario/editarestudante/{{$estudante->userEstudante->id}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Editar</a>
                                 <a class="btn" href="{{ ('/usuario/estudantes') }}" type="button" style="color: rgb(255,255,255);background-color: #da2d22;">Cancelar</a>
                                 @elseif(auth()->user()->is_admin || auth()->user()->is_drcurso)
-                                <a class="btn" href="{{ ('/usuario/estudantes') }}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                                <a class="btn" href="{{ ('/usuario/estudanteview') }}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
                                 @endif
                             </div>
                         </div>
@@ -263,27 +263,147 @@
                         </div>
                     </div>
                     <div class="row no-gutters text-justify align-items-sm-center" style="padding: 40px;padding-top: 10px;padding-bottom: 5px;max-width: 100%;">
-                        <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;">
-                            <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}">
+                        <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;margin-bottom:25px">
+                            <img class="rounded-circle img-perfilver" style="background-size: cover;" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}">
                         </div>
                         <div class="col" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;padding-bottom: 0px;padding-left: 30px;">
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome: {{$estudante->userEstudante->name}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Numero do estudante: {{$estudante->num_estudante}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Regime: {{$estudante->regime}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome do usuario: {{$estudante->userEstudante->username}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Ano de ingresso: {{$estudante->ano_ingresso}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">E-mail: {{$estudante->userEstudante->email}}&nbsp;</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Supervisor: {{$estudante->docenteEstudante->name}}&nbsp;</p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Nome:</strong></span> {{$estudante->userEstudante->name}}
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-user" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Numero do estudante:</strong></span> {{$estudante->num_estudante}}
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-clock" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Regime:</strong></span> {{$estudante->regime}}
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-user-circle" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Nome do usuario:</strong></span> {{$estudante->userEstudante->username}}
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fa fa-calendar" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Ano de ingresso:</strong></span> {{$estudante->ano_ingresso}}
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-envelope fa-fw" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>E-mail:</strong></span> {{$estudante->userEstudante->email}}&nbsp;
+                            </p>
+                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                <i class="fas fa-user" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                <span style="color:#2391bf"><strong>Supervisor:</strong></span> {{$estudante->docenteEstudante->name}}&nbsp;
+                            </p>
                         </div>
                     </div>
                     @endforeach
                     @foreach($dados as $dado)
                     <div class="row" style="padding: 40px;padding-top: 5px;max-width: 100%;">
                         <div class="col offset-xl-0">
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Bilhete de Identidade: {{$dado->bi}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Declaracao de Notas:&nbsp; {{$dado->declaracao_nota}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Monografia: {{$dado->monografia}}</p>
-                            <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curriculum: {{$dado->curriculum}}</p>
+                            <div class="modal fade centro" role="dialog" tabindex="-1" id="modal-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 style="color:#ffffff;">Bi de {{$estudante->userEstudante->name}}</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="align-content:center;">
+                                                <embed style="height:700px; border:none;" src="/ficheiros/estudantes/bi/{{$dado->bi}}" type="application/pdf" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-start align-content-start">
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000; margin-right:20px;"><strong>Bilhete de Identidade:</strong>
+                                    <a data-bs-hover-animate="tada" data-toggle="modal" href="" data-target="#modal-1" type="button">
+                                        <span style="color:#2390be;">{{$dado->bi}}&nbsp;</span>
+                                    </a>
+                                    <strong>Submetido aos:</strong> {{date('d/m/y', strtotime($dado->updated_at))}} <strong>as: </strong>{{date('h:i', strtotime($dado->updated_at))}}
+                                </p>
+                            </div>
+
+                            <div class="modal fade centro" role="dialog" tabindex="-1" id="modal-2">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 style="color: #ffffff;">Declaracao de {{$estudante->userEstudante->name}}</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="align-content:center;">
+                                                <embed style="height:700px; border:none;" src="/ficheiros/estudantes/declaracoes/{{$dado->declaracao_nota}}" type="application/pdf" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-start align-content-start">
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000; margin-right:20px;"><strong>Declaracao de Notas:</strong>
+                                    <a data-bs-hover-animate="tada" data-toggle="modal" href="" data-target="#modal-2" type="button">
+                                        <span style="color:#2390be;">{{$dado->declaracao_nota}}&nbsp;</span>
+                                    </a>
+                                    <strong>Submetido aos:</strong> {{date('d/m/y', strtotime($dado->updated_at))}} <strong>as: </strong>{{date('h:i', strtotime($dado->updated_at))}}
+                                </p>
+                            </div>
+
+                            <div class="modal fade centro" role="dialog" tabindex="-1" id="modal-3">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 style="color: #ffffff;">Monografia de {{$estudante->userEstudante->name}}</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="align-content:center;">
+                                                <embed style="height:700px; border:none;" src="/ficheiros/estudantes/monografias/{{$dado->monografia}}" type="application/pdf" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-start align-content-start">
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000; margin-right:20px;"><strong>Monografia:</strong>
+                                    <a data-bs-hover-animate="tada" data-toggle="modal" href="" data-target="#modal-3" type="button">
+                                        <span style="color:#2390be;">{{$dado->monografia}}&nbsp;</span>
+                                    </a>
+                                    <strong>Submetido aos:</strong> {{date('d/m/y', strtotime($dado->updated_at))}} <strong>as: </strong>{{date('h:i', strtotime($dado->updated_at))}}
+                                </p>
+                            </div>
+
+                            <div class="modal fade centro" role="dialog" tabindex="-1" id="modal-4">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 style="color: #ffffff;">Curriculum de {{$estudante->userEstudante->name}}</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="align-content:center;">
+                                                <embed style="height:200px; border:none;" src="/ficheiros/estudantes/curriculum/{{$dado->curriculum}}" type="application/pdf" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-start align-content-start">
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000; margin-right:20px;"><strong>Curriculum:</strong>
+                                    <a data-bs-hover-animate="tada" data-toggle="modal" href="" data-target="#modal-1" type="button">
+                                        <span style="color:#2390be;">{{$dado->curriculum}}&nbsp;</span>
+                                    </a>
+                                    <strong>Submetido aos:</strong> {{date('d/m/y', strtotime($dado->updated_at))}} <strong>as: </strong>{{date('h:i', strtotime($dado->updated_at))}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -291,3 +411,4 @@
                 </div>
             </div>
         </div>
+        @endsection

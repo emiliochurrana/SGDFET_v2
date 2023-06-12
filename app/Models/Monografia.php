@@ -17,6 +17,7 @@ class Monografia extends Model
         'id_estudante',
         'autor',
         'tema',
+        'foto',
         'curso',
         'resumo',
         'nivel',
@@ -28,6 +29,10 @@ class Monografia extends Model
 
         return $this->belongsTo(User::class, 'id_estudante', 'id');
 
+    }
+
+    public function downloadMonografia(){
+        return $this->belongsToMany(User::class, 'monografia_downloads','id_monografia', 'id_user');
     }
 
 }

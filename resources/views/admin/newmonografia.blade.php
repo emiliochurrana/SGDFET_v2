@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Nova Monografia')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,30 +49,26 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
                 </li>
                 @endif
-            </ul>>
+            </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -75,7 +78,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -91,15 +94,15 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">Paina oficial da UP</a>
-                                <a class="dropdown-item" role="presentation" href="#">FET</a>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -204,18 +207,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -232,7 +235,7 @@
             </nav>
             <div class="container-fluid">
                 <div class="card shadow">
-                    <h2 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-top: 20px;margin-right: 20px;margin-bottom: 0px;margin-left: 20px;">Nova Monografia</h2>
+                    <h3 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="color: #3ba2dc;margin-top: 20px;margin-right: 20px;margin-bottom: 0px;margin-left: 20px;">Nova Monografia</h3>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -242,72 +245,107 @@
                                 @endif
                             </div>
                         </div>
-                    </main>
-
-                    <form style="padding: 40px;padding-top: 10px;" role="form" method="post" action="{{ ('/monografia') }}" enctype="multipart/form-data">
-                        @csrf
-                        @foreach($estudantes as $estudante)
-                        <div class="form-group d-flex">
-                            <label style="margin-right: 5px;">Nome*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" required="" placeholder="Nome do Autor" style="background-color: #ffffff;" name="name">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgInput'))
+                                <p class="msg"><Strong>{{session('msgInput')}}</Strong></p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="form-group d-flex">
-                            <input name="id_estudante">
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgErrorName'))
+                                <p class="msg"><Strong>{{session('msgErrorName')}}</Strong></p>
+                                @endif
+                            </div>
+                        </div>
+                    </main>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("input[name='num_estudante']").blur(function() {
+
+                                var $name = $("input[name='name']");
+                                var $id_estudante = $("input[name='id_estudante']");
+                                var $supervisor = $("input[name='supervisor']");
+                                var $nivel = $("input[name='nivel']");
+                                var $descricao = $("input[name='descricao']");
+                                var $curso = $("input[name='curso']");
+                                var $tema = $("input[name='tema']");
+                                var $foto = $("input[name='foto']");
+                                var $monografia = $("input[name='monografia']");
+                                var username = $(this).val();
+
+                                $.getJSON("{{route('monoestudante')}}", {
+                                        username
+                                    },
+                                    function(json) {
+                                        $name.val(json.name);
+                                        $id_estudante.val(json.id_estudante);
+                                        $supervisor.val(json.supervisor);
+                                        $nivel.val(json.nivel);
+                                        $descricao.val(json.descricao);
+                                        $curso.val(json.curso);
+                                        $tema.val(json.tema);
+                                        $foto.val(json.foto);
+                                        $monografia.val(json.monografia);
+                                    });
+                            });
+                        });
+                    </script>
+                    <form class="needs-validation" style="padding: 30px;padding-top: 10px;" role="form" method="post" action="{{ route('storemonografia') }}" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;width:400px;">Numero do estudante*</label>
+                            <input class="@error('num_estudante') is-invalid @enderror shadow form-control" type="text" data-aos="zoom-in" id="num_estudante" required data-aos-duration="800" data-aos-delay="800" autocomplete="on" placeholder="Numero do estudante" style="background-color: #ffffff;margin-right:20px;margin-bottom:10px" name="num_estudante">
+                            <input id="id_estudante" name="id_estudante" type="hidden" readonly>
+                            <label style="margin-right: 5px;">Nome*</label>
+                            <input class="@error('name') is-invalid @enderror shadow form-control" type="text" id="name" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" required autocomplete="on" placeholder="Nome do Autor" style="background-color: #ffffff;" name="name">
+                        </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Tema*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="tema" placeholder="Tema da monografia" autofocus="" autocomplete="on" required="" style="background-color: #ffffff;margin-right: 20px;">
+                            <input class="@error('tema') is-invalid @enderror shadow form-control" type="text" id="tema" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" name="tema" placeholder="Tema da monografia" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;margin-bottom:10px">
                             <label style="margin-right: 5px;">Curso*</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" name="curso" required="">
-                                <optgroup label="curso">
-                                    <option selected="">Seleccione</option>
-                                    <option>Informatica</option>
-                                    <option>Engenharia Civil</option>
-                                    <option>Engenharia Electronica</option>
-                                    <option>Design Multimidia</option>
-                                    <option>Agropecuaria</option>
-                                </optgroup>
-                            </select>
+                            <input class="@error('curso') is-invalid @enderror shadow form-control" type="text" id="curso" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" name="curso" placeholder="Curso" autocomplete="on" style="background-color: #ffffff;">
                         </div>
                         <div class="form-group d-flex">
                             <label style="margin-right: 5px;">Descrição*<br></label>
-                            <textarea class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" placeholder="Resumo " name="decricao" autofocus="" style="background-color: #ffffff;margin-right: 20px;"></textarea>
-                            <label style="margin-right: 5px;">Nivel*</label>
-                            <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="nivel">
-                                <optgroup label="nivel">
-                                    <option selected="">Seleccione</option>
-                                    <option>Licenciatura</option>
-                                    <option>Mestrado</option>
-                                    <option>Dotoramento</option>
-                                </optgroup>
-                            </select>
+                            <textarea class="@error('descricao') is-invalid @enderror shadow form-control" data-aos="zoom-in" id="descricao" required data-aos-duration="800" data-aos-delay="800" placeholder="Resumo " name="descricao" style="background-color: #ffffff;margin-right: 20px;"></textarea>
                         </div>
-                        <div class="form-group d-flex">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
                             <label style="margin-right: 5px;">Supervisor*</label>
-                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="supervisor" placeholder="Nome do supervisor" autofocus="" autocomplete="on" required="" style="background-color: #ffffff;margin-right: 20px;">
-                            <label class="text-nowrap" style="margin-right: 5px;">Data da&nbsp;Publicação*<br></label>
-                            <input class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="date" required="" style="background-color: #ffffff;" name="data">
+                            <input class="@error('supervisor') is-invalid @enderror shadow form-control" type="text" id="supervisor" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" name="supervisor" placeholder="Nome do supervisor" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;margin-bottom:10px">
+                            <label style="margin-right: 5px;">Nivel*</label>
+                            <input class="@error('nivel') is-invalid @enderror shadow form-control" type="text" id="nivel" data-aos="zoom-in" required data-aos-duration="800" data-aos-delay="800" name="nivel" placeholder="Nivel" autocomplete="on" style="background-color: #ffffff;">
                         </div>
-                        <div class="form-group" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #f8fbfb;">
-                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                <span class="input-group-addon btn btn-default btn-file">
-                                    <span class="fileinput-new">Monografia</span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="monografia">
-                                </span>
-                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                <div class="form-control" data-trigger="fileinput">
-                                    <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>
-                                </div>
-                            </div>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex">
+                            <label style="margin-right: 5px;">Monografia*</label>
+                            <input class="@error('monografia') is-invalid @enderror shadow form-control" type="text" id="monografia" required data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="monografia" placeholder="Monografia" autocomplete="on" style="background-color: #ffffff;margin-right: 20px;margin-bottom:10px">
+                            <label style="margin-right: 5px;">Foto*</label>
+                            <input class="@error('foto') is-invalid @enderror shadow form-control" type="text" id="foto" required data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" name="foto" placeholder="Foto do estudante" autocomplete="on" style="background-color: #ffffff;">
                         </div>
-
-                        <div class="form-group d-flex justify-content-end align-items-center">
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" href="" style="margin-right: 20px;color: #ffffff;background-color: #0ccf94;">Cadastrar</button>
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: #3f9bc3;margin-right: 20px;color: #ffffff;">Limpar Campos</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{ ('/monografias/index') }}" style="background-color: #da2d22;color: #ffffff;">Cancelar</a>
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-center">
+                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;color: #ffffff;background-color: #0ccf94;margin-bottom: 10px;">Cadastrar</button>
+                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: #3f9bc3;margin-right: 20px;color: #ffffff;margin-bottom: 10px;">Limpar Campos</button>
+                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{ ('/monografias/index') }}" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
                         </div>
                         <label class="d-flex" style="margin-top: 20px;padding: 10px;padding-left: 20px;background-color: #aff5ff;">Obs: O * representa campos obrigatórios<br></label>
-                        @endforeach
                     </form>
+                    <script type="text/javascript">
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const forms = document.querySelectorAll('.needs-validation');
+                            Array.prototype.slice.call(forms).forEach((form) => {
+                                form.addEventListener('submit', (event) => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        // alert('Por favor carregue os ficheiros');
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>
+        @endsection

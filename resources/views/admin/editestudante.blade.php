@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Estudate')
-
+@section('title', 'Estudante')
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,30 +49,26 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
-                    @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
                 </li>
-                </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
+                    <a class="nav-link" href="{{ ('/usuario/estudanteview') }}"><i class="fas fa-users"></i><span>Estudante</span></a>
                 </li>
                 @endif
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -75,7 +78,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -91,11 +94,15 @@
                                     </div>
                                 </form>
                             </div>
+                        </li>-->
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a><span>
+                            </div>
                         </li>
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a><span class="dropdown-item-text" role="presentation">Text Item</span></div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw" style="color: #ffffff;"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in" role="menu">
                                     <h6 class="dropdown-header">alerts center</h6>
@@ -169,18 +176,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -198,7 +205,7 @@
             <div class="container-fluid">
                 @foreach($estudantes as $estudante)
                 <div class="card shadow">
-                    <h2 style="color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar Perfil de {{$estudante->userEstudante->name}}</h2>
+                    <h3 style="color: #3ba2dc;padding-right: 20px;padding-left: 20px;padding-top: 10px;">Editar Perfil de {{$estudante->userEstudante->name}}</h3>
                     <hr style="background-color: #3ba2dc;margin-top: 5px;">
                     <main>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
@@ -210,71 +217,99 @@
                         </div>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
                             <div class="mensagem-error">
-                            @if(session('msgIncorrecta'))
-                            <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
-                            @endif
+                                @if(session('msgIncorrecta'))
+                                <p class="msg"><Strong>{{session('msgIncorrecta')}}</Strong></p>
+                                @endif
                             </div>
                         </div>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
                             <div class="mensagem-error">
-                            @if(session('password_actual'))
-                            <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
-                            @endif
+                                @if(session('password_actual'))
+                                <p class="msg"><Strong>{{session('password_actual')}}</Strong></p>
+                                @endif
                             </div>
                         </div>
                         <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
                             <div class="mensagem-error">
-                            @if(session('msgError'))
-                            <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
-                            @endif
+                                @if(session('msgError'))
+                                <p class="msg"><Strong>{{session('msgError')}}</Strong></p>
+                                @endif
                             </div>
                         </div>
                     </main>
 
-                    <form style="width: 100%;padding: 40px;" method="post" action="/usuario/updatestudante/{{$estudante->userEstudante->id}}" enctype="multipart/form-data" role="form">
+                    <form style="width: 100%;padding: 30px;" method="post" action="/usuario/updatestudante/{{$estudante->userEstudante->id}}" enctype="multipart/form-data" role="form">
                         @csrf
                         @method('PUT')
-                        <div class="form-row">
-                            <div class="col-4 d-flex justify-content-center">
+                        <div class="form-row justify-content-center align-items-center">
+                            <div class="col-12 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-center">
                                 <label class="col-form-label d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500" style="padding: 5px;">
                                     <input type="file" value="{{$estudante->foto}}" style="width: 0%;" accept="image/*" name="foto">
-                                    <img class="rounded-circle shadow-lg" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}" width="290px">
+                                    <img class="rounded-circle shadow-lg img-perfilver" src="/ficheiros/estudantes/fotos/{{$estudante->foto}}" width="290px">
                                 </label>
                             </div>
                             <div class="col">
-                                <div class="form-group d-flex justify-content-center align-items-center" style="width: 100%;">
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="width: 100%;">
                                     <label style="width: 230px;color: #000000;">Nome</label>
                                     <input class="shadow form-control" value="{{$estudante->userEstudante->name}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="name">
                                 </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
-                                    <label style="width: 230px;color: #000000;">Nome do Usuario</label>
-                                    <input class="shadow form-control" value="{{$estudante->userEstudante->username}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="username">
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                    <label style="width: 230px;color: #000000;">Tema</label>
+                                    <input class="shadow form-control" value="{{$estudante->tema}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="tema">
                                 </div>
-                                <div class="form-group d-flex justify-content-center align-items-center">
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                    <label style="width: 230px;color: #000000;">Numero do estudante</label>
+                                    <input class="shadow form-control" value="{{$estudante->num_estudante}}" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="num_estudante">
+                                </div>
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
                                     <label style="width: 230px;color: #000000;">Curso</label>
                                     <!--<input class="shadow form-control" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="regime">-->
                                     <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="curso">
                                         <optgroup label="curso">
                                             <option selected="">{{$estudante->curso}}</option>
-                                            <option>Informatica</option>
-                                            <option>Engenharia Civil</option>
-                                            <option>Engenharia Electronica</option>
-                                            <option>Design Multimidia</option>
-                                            <option>Agropecuaria</option>
+                                            <option value="Informatica">Informatica</option>
+                                            <option value="Engenharia Civil">Engenharia Civil</option>
+                                            <option value="Engenharia Electronica">Engenharia Electronica</option>
+                                            <option value="Design Multimidia">Design Multimidia</option>
+                                            <option value="Agropecuaria">Agropecuaria</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                    <label style="width: 230px;color: #000000;">Nivel</label>
+                                    <!--<input class="shadow form-control" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="regime">-->
+                                    <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="nivel">
+                                        <optgroup label="Nivel">
+                                            <option selected="">{{$estudante->nivel}}</option>
+                                            <option value="Licenciatura">Licenciatura</option>
+                                            <option value="Mestrado">Mestrado</option>
+                                            <option value="Dotoramento">Dotoramento</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
+                                    <label style="width: 230px;color: #000000;">Regime</label>
+                                    <!--<input class="shadow form-control" type="text" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" name="regime">-->
+                                    <select class="shadow form-control" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" style="background-color: #ffffff;" required="" name="regime">
+                                        <optgroup label="Regime">
+                                            <option selected="">{{$estudante->regime}}</option>
+                                            <option value="Laboral">Laboral</option>
+                                            <option value="Pos-Laboral">Pos-Laboral</option>
+                                            <option value="Distancia">Distancia</option>
                                         </optgroup>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center" style="margin-top: 10px;margin-bottom: 10px;">
                             <label style="margin-right: 10px;color: #000000;">Email</label>
-                            <input class="shadow form-control" style="margin-right: 15px;" value="{{$estudante->userEstudante->email}}" type="email" name="email" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
+                            <input class="shadow form-control" style="margin-right: 15px;margin-bottom:10px" value="{{$estudante->userEstudante->email}}" type="email" name="email" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
                             <label style="margin-right: 10px;width: 270px; color: #000000;">Senha actual</label>
                             <input class="shadow form-control" type="password" name="password_actual" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" style="margin-right: 20px;">
                         </div>
-                        <div class="form-group d-flex justify-content-center align-items-center" style="margin-bottom: 10px;">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
                             <label style="margin-right: 10px;width: 270px; color: #000000;">Nova Senha</label>
-                            <input class="shadow form-control" type="password" name="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" style="margin-right: 20px;">
+                            <input class="shadow form-control" type="password" name="password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500" style="margin-right: 20px;margin-bottom:10px">
                             <label style="margin-right: 10px;width: 390px;color: #000000;">Confirmar Password</label>
                             <input class="shadow form-control" type="password" name="confirm_password" data-aos="zoom-in-right" data-aos-duration="500" data-aos-delay="500">
                         </div>
@@ -285,8 +320,14 @@
                                                                                                                             } ?>>
                                 <label class="form-check-label" for="formCheck-1" style="color: #999999;">Activo</label>
                             </div>
+                            <div class="form-check" style="padding-bottom: 10px;">
+                                <input class="form-check-input" type="checkbox" value="1" id="formCheck-2" name="is_autorize" <?php if ($estudante->userEstudante->is_autorize) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } ?>>
+                                <label class="form-check-label" for="formCheck-2" style="color: #999999;">Autorizar o estudante a submeter documentos para a marcação da defesa</label>
+                            </div>
                         </div>
-                        <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                        <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
                             <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
                             <a class="btn text-white shadow-lg" href="{{('/usuario/estudantes')}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
                         </div>
@@ -296,3 +337,4 @@
                 @endforeach
             </div>
         </div>
+        @endsection

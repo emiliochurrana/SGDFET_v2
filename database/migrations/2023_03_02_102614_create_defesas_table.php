@@ -20,12 +20,14 @@ return new class extends Migration
             $table->text('resumo');
             $table->string('nivel');
             $table->string('regime');
+            $table->string('foto');
             $table->string('supervisor');
             $table->string('oponente');
             $table->string('presidente');
             $table->string('sala');
             $table->string('data');
             $table->string('hora');
+            $table->string('monografia');
             $table->timestamps();
         });
 

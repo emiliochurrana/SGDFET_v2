@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * @param use Illuminate\Http\Request $request;
+ * @return use Illuminate\Http\Response;
+ */
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\DadosDefesa;
 use App\Models\Estudante;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Nette\Utils\Html;
 use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Html as ReportHtml;
@@ -59,16 +64,43 @@ class DadosController extends Controller
     public function store(Request $request)
     {
         //
+      
+       $validator = Validator::make($request->all(),
+       //$request->validate( 
+            [
+                'bi' => 'required',
+                'declaracao_nota' => 'required',
+                'monografia' => 'required',
+                'curriculum' => 'required'
+            ],
+                [
+                    'bi.required' => 'O campo bi é obrigatório',
+                    'declaracao_nota.required' => 'O campo declaracao de notas é obrigatório',
+                    'monografia.required' => 'O campo monografia é obrigatório',
+                    'curriculum.required' => 'O campo curriculum é obrigatório',
+                ]
+    );
+        
+    if ($validator->fails())
+    {
+        return response()->json(['errors'=>$validator->errors()->all()]);
+     }
+   
             $dados = new DadosDefesa();
+    if(auth()->user()->is_estudante){
+        if(auth()->user()->is_autorize) {   
             $user = auth()->user();
             $dados->name = $user->name;
             $dados->id_estudante = $user->id;
+            $email = DadosDefesa::all()->where('id_estudante', '=', $dados->id_estudante)->count();
+            if ($email > 0) {
+                $add['success'] = false;
+                $addDados['msgErrorName'] = 'Voce já possui dados no sistema.';
+                return redirect()->back()->with($addDados);
+            }
+
             //upload da declarcao de nota 
-            $bi = $request->bi;
-            if($bi == ""){
-                return redirect()->with(['msgErrorBi' => 'O campo Bi esta vazio']);
-            }else{
-                if($request->hasFile('bi') && $request->file('bi')->isValid()){
+            if($request->hasFile('bi') && $request->file('bi')->isValid()){
 
                     $requestBi = $request->bi;
 
@@ -80,13 +112,8 @@ class DadosController extends Controller
 
                     $dados->bi = $biName;
                 }
-            }
 
             //upload da declarcao de nota 
-            $declaracao = $request->declaracao_nota;
-            if($declaracao == ""){
-                return back()->with(['msgErrorDeclaracao' => 'O campo declaracao esta vazio']);
-            }else{
                 if($request->hasFile('declaracao_nota') && $request->file('declaracao_nota')->isValid()){
 
                     $requestDeclaracao = $request->declaracao_nota;
@@ -99,14 +126,8 @@ class DadosController extends Controller
 
                     $dados->declaracao_nota = $declaracaoName;
                 }
-            }
 
             //upload da monografia 
-            $monografia = $request->monografia;
-            if($monografia == ""){
-
-                return back()->with(['msgErrorMonografia' => 'O campo monografia esta vazio']);
-            }else{
                 if($request->hasFile('monografia') && $request->file('monografia')->isValid()){
 
                     $requestMonografia = $request->monografia;
@@ -119,13 +140,8 @@ class DadosController extends Controller
 
                     $dados->monografia = $monografiaName;
                 }
-            }
 
             //upload de curriculum 
-            $curriculum = $request->curriculum;
-            if($curriculum == ""){
-                return back()->with(['msgErrorCurriculum' => 'O campo curriculum esta vazio']);
-            }else{
                 if($request->hasFile('curriculum') && $request->file('curriculum')->isValid()){
 
                     $requestCurriculum = $request->curriculum;
@@ -138,13 +154,20 @@ class DadosController extends Controller
 
                     $dados->curriculum = $curriculumName;
                 }
-            }
-            
+        
             if($dados->save()){
-                return redirect()->back()->with(['Mensagem' => 'Dados enviados com sucesso'], Response::HTTP_OK);
+                return redirect()->back()->with(['msgSucessStore' => 'Dados enviados com sucesso aguarde a verificação dos mesmos!'], Response::HTTP_OK);
             }else{
-                return redirect()->back()->with(['Mensagem' => 'Ja possui dados no sistema'], Response::HTTP_INTERNAL_SERVER_ERROR);
+                return redirect()->back()->with(['msgErrorStore' => 'Erro ao enviar dados no sistema'], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
+
+        }else{
+            return redirect()->back()->with(['msgAutorize' => 'Não tas autorizado a enviar documentos, aguarde a autorizacao do supervisor!']);
+        }
+    }else{
+        return redirect()->back()->with(['msgEstudante' => 'Somente estudantes finalistas e com autorização do supervisor tem a permissão do envio destes dados!']);
+    }
+        
     }
 
 

@@ -24,13 +24,16 @@ class Defesa extends Model
         'tema',
         'curso',
         'resumo',
+        'foto',
         'nivel',
+        'regime',
         'supervisor',
         'oponente',
         'presidente',
         'sala',
         'data',
-        'hora'
+        'hora',
+        'monografia'
 
     ];
 
@@ -47,6 +50,9 @@ class Defesa extends Model
     }
 
     public function participanteDefesa(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'defesa_participantes', 'id_defesa', 'id_participante');
+    }
+    public function participant(){
+        return $this->belongsToMany(DefesaParticipante::class, 'defesa_participantes', 'id_defesa', 'id_participante');
     }
 }

@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Perfil')
-
+@section('content')
 <div id="wrapper">
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #2391bf;background-image: linear-gradient(180deg,#2390be 10%,#2a99c4);">
+    <div class="fixed-left"> 
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user-graduate"></i></div>
@@ -35,6 +36,12 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/drcursos') }}"><i class="fas fa-user"></i><span>Dr. Curso</span></a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                </li>
                 @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/defesa/index') }}"><i class="fas fa-book-reader"></i><span>Defesas</span></a>
@@ -42,22 +49,16 @@
                 @if(auth()->user()->is_drcurso)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/usuario/docentes') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                    @endif
+                </li>
+                @endif
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/comentarios') }}"><i class="fa fa-comments-o"></i><span>Comentarios</span></a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/noticias') }}"><i class="fa fa-newspaper-o"></i><span>Noticias</span></a>
                 </li>
-                @if(auth()->user()->is_admin)
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
-                </li>
-                @endif
-                </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ ('/galeria') }}"><i class="fa fa-slideshare"></i><span>Galeria</span></a>
-                </li>
                 </li>
                 @if(auth()->user()->is_drcurso || auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
@@ -67,6 +68,7 @@
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
+    </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
@@ -76,7 +78,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown show d-sm-none no-arrow">
+                        <!--<li class="nav-item dropdown show d-sm-none no-arrow">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -94,17 +96,15 @@
                                 </form>
 
                             </div>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);">Mais</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="#">First Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                                <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                <span class="dropdown-item-text" role="presentation">Text Item</span>
+                                <a class="dropdown-item" role="presentation" href="https://www.up.ac.mz" target="_blank">Pagina Oficial da UP</a>
+                                <a class="dropdown-item" role="presentation" href="https://fet.up.ac.mz" target="_blank">FET</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
+                        <!--<li class="nav-item dropdown no-arrow mx-1" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="badge badge-danger badge-counter">3+</span>
@@ -209,18 +209,18 @@
                                 </div>
                             </div>
                             <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
+                        </li>-->
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                                     <span class="d-none d-lg-inline">{{auth()->user()->name}}</span>
                                     @if(auth()->user()->is_docente)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->docenteUser->foto}}">
                                     @elseif(auth()->user()->is_drcurso)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @elseif(auth()->user()->is_admin)
-                                    <img class="border rounded-circle img-profile" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
+                                    <img class="border rounded-circle img-perfil" src="/ficheiros/docentes/fotos/{{auth()->user()->drcursoUser->foto}}">
                                     @endif
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -241,7 +241,7 @@
                     @foreach($drcursos as $admin)
                     <div class="row" style="padding-top: 20px;padding-bottom: 0px;">
                         <div class="col-xl-10 offset-xl-0" style="height: 40px;">
-                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil de {{$admin->userDrcurso->name}}</h2>
+                            <h3 class="titulo-admin" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil de {{$admin->userDrcurso->name}}</h3>
                         </div>
                         <div class="col-xl-2" style="height: 40px;">
                             <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="padding-right: 20px;">
@@ -258,15 +258,31 @@
                                 <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/docentes/fotos/{{$admin->foto}}" width="270px">
                             </div>
                             <div class="col" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;padding-bottom: 0px;">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome: {{$admin->userDrcurso->name}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome do usuario: {{$admin->userDrcurso->username}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curso: {{$admin->curso}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">E-mail: {{$admin->userDrcurso->email}}&nbsp;</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome:</strong></span> {{$admin->userDrcurso->name}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-circle" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome do usuario:</strong></span> {{$admin->userDrcurso->username}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Curso:</strong></span> {{$admin->curso}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-envelope fa-fw" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>E-mail: {{$admin->userDrcurso->email}}&nbsp;
+
+                                </p>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 5px;max-width: 100%;">
                             <div class="col offset-xl-0">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curriculum: {{$admin->curriculum}}</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <span style="color:#2391bf"><strong>Curriculum:</strong></span> {{$admin->curriculum}}
+                                </p>
+                                <embed style="height:700px; border:none;" src="/ficheiros/docentes/curriculum/{{$admin->curriculum}}" type="application/pdf" width="100%" height="100%">
                             </div>
                         </div>
                     </div>
@@ -277,7 +293,7 @@
                     @foreach($drcursos as $drcurso)
                     <div class="row" style="padding-top: 20px;padding-bottom: 0px;">
                         <div class="col-xl-10 offset-xl-0" style="height: 40px;">
-                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil {{$drcurso->userDrcurso->name}}</h2>
+                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil de {{$drcurso->userDrcurso->name}}</h2>
                         </div>
                         <div class="col-xl-2" style="height: 40px;">
                             <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="padding-right: 20px;">
@@ -294,15 +310,30 @@
                                 <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/docentes/fotos/{{$drcurso->foto}}" width="270px">
                             </div>
                             <div class="col" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;padding-bottom: 0px;">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome: {{$drcurso->userDrcurso->name}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome do usuario: {{$drcurso->userDrcurso->username}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curso: {{$drcurso->curso}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">E-mail: {{$drcurso->userDrcurso->email}}&nbsp;</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome:</strong></span> {{$drcurso->userDrcurso->name}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-circle" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome do usuario:</strong></span> {{$drcurso->userDrcurso->username}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Curso:</strong></span> {{$drcurso->curso}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-envelope fa-fw" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>E-mail:</strong></span> {{$drcurso->userDrcurso->email}}&nbsp;
+                                </p>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 5px;max-width: 100%;">
                             <div class="col offset-xl-0">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curriculum: {{$drcurso->curriculum}}</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <span style="color:#2391bf"><strong>Curriculum:</strong></span>{{$drcurso->curriculum}}
+                                </p>
+                                <embed style="height:700px; border:none;" src="/ficheiros/docentes/curriculum/{{$drcurso->curriculum}}" type="application/pdf" width="100%" height="100%">
                             </div>
                         </div>
                     </div>
@@ -323,7 +354,7 @@
                     @foreach($docentes as $docente)
                     <div class="row" style="padding-top: 20px;padding-bottom: 0px;">
                         <div class="col-xl-10 offset-xl-0" style="height: 40px;">
-                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil {{$docente->userDocente->name}}</h2>
+                            <h2 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #68c7ef;padding-left: 20px;">Perfil de {{$docente->userDocente->name}}</h2>
                         </div>
                         <div class="col-xl-2" style="height: 40px;">
                             <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="padding-right: 20px;">
@@ -340,15 +371,30 @@
                                 <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/docentes/fotos/{{$docente->foto}}" width="270px">
                             </div>
                             <div class="col" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;padding-bottom: 0px;">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome: {{$docente->userDocente->name}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Nome do usuario: {{$docente->userDocente->username}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curso: {{$docente->curso}}</p>
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">E-mail: {{$docente->userDocente->email}}&nbsp;</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome:</strong></span> {{$docente->userDocente->name}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-user-circle" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Nome do usuario:</strong></span> {{$docente->userDocente->username}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>Curso:</strong></span> {{$docente->curso}}
+                                </p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <i class="fas fa-envelope fa-fw" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;
+                                    <span style="color:#2391bf"><strong>E-mail:</strong></span> {{$docente->userDocente->email}}&nbsp;
+                                </p>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 5px;max-width: 100%;">
                             <div class="col offset-xl-0">
-                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">Curriculum: {{$docente->curriculum}}</p>
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;">
+                                    <span style="color:#2391bf"><strong>Curriculum:</strong></span> {{$docente->curriculum}}
+                                </p>
+                                <embed style="height:700px; border:none;" src="/ficheiros/docentes/curriculum/{{$docente->curriculum}}" type="application/pdf" width="100%" height="100%">
                             </div>
                         </div>
                     </div>
@@ -357,3 +403,4 @@
                 @endif
             </div>
         </div>
+        @endsection

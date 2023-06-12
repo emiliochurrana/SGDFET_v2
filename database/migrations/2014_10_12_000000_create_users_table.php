@@ -23,6 +23,8 @@ return new class extends Migration
             $table->boolean('is_docente');
             $table->boolean('is_admin');
             $table->boolean('is_drcurso');
+            $table->boolean('is_autorize');
+            $table->boolean('is_visitante');
             $table->rememberToken();
             $table->timestamps();
         });
