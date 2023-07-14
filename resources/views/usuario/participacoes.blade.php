@@ -452,7 +452,7 @@
                         </div>
                         @else
                         <div style="padding:20px">
-                            <p class="msg" style="color:#2390be;">Você não está participando de nenhuma defesa, <a href="{{('/defesas')}}" style="font-size: 16px;">Veja todas defesas disponiveis</a></p>
+                            <p class="msg" style="color:#2390be;">Você não está participando de nenhuma defesa, <a href="{{('/defesas')}}" style="font-size: 16px;color:#2390be;">Veja todas defesas disponiveis</a></p>
                             @endif
                         </div>
                     </div>

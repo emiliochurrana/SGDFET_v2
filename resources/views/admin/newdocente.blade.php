@@ -263,9 +263,9 @@
                             </div>
 
                             <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
-                                <label style="margin-right: 5px;">Foto*</label>
+                                <label style="margin-right: 5px;">Foto</label>
                                 <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="foto" style="background-color: #ffffff;" data-provides="fileinput">
-                                    <input class="form-control  file-input" accept="image/*" type="file" id="foto" required="" name="foto">
+                                    <input class="form-control  file-input" accept="image/*" type="file" id="foto" name="foto">
                                     <div for="foto" data-trigger="fileinput">
                                         <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                         <span class="fileinput-filename"></span>
@@ -289,9 +289,9 @@
                                 <input class="@error('confirm_password') is-invalid @enderror shadow form-control" type="password" data-aos="zoom-in" data-aos-duration="800" required minlength="6" id="confirm_password" data-aos-delay="800" style="background-color: #ffffff;" name="confirm_password" placeholder="Confimar a senha">
                             </div>
                             <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
-                                <label style="margin-right: 5px;">Curriculum*</label>
+                                <label style="margin-right: 5px;">Curriculum</label>
                                 <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
-                                    <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" required="" name="curriculum">
+                                    <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" name="curriculum">
                                     <div for="curriculum" data-trigger="fileinput">
                                         <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                         <span class="fileinput-filename"></span>

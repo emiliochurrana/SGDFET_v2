@@ -176,7 +176,7 @@
                         </div>
                         @endif
                     </div>
-                    <p class="text-center d-xl-flex justify-content-xl-center copyright" style="color: rgb(239,243,247);margin-top: 20px;margin-bottom: 20px;">Repositório&nbsp; © 2022 Todos direitos reservados, Universidade Pedagogica Maputo/FET</p>
+                    <p class="text-center d-xl-flex justify-content-xl-center copyright" style="color: rgb(239,243,247);margin-top: 20px;margin-bottom: 20px;">Repositório&nbsp; © 2023 Todos direitos reservados, FET-Universidade Pedagogica Maputo</p>
                 </div>
             </footer>
         </div>

@@ -260,6 +260,13 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            <div class="mensagem-error">
+                                @if(session('msgMail'))
+                                <p class="msg"><Strong>{{session('msgMail')}}</Strong></p>
+                                @endif
+                            </div>
+                        </div>
                     </main>
                     <form class="needs-validation" style="padding: 30px;" method="post" role="form" action="{{ route('storedrcurso') }}" enctype="multipart/form-data" novalidate>
                         @csrf
@@ -268,9 +275,9 @@
                             <input class=" @error('name') is-invalid @enderror shadow form-control" type="text" data-aos="zoom-in" id="name" required pattern="^[a-zA-Z0-9_.-]*$" data-aos-duration="800" data-aos-delay="800" autofocus="" autocomplete="on" placeholder="Nome Completo" style="background-color: #ffffff;" name="name">
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
-                            <label style="margin-right: 5px;">Foto*</label>
+                            <label style="margin-right: 5px;">Foto</label>
                             <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
-                                <input class="form-control  file-input" accept="image/*" type="file" id="image" required="" name="image">
+                                <input class="form-control  file-input" accept="image/*" type="file" id="image" name="image">
                                 <div for="image" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                     <span class="fileinput-filename"></span>
@@ -302,9 +309,9 @@
                             <input class="@error('confirm_password') is-invalid @enderror shadow form-control" type="password" required minlength="6" data-aos="zoom-in" data-aos-duration="800" id="confirm_password" data-aos-delay="800" style="background-color: #ffffff;" name="confirm_password" placeholder="Confimar a senha">
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
-                            <label style="margin-right: 5px;">Curriculum*</label>
+                            <label style="margin-right: 5px;">Curriculum</label>
                             <div class="d-flex shadow justify-content-center align-items-center fileinput fileinput-new input-group" data-aos="zoom-in" id="password" data-aos-duration="800" data-aos-delay="800" for="curriculum" style="background-color: #ffffff;" data-provides="fileinput">
-                                <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" required="" name="curriculum">
+                                <input class="form-control  file-input" accept="application/pdf" type="file" id="curriculum" name="curriculum">
                                 <div for="curriculum" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                     <span class="fileinput-filename"></span>

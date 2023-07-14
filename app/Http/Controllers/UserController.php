@@ -477,39 +477,6 @@ class UserController extends Controller
      */
     public function storeEstudante(Request $request)
     {
-        //$this->is_active = '0';
-       $validateData = $request->validate(
-           [
-            'name' => 'required',
-            'email' => 'required|email',
-            'username' => 'required',
-            'num_estudante' => 'required',
-            'regime' => 'required',
-            'foto' => 'required',
-            'ano_ingresso' => 'required',
-            'supervisor' => 'required',
-            'curso' => 'required',
-            'nivel' => 'required',
-            'tema' => 'required',
-            'password' => 'required',
-            'confirm_password' => 'required'
-           ], 
-            [
-            'name.required' => 'Campo nome é obrigatório',
-            'email.required' => 'Campo email é obrigatório',
-            'username.required' => 'Campo nome do usuario é obrigatório',
-            'num_estudante.required' => 'Campo numero do estudante é obrigatório',
-            'regime.required' => 'Campo regime é obrigatório',
-            'foto.required' => 'Campo foto é obrigatório',
-            'ano_ingresso.required' => 'Campo ano é obrigatório',
-            'supervisor.required' => 'Campo supervisor é obrigatório',
-            'curso.required' => 'campo curso é obrigatório',
-            'nivel.required' => 'Campo nivel é obrigatório',
-            'tema.required' => 'Campo tema é obrigatório',
-            'password.required' => 'Campo senha é obrigatório',
-            'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
-        ]);
-    
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -566,6 +533,8 @@ class UserController extends Controller
             $requestImage->move(public_path('ficheiros/estudantes/fotos'), $imageName);
 
             $estudante->foto = $imageName;
+        }else{
+            $estudante->foto = 'avatar.png';
         }
         $estudante->ano_ingresso = $request->input('ano_ingresso');
         $estudante->supervisor = $request->input('supervisor');
@@ -1090,29 +1059,6 @@ class UserController extends Controller
                      */
     public function storeDocente(Request $request)
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'email' => 'required|email', 
-                'username' => 'required',
-                'password' => 'required',
-                'confirm_password' => 'required',
-                'foto' => 'required',
-                'curso' => 'required',
-                'curriculum' => 'required'
-            ],
-            
-            [
-                'name.required' => 'Campo nome é obrigatório',
-                'email.required' => 'Campo email é obrigatório',
-                'username.required' => 'Campo nome do usuario é obrigatório',
-                'password.required' => 'Campo senha é obrigatório',
-                'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
-                'foto.required' => 'Campo foto é obrigatório',
-                'curso.required' => 'Campo curso é obrigatório',
-                'curriculum.required' => 'Campo curriculum é obrigatório'
-
-        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -1166,6 +1112,8 @@ class UserController extends Controller
             $requestImage->move(public_path('ficheiros/docentes/fotos'), $imageName);
 
             $docente->foto = $imageName;
+        }else{
+            $docente->foto = 'avatar.png';
         }
 
         // upload de curriculum 
@@ -1484,27 +1432,6 @@ class UserController extends Controller
                              */
     public function storeDrcurso(Request $request)
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'email' => 'required|email',
-                'username' => 'required',
-                'password' => 'required',
-                'confirm_password' => 'required',
-                'curso' => 'required',
-                'image' => 'required',
-                'curriculum' => 'required'
-            ], 
-        [
-            'name.required' => 'Campo nome é obrigatório', 
-            'email.required' => 'Campo email é obrigatório',
-            'username.required' => 'Campo nome do usuario é obrigatório',
-            'password.required' => 'Campo senha é obrigatório',
-            'confirm_password.required' => 'Campo de confirmação de senha é obrigatório',
-            'curso.required' => 'Campo curso é obrigatório',
-            'image.required' => 'Campo foto é obrigatório',
-            'curriculum.required' => 'Campo curriculum é obrigatório'
-        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -1540,9 +1467,10 @@ class UserController extends Controller
 
         $email = User::all()->where('email', '=', $user->email)->count();
         if ($email > 0) {
-            $addDocente['success'] = false;
-            $addDocente['mensagem'] = 'Esse email já esta registado no sistema!';
-            return response()->json($addDocente);
+          //  $addDocente['success'] = false;
+           // $addDocente['msgMail'] = '';
+           // return response()->json($addDocente);
+            return redirect()->back()->with(['msgMail' => 'Esse email já esta registado no sistema!']);
         }
         $user->save();
 
@@ -1563,6 +1491,8 @@ class UserController extends Controller
             $requestImage->move(public_path('ficheiros/docentes/fotos'), $imageName);
 
             $drcurso->foto = $imageName;
+        }else{
+            $drcurso->foto = 'avatar.png';
         }
 
         // upload de curriculum 
@@ -1597,7 +1527,7 @@ class UserController extends Controller
                                 $drcurso->id_drcurso = $id_utilizador;*/
 
         if ($drcurso->save()) {
-            return redirect()->route('drcursoview')->with('msgSucessStore', 'Docente cadastrado com sucesso!');
+            return redirect()->route('drcursoview')->with('msgSucessStore', 'Director de curso cadastrado com sucesso!');
         } else {
             return redirect()->back()->with('msgErrorStore', 'Erro no cadastro do docente!');
         }
@@ -2136,6 +2066,8 @@ class UserController extends Controller
             $requestImage->move(public_path('ficheiros/visitantes/fotos'), $imageName);
 
             $visitante->foto = $imageName;
+        }else{
+            $visitante->foto = 'avatar.png';
         }
         
         $visitante->id_user = $id_user;
@@ -2148,9 +2080,9 @@ class UserController extends Controller
 
         if ($visitante->save()) {
 
-            return redirect()->route('login')->with(['msgSucessStore' => 'Estudante cadastrado com sucesso!']);
+            return redirect()->route('login')->with(['msgSucessStore' => 'Foste cadastrado com sucesso!Entre com os teus dados de cadastro']);
         } else {
-            return redirect()->back()->with(['msgErrorStore' => 'Erro no cadastro do estudante!']);
+            return redirect()->back()->with(['msgErrorStore' => 'Erro no cadastro!']);
         }
     }
 

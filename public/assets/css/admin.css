@@ -76,3 +76,18 @@ bottom: 0;
     max-height: 200px;
     min-height: 200px;
   }
+
+  .mensagem{
+    background-color: #d2f4e8;
+    text-align: center;
+  }
+  
+  .msg{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  .mensagem-error{
+    background-color: #fadbd8;
+    text-align: center;
+  }

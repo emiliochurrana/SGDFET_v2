@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('foto');
             $table->string('curso');
-            $table->string('curriculum');
+            $table->string('curriculum')->nullable();
             $table->timestamps();
         });
 

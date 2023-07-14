@@ -146,8 +146,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/participacoes', [DefesaController::class, 'participacoes'])->middleware('auth');
         Route::get('/participantes/{id}', [DefesaController::class,'participantes']);
 
-    Route::post('/monografia/join/{id}', [MonoController::class, 'joinMonografia']);
-    Route::get('/monografia/download/{id}', [MonoController::class, 'download']);
+    Route::post('/monografia/join/{id}', [MonoController::class, 'joinMonografia'])->middleware('auth');
+    Route::get('/monografia/download/{id}', [MonoController::class, 'download'])->middleware('auth');
 
 
      //Rotas get para usuarios   

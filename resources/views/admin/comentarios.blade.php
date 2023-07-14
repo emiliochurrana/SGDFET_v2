@@ -199,11 +199,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-xl-5 offset-xl-7 justify-content-end align-items-center" style="width: 100%;">
+                                <form method="get" action="{{ ('/comentarios') }}" enctype="multipart/form-data">
                                     <div class="text-md-right justify-content-start align-items-center dataTables_filter" id="dataTable_filter" style="width: 100%;padding-right: 10px;padding-left: 10px;height: 50px;">
                                         <label style="width: 100%;">
-                                            <input class="border rounded border-primary shadow form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Pesquisa..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search">
+                                            <input class="border rounded border-primary shadow form-control form-control-sm" type="search" id="search"  aria-controls="dataTable" placeholder="Pesquisa pelo nome..." style="padding-bottom: 0px;height: 40px;" autocomplete="on" name="search">
                                         </label>
                                     </div>
+                                </form>
                                 </div>
                             </div>
                             <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
@@ -245,6 +247,13 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="container-fluid">
+                                    @if(count($comentarios) == 0 && $search)
+                                    <p class="msg" style="color:#2390be;"><Strong>Nenhuma mensagem de autor como nome {{$search}}!</Strong><a style="font-size:16px" href="{{ ('/comentarios') }}"> Ver todas comentários</a></p>
+                                    @elseif(count($comentarios) == 0)
+                                    <p class="msg"><Strong>Sem Comentários</Strong></p>
+                                    @endif
+                                </div>
                             </div>
                             <!--<div class="row">
                                 <div class="col-md-6 align-self-center">

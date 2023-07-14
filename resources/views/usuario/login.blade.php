@@ -137,6 +137,16 @@
                             @if(session('msgPass'))
                             <p class="text-danger" style="text-align:center;"><Strong>{{session('msgPass')}}</Strong></p>
                             @endif
+                    </div>
+                    <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            @if(session('msgSucessStore'))
+                            <p class="text-success" style="text-align:center;"><Strong>{{session('msgSucessStore')}}</Strong></p>
+                            @endif
+                    </div>
+                    <div class="container-fluid" role="alert" style="width: 100%;padding-top: 8px;padding-bottom: 8px;">
+                            @if(session('msgErrorStore'))
+                            <p class="text-danger" style="text-align:center;"><Strong>{{session('msgErrorStore')}}</Strong></p>
+                            @endif
                         
                     </div>
                 </main>
@@ -190,7 +200,7 @@
                                 <div class="form-group" style="width:100%">
                                     <div class="d-flex justify-content-center align-items-center fileinput fileinput-new input-group" for="foto" style="background-color: #68c7ef;" data-provides="fileinput">
                                         <label class="btn d-flex justify-content-center align-items-center" style="color: #ffffff;"><ion-icon name="images" style="color: #ffffff;"></ion-icon>&nbsp;Foto</label>
-                                        <input class="form-control file-input" accept="image/*" required type="file" id="foto" name="foto">
+                                        <input class="form-control file-input" accept="image/*" type="file" id="foto" name="foto">
                                         <div style="background-color: #68c7ef;" for="foto" data-trigger="fileinput">
                                             <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                             <span class="fileinput-filename"></span>

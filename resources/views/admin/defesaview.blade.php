@@ -40,7 +40,7 @@
                         <a class="nav-link" href="{{ ('/usuario/docenteview') }}"><i class="fas fa-users"></i><span>Docentes</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
+                        <a class="nav-link" href="{{ ('/usuario/visitante') }}"><i class="fas fa-users"></i><span>Visitantes</span></a>
                     </li>
                     @endif
                     <li class="nav-item" role="presentation">

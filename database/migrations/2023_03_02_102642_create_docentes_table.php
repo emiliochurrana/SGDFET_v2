@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('foto');
             $table->string('curso');
-            $table->string('curriculum');
+            $table->string('curriculum')->nullable();
             $table->timestamps();
         });
 

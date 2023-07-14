@@ -15,28 +15,18 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        $comentarios = Comentario::all();
-        return view('admin.comentarios', ['comentarios' => $comentarios]);
-    }
-
-    
-    /**
-     * Funcao para pesquisa de comentarios
-     */
-    public function pesquisa(){
-
         $search = request('search');
 
         if($search){
-            $comentario = Comentario::where([
-                ['nome', 'like', '%', $search. '%']
+            $comentarios = Comentario::where([
+                ['name', 'like', '%'.$search. '%']
             ])->get();
+        }else{
+            $comentarios = Comentario::all();
         }
-        return view('admin.comentarios', ['comentario' => $comentario, 'search' => $search]);
-
+        return view('admin.comentarios', ['comentarios' => $comentarios, 'search' => $search]);
     }
-
-
+    
     /**
      * Show the form for creating a new resource.
      */
