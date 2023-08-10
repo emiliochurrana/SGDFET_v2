@@ -443,7 +443,7 @@
                 <h3 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #3ba2dc;margin-left: 20px;">Detalhes da monografia</h3>
             </div>
             <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
-                <a class="btn" href="{{('/inicio')}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="{{('/inicio')}}" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
             </div>
         </div>
         <hr style="margin-top: 5px;background-color: #3ba2dc;">
@@ -451,14 +451,14 @@
             <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;">
                 <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/estudantes/fotos/{{$monografias->foto}}" width="300px" height="300px">
             </div>
-            <div class="col" style="height: 100%;padding-bottom: 0px;">
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;Autor: {{$monografias->autor}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Tema: {{$monografias->tema}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Curso: {{$monografias->curso}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Nivel: {{$monografias->nivel}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;"></i>&nbsp;Supervisor: {{$monografias->supervisor}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;Data: {{date('d/m/y', strtotime($monografias->created_at))}}</p>
-                <p class="d-flex align-items-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><ion-icon style="color: #68c7ef;" name="cloud-download"></ion-icon>&nbsp;{{count($monografias->downloadMonografia)}} Dawnloads</p>
+            <div class="col show-monografia">
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;Autor: {{$monografias->autor}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;Tema: {{$monografias->tema}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;Curso: {{$monografias->curso}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;Nivel: {{$monografias->nivel}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;Supervisor: {{$monografias->supervisor}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fa fa-calendar"></i>&nbsp;Data: {{date('d/m/y', strtotime($monografias->created_at))}}</p>
+                <p class="d-flex align-items-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><ion-icon name="cloud-download"></ion-icon>&nbsp;{{count($monografias->downloadMonografia)}} Dawnloads</p>
 
                 <div class="modal fade centro" role="dialog" tabindex="-1" id="modal-1">
                     <div class="modal-dialog" style="max-width:1000px;" role="document">
@@ -492,7 +492,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-secondary text-white border rounded " data-bs-hover-animate="tada" data-toggle="modal" type="button" data-target="#modal-1" style="background-color: #68c7ef;">
+                <a class="btn btn-sm align-items-center text-white btn-participar" data-bs-hover-animate="tada" data-toggle="modal" type="button" data-target="#modal-1">
                     <i class="fa fa-file-pdf-o"></i>&nbsp;Ficheiro
                 </a>
                 <script type="text/javascript">
@@ -517,10 +517,10 @@
                 </script>
             </div>
         </div>
-        <div class="row" style="max-width: 100%;padding: 20px;">
-            <div class="col-xl-12 offset-xl-0" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="padding-right: 40px;padding-left: 40px;">
-                <h5 style="color: #3ba2dc;font-family: Roboto, sans-serif;font-weight: bold;">Resumo</h5>
-                <p class="text-justify" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;padding-left: 15px;">
+        <div class="row show-monogra-1">
+            <div class="col-xl-12 offset-xl-0 show-monografia-2" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450">
+                <h6>Resumo</h6>
+                <p class="text-justify" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;padding-left: 15px;color: #7b7b7b;">
                     {{$monografias->resumo}} <br>
                 </p>
 

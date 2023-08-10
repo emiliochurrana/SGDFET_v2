@@ -248,10 +248,10 @@
                         </div>
                         <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
                             @if(auth()->user()->is_drcurso)
-                            <a class="btn btn-primary border-success" href="/galeria/edit/{{$galeria->id}}" type="button" style="background-color: #0ccf94;margin-right: 15px;">Editar</a>
-                            <a class="btn btn-primary border-warning" href="{{('/galeria')}}" type="button" style="background-color: #da2d22;">Cancelar</a>
+                            <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="/galeria/edit/{{$galeria->id}}" type="button"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
+                            <a class="btn btn-sm d-flex align-items-center text-white btn-cancelar" href="{{('/galeria')}}" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                             @elseif(auth()->user()->is_admin || auth()->user()->is_docente)
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" href="{{('/galeria')}}" data-aos-delay="800" type="button" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;">Voltar</a>
+                            <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar shadow" data-aos="fade-right" data-aos-duration="800" href="{{('/galeria')}}" data-aos-delay="800" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
                             @endif
                         </div>
                     </div>

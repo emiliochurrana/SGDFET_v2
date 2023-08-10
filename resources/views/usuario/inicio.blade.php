@@ -479,28 +479,28 @@
                                                 <div class="user-imagia">
                                                     <img class="rounded-circle img-circle" alt="" src="/ficheiros/estudantes/fotos/{{$defesa->foto}}" style="width: 100px;height: 100px;">
                                                 </div>
-                                                <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                    <h3 class="name-imagia" style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-size: 16px;font-weight: bold;">{{$defesa->autor}}</h3>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Tema: {{$defesa->tema}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;"><ion-icon name="person" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Supervisor: {{$defesa->supervisor}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-weight: bold;font-family: Roboto, sans-serif;font-size: 13px;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Curso: {{$defesa->curso}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;"><ion-icon name="calendar" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Data: {{date('d/m/y', strtotime($defesa->data))}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;"><ion-icon name="time" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Hora: {{date('h:i', strtotime($defesa->hora))}}</strong></p>
+                                                <div class="content-imagia defesa-front">
+                                                    <h3 class="name-imagia">{{$defesa->autor}}</h3>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="book" ></ion-icon>&nbsp;<strong class="text-titulo-1"> Tema:</strong> {{$defesa->tema}}</p>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="person"></ion-icon>&nbsp;<strong class="text-titulo-1"> Supervisor:</strong> {{$defesa->supervisor}}</p>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="book"></ion-icon>&nbsp;<strong class="text-titulo-1"> Curso:</strong> {{$defesa->curso}}</p>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="calendar"></ion-icon>&nbsp;<strong class="text-titulo-1"> Data:</strong> {{date('d/m/y', strtotime($defesa->data))}}</p>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="time"></ion-icon>&nbsp;<strong class="text-titulo-1"> Hora:</strong> {{date('h:i', strtotime($defesa->hora))}}</p>
                                                 </div>
                                                 <div class="footer-imagia">
-                                                    <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: normal;"><i class="fa fa-plus"></i> Mais</span>
+                                                    <span><i class="fa fa-plus"></i> Mais</span>
                                                 </div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
-                                                    <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;padding-left: 5px;padding-right: 5px;">
-                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;font-size: 13px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="person" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Oponente: {{$defesa->oponente}}&nbsp;</strong></p>
-                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="person" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Presidente: {{$defesa->presidente}}</strong></p>
-                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="speedometer" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Nivel: {{$defesa->nivel}}</strong></p>
-                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="home" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Sala: {{$defesa->sala}}</strong></p>
-                                                        <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;"><i class="fas fa-users" style="color: #68c7ef;"></i>&nbsp;<strong class="text-titulo"> {{count($defesa->participanteDefesa)}} Participantes</strong></p>
+                                                    <div class="content-imagia defesa-back">
+                                                        <p class="align-items-center text-titulo"><ion-icon name="person"></ion-icon>&nbsp;<strong class="text-titulo-1"> Oponente:</strong> {{$defesa->oponente}}</p>
+                                                        <p class="align-items-center text-titulo"><ion-icon name="person"></ion-icon>&nbsp;<strong class="text-titulo-1"> Presidente:</strong> {{$defesa->presidente}}</p>
+                                                        <p class="align-items-center text-titulo"><ion-icon name="speedometer"></ion-icon>&nbsp;<strong class="text-titulo-1"> Nivel:</strong> {{$defesa->nivel}}</p>
+                                                        <p class="align-items-center text-titulo"><ion-icon name="home"></ion-icon>&nbsp;<strong class="text-titulo-1"> Sala:</strong> {{$defesa->sala}}</p>
+                                                        <p class="d-flex align-items-center text-titulo"><i class="fas fa-users"></i>&nbsp;<strong> {{count($defesa->participanteDefesa)}} Participantes</strong></p>
                                                         <label class="d-flex align-items-center" for=""><ion-icon name="document-text" style="color: #68c7ef;"></ion-icon>&nbsp; Resumo:</label>
-                                                        <p class="block-wiyh-text-resumo">{{$defesa->resumo}}.&nbsp;</p>
+                                                        <p class="block-wiyh-text-resumo" style="color:#7b7b7b">{{$defesa->resumo}}.&nbsp;</p>
                                                     </div>
                                                 </div>
                                                 <div class="footer-imagia">
@@ -528,20 +528,20 @@
                                                             </div>
                                                             <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
                                                                 <h3 class="name-imagia" style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-size: 16px;font-weight: bold;">Emilio Jose Churrana</h3>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Tema: Sistema de Gestao de Defesas</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Supervisor: dr. Aurelio Ribeiro</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-weight: bold;font-family: Roboto, sans-serif;font-size: 13px;">Curso: Informatica</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Data: 20/04/2022</p>
-                                                                <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Hora: 10:00</p>
+                                                                <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Tema: Sistema de Gestao de Defesas</p>
+                                                                <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Supervisor: dr. Aurelio Ribeiro</p>
+                                                                <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-weight: bold;font-family: Roboto, sans-serif;font-size: 13px;">Curso: Informatica</p>
+                                                                <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Data: 20/04/2022</p>
+                                                                <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;font-size: 13px;">Hora: 10:00</p>
                                                             </div>
                                                         </div>
                                                         <div class="border rounded back-imagia">
                                                             <div class="content-imagia content-back-imagia">
                                                                 <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;padding-right: 5px;padding-left: 5px;">
-                                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;font-size: 13px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;">Oponente: dra. Martina Barros</p>
-                                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Presidente: dr. Celio Sengo</p>
-                                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Nivel: Licenciatura</p>
-                                                                    <p class="text-justify subtitle-imagia" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Sala: Inf. A</p>
+                                                                    <p class="text-justify  style="margin-bottom: 5px;font-size: 13px;color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: bold;">Oponente: dra. Martina Barros</p>
+                                                                    <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Presidente: dr. Celio Sengo</p>
+                                                                    <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Nivel: Licenciatura</p>
+                                                                    <p class="text-justify  style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 13px;font-family: Roboto, sans-serif;font-weight: bold;">Sala: Inf. A</p>
                                                                 </div>
                                                             </div>
                                                             <div class="footer-imagia">
@@ -596,24 +596,24 @@
                                             <div class="user-imagia">
                                                 <img class="rounded-circle img-circle" alt="" src="/ficheiros/estudantes/fotos/{{$monografia->foto}}" style="width: 100px;height: 100px;">
                                             </div>
-                                            <div class="content-imagia" style="padding-top: 0px;padding-bottom: 5px;">
-                                                <h3 class="name-imagia" style="color: rgb(2,25,48);font-size: 18px;font-family: Roboto, sans-serif;font-weight: bold;">{{$monografia->autor}}</h3>
-                                                <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Tema: {{$monografia->tema}}</strong></p>
-                                                <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="person" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Supervisor: {{$monografia->supervisor}}</strong></p>
-                                                <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="calendar" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Data: {{date('d/m/y', strtotime($monografia->created_at))}}</strong></p>
+                                            <div class="content-imagia monografia-view">
+                                                <h3 class="name-imagia">{{$monografia->autor}}</h3>
+                                                <p class="align-items-center text-titulo"><ion-icon name="book"></ion-icon>&nbsp;<strong class="text-titulo-1"> Tema:</strong> {{$monografia->tema}}</p>
+                                                <p class="align-items-center text-titulo"><ion-icon name="person"></ion-icon>&nbsp;<strong class="text-titulo-1"> Supervisor:</strong> {{$monografia->supervisor}}</p>
+                                                <p class="align-items-center text-titulo"><ion-icon name="calendar"></ion-icon>&nbsp;<strong class="text-titulo-1"> Data:</strong> {{date('d/m/y', strtotime($monografia->created_at))}}</p>
                                             </div>
                                             <div class="footer-imagia">
-                                                <span style="color: rgb(2,25,48);font-family: Roboto, sans-serif;font-weight: normal;"><i class="fa fa-plus"></i> Mais</span>
+                                                <span><i class="fa fa-plus"></i> Mais</span>
                                             </div>
                                         </div>
                                         <div class="back-imagia">
                                             <div class="content-imagia content-back-imagia">
-                                                <div>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-weight: bold;font-family: Roboto, sans-serif;"><ion-icon name="speedometer" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Nivel: {{$monografia->nivel}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 12px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon name="book" style="color: #68c7ef;"></ion-icon>&nbsp;<strong class="text-titulo"> Curso: {{$monografia->curso}}</strong></p>
-                                                    <p class="text-justify subtitle-imagia d-flex align-items-center" style="margin-bottom: 5px;color: rgb(2,25,48);font-size: 14px;font-family: Roboto, sans-serif;font-weight: bold;"><ion-icon style="color: #68c7ef;" name="cloud-download"></ion-icon> &nbsp;{{count($monografia->downloadMonografia)}} Downloads</p>
+                                                <div class="card-monografia-back">
+                                                    <p class="align-items-center text-titulo"><ion-icon name="speedometer"></ion-icon>&nbsp;<strong class="text-titulo-1"> Nivel:</strong> {{$monografia->nivel}}</p>
+                                                    <p class="align-items-center text-titulo"><ion-icon name="book"></ion-icon>&nbsp;<strong class="text-titulo-1"> Curso:</strong> {{$monografia->curso}}</p>
+                                                    <p class="d-flex align-items-center"><ion-icon name="cloud-download"></ion-icon> &nbsp;{{count($monografia->downloadMonografia)}} Downloads</p>
                                                     <label class="d-flex align-items-center" for=""><ion-icon name="document-text" style="color: #68c7ef;"></ion-icon>&nbsp; Resumo:</label>
-                                                    <p><strong class="block-wiyh-text-resumo">{{$monografia->resumo}}.&nbsp;</strong></p>
+                                                    <p><strong class="block-wiyh-text-resumo" style="color: #7b7b7b;">{{$monografia->resumo}}.&nbsp;</strong></p>
                                                 </div>
                                             </div>
                                             <div class="footer-imagia">

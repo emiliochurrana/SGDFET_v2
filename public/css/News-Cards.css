@@ -251,6 +251,7 @@ bottom: 0px;
 
 .text-titulo{
   overflow: hidden;
+  text-align: left;
   position: relative;
   line-height: 1.2em;
   max-height: 2em;

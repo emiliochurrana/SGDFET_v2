@@ -374,7 +374,7 @@
                 <h3 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #3ba2dc;margin-left: 20px;">Detalhes da noticia</h3>
             </div>
             <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
-                <a class="btn" href="{{('/')}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="{{('/')}}" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
             </div>
         </div>
         <hr style="margin-top: 5px;background-color: #3ba2dc;">
@@ -384,9 +384,9 @@
             </div>
             <div class="col" style="height: 100%;padding-bottom: 0px;">
                 <h5 data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;color: #000000;">
-                    <i class="fas fa-book-open" style="color: #68c7ef;font-size: 15px;"></i>&nbsp;<strong>Titulo:</strong> {{$noticias->titulo}}
+                    <i class="fas fa-book-open" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;<strong style="color: #68c7ef;">Titulo:</strong> {{$noticias->titulo}}
                 </h5>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;Data: {{date('d/m/y', strtotime($noticias->updated_at))}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;<strong style="color:#68c7ef;">Data:</strong> {{date('d/m/y', strtotime($noticias->updated_at))}}</p>
                 <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;font-family: Roboto, sans-serif;">
                     Para mais informações&nbsp;clique&nbsp;
                     <a class="text-primary" href="{{$noticias->link}}" target="_blank" style="font-size: 16px;">aqui</a>

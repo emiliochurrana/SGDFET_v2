@@ -249,8 +249,8 @@
                         </div>
                         <div class="col-xl-3" style="height: 40px;">
                             <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="margin-right: 25px;">
-                                <a class="btn" type="button" href="/usuario/editdrcurso/{{$drcurso->userDrcurso->id}}" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Editar</a>
-                                <a class="btn" type="button" href="{{ ('/usuario/drcursos') }}" style="color: rgb(255,255,255);background-color: #da2d22;">Cancelar</a>
+                                <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" type="button" href="/usuario/editdrcurso/{{$drcurso->userDrcurso->id}}"><ion-icon name="create"></ion-icon>Editar</a>
+                                <a class="btn btn-sm d-flex align-items-center text-white btn-cancelar" type="button" href="{{ ('/usuario/drcursos') }}"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                             </div>
                         </div>
                         <div class="col-xl-12 offset-xl-0">

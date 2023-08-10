@@ -91,3 +91,38 @@ bottom: 0;
     background-color: #fadbd8;
     text-align: center;
   }
+  .btn-cancelar{
+    background-color: #da2d22;
+    color: #ffffff;
+
+  }
+
+  .btn-actualizar{
+    margin-right: 15px;
+    background-color: #0ccf94;
+    color: #ffffff;
+  
+  }
+  .btn-limpar{
+    background-color: #3f9bc3;
+    margin-right: 20px;
+    color: #ffffff;
+    
+  }
+
+  .btn-imprimir{
+    background-color: #0280c6;
+    color: rgb(243,246,248);
+    margin-right: 10px;
+  }
+
+  .btn-ver {
+    background-color: #0280c6;
+    color: rgb(243,246,248);
+  }
+
+  .btn-eliminar{
+    background-color: #f51616;
+    color: rgb(243,246,248);
+    margin-right: 10px;
+  }

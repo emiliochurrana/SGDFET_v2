@@ -249,10 +249,10 @@
                             </div>
                             <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
                                 @if(auth()->user()->is_drcurso)
-                                <a class="btn btn-primary border-success" href="/defesa/edit/{{$defesas->id}}" type="button" style="background-color: #0ccf94;margin-right: 15px;">Editar</a>
-                                <a class="btn btn-primary border-warning" href="{{('/defesa/index')}}" type="button" style="background-color: #da2d22;">Cancelar</a>
+                                <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="/defesa/edit/{{$defesas->id}}" type="button"><ion-icon name="create"></ion-icon>Editar</a>
+                                <a class="btn btn-sm d-flex align-items-center text-white btn-cancelar" href="{{('/defesa/index')}}" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                                 @elseif(auth()->user()->is_admin || auth()->user()->is_docente)
-                                <a class="btn btn-primary border-success" href="{{('/defesa/index')}}" type="button" style="background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                                <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="{{('/defesa/index')}}" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
                                 @endif
                             </div>
                         </div>
@@ -263,6 +263,7 @@
                                 <img class="rounded-circle img-perfilver" style="background-size: cover;" src="/ficheiros/estudantes/fotos/{{$defesas->foto}}">
                             </div>
                             <div class="col offset-xl-0" style="height: 100%;padding-bottom: 0px;padding-right: 0px;padding-left: 20px;">
+                                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #68c7ef;"><i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;<strong style="color: #68c7ef;">Código do estudante:</strong> {{$defesas->codigo_estudante}}</p>    
                                 <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;<strong style="color: #68c7ef;">Nome:</strong> {{$defesas->autor}}</p>
                                 <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;<strong style="color: #68c7ef;">Tema:</strong> {{$defesas->tema}}</p>
                                 <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;<strong style="color: #68c7ef;">Curso:</strong> {{$defesas->curso}}&nbsp;</p>

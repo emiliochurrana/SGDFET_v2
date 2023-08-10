@@ -516,8 +516,8 @@
             </div>
             @endforeach
             <div class="form-group d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                <button class="btn shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;color: #ffffff;">Actualizar</button>
-                <a class="btn shadow-lg" href="/usuario/perfilvisitante/{{auth()->user()->id}}" type="button" style="background-color: #f24f4f;color: #ffffff;">Cancelar</a>
+                <button class="btn btn-sm d-flex align-items-center text-white shadow btn-actualizar shadow-lg" type="submit"><ion-icon name="create"></ion-icon>Actualizar</button>
+                <a class="btn btn-sm d-flex align-items-center text-white shadow btn-cancelar shadow-lg" href="/usuario/perfilvisitante/{{auth()->user()->id}}" type="button"><ion-icon name="cancel"></ion-icon>Cancelar</a>
             </div>
         </form>
     </div>

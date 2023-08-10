@@ -12422,3 +12422,56 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
+
+.container_modal {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.header-detalhes {
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+@media (min-width:992px) {
+    .titulo-curso {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.titulo-curso {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+@media (min-width:780px) {
+    .titulo-curso {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+.text-uppercase {
+    text-transform: uppercase!important;
+  }
+
+  .img-header-fet{
+    width: 250px;
+    height: 70px;
+  }
+  .img-header-up{
+    width: 150px;
+    height: 70px;
+  }
+
+  .title-curso{
+        color: #000;
+        font-family: sans-serif;
+        font-weight: bold;
+  }

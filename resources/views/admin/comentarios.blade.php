@@ -239,7 +239,7 @@
                                                 <form action="/comentario/delete/{{ $comentario->id }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm d-flex align-items-center" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><ion-icon name="trash-outline"></ion-icon> Eliminar</button>
+                                                    <button class="btn btn-sm d-flex align-items-center btn-eliminar" type="submit"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
                                                 </form>
                                                 @endif
                                             </td>

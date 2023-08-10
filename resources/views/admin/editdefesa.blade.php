@@ -268,8 +268,9 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
-                            <label style="margin-right: 5px;color: #000000;width:200px;">Numero do estudante</label>
+                            <label style="margin-right: 5px;color: #000000;width:380px;">Numero do estudante</label>
                             <input class="shadow form-control" type="text" placeholder="Pesquisa actualizações pelo numero de estudante" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" autocomplete="on" style="background-color: #ffffff;margin-right:20px" name="num_estudante">
+                            <input class="shadow form-control" type="text" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" value="{{$defesa->codigo_estudante}}" autocomplete="on" style="background-color: #ffffff;margin-right:20px" readonly>
                             <input class="shadow form-control" type="hidden" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" value="{{$defesa->id_estudante}}" style="background-color: #ffffff;margin-right:20px" name="id_estudante">
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center">
@@ -323,8 +324,8 @@
                             <input class="shadow form-control" data-aos="zoom-in" value="{{$defesa->hora}}" data-aos-duration="800" data-aos-delay="800" type="time" name="hora_defesa" style="background-color: #ffffff;">
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                            <button class="btn" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: rgb(248,248,248);margin-bottom: 10px;">Actualizar</button>
-                            <a class="btn shadow-lg" data-aos="fade-right" href="{{ ('/defesa/index') }}" data-aos-duration="800" data-aos-delay="800" type="button" style="background-color: #da2d22;color: rgb(255,255,255);margin-bottom: 10px;">Cancelar</a>
+                            <button class="btn btn-sm d-flex align-items-center shadown-lg btn-actualizar" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit"><ion-icon name="create"></ion-icon>&nbsp;Actualizar</button>
+                            <a class="btn btn-sm d-flex align-items-center shadow-lg btn-cancelar" data-aos="fade-right" href="{{ ('/defesa/index') }}" data-aos-duration="800" data-aos-delay="800" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                         </div>
                     </form>
 

@@ -8,6 +8,9 @@ use App\Models\Galeria;
 use App\Models\DefesaParticipante;
 use App\Models\Monografia;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
+use Dompdf\Dompdf;
 use Illuminate\Http\Response;
 
 class DefesaController extends Controller
@@ -215,6 +218,7 @@ class DefesaController extends Controller
             $addMonografia['msgErrorName'] = 'Este estudante já tem uma defesa marcada';
             return redirect()->back()->with($addMonografia);
         }
+        $defesa->codigo_estudante = $request->input('num_estudante');
         $defesa->tema = $request->input('tema');
         $defesa->curso = $request->input('curso');
         $defesa->resumo = $request->input('descricao');
@@ -243,6 +247,15 @@ class DefesaController extends Controller
     {
         $defesas = Defesa::findOrFail($id);
         return view('admin.showdefesas', ['defesas'=> $defesas]);
+    }
+
+        /**
+     * Funcao para vizualizar dados de uma defesa.
+     */
+    public function showImprim($id)
+    {
+        $defesas = Defesa::findOrFail($id);
+        return view('admin.imprimirdef', ['defesas'=> $defesas]);
     }
 
     /**
@@ -321,6 +334,28 @@ class DefesaController extends Controller
 
     }
 
+ /*   public function imprimir($id){
+        $defesas = Defesa::findOrFail($id);
+        $pdf = PDF::loadView('admin.imprimirdef', ['defesas'=> $defesas]);    
+        return $pdf->download('demo.pdf');
+    }*/
+
+    public function imprimir($id){
+        $dompdf = new Dompdf();
+        //lendo o aquivo html correspondente 
+        //$html = file_get_contents('../resources/views/admin/imprimirdef.blade.php');
+        $defesas = Defesa::findOrFail($id);
+        $html = View('admin.imprimirdef', ['defesas'=> $defesas]);
+        //Inserindo o HTML que queremos converter 
+        $dompdf->loadHtml($html);
+        //Definindo o papel e a orientacao 
+        //$dompdf->setPaper('A4', 'Portrait');
+        $dompdf->setPaper('A4', 'Landscape');
+        //Renderizando o HTML como PDF
+        $dompdf->render();
+        //Enviando o PDF para o browser
+        $dompdf->stream();
+    }
 
     /**
      * Funcao para eliminar uma defesa.

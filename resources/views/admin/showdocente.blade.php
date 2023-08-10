@@ -250,10 +250,10 @@
                             <div class="col-xl-3" style="height: 40px;">
                                 <div class="form-group d-flex justify-content-end align-items-end" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="margin-right: 25px;">
                                     @if(auth()->user()->is_drcurso)
-                                    <a class="btn" href="/usuario/editardocente/{{$docente->userDocente->id}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Editar</a>
-                                    <a class="btn" href="{{('/usuario/docentes')}}" type="button" style="color: rgb(255,255,255);background-color: #da2d22;">Cancelar</a>
+                                    <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="/usuario/editardocente/{{$docente->userDocente->id}}" type="button"><ion-icon name="create"></ion-icon>Editar</a>
+                                    <a class="btn btn-sm d-flex align-items-center text-white btn-cancelar" href="{{('/usuario/docentes')}}" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                                     @elseif(auth()->user()->is_admin)
-                                    <a class="btn" href="{{('/usuario/docenteview')}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                                    <a class="btn btn-sm d-flex align-items-center text-white btn-actualizar" href="{{('/usuario/docenteview')}}" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
                                     @endif
                                 </div>
                             </div>

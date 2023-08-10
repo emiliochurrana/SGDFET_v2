@@ -120,3 +120,190 @@
   
 }
 
+.btn-cancelar{
+  background-color: #da2d22;
+  margin-bottom: 10px;
+}
+
+.btn-actualizar{
+  margin-right: 15px;
+  background-color: #0ccf94;
+  margin-bottom: 10px;
+}
+
+.btn-participar{
+  background-color: #68c7ef;
+  margin-right:20px;
+}
+
+.show-defesa{
+  height: 100%;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.show-defesa p{
+  color: #000000;
+}
+
+.show-defesa p i{
+  color: #68c7ef;
+}
+
+.show-defesa p strong {
+  color: #68c7ef;
+}
+
+.show-defesa-1{
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.show-defesa-2 {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.show-defesa-2 p {
+  color: #000000;
+}
+
+.show-defesa-2 i{
+  color: #68c7ef;
+}
+.show-defesa-2 strong {
+  color: #68c7ef;
+}
+
+.show-defesa-2 h6{
+  color: #68c7ef;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.show-monografia {
+  height: 100%;
+  padding-bottom: 0px;
+}
+
+.show-monografia p {
+  color: #000000;
+}
+.show-monografia i {
+  color: #68c7ef;
+}
+
+.show-monografia ion-icon{
+  color: #68c7ef;
+}
+.show-monografia strong {
+  color: #68c7ef;
+}
+
+.show-monografia-1{
+  max-width: 100%;
+  padding: 20px;
+}
+.show-monografia-2 {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.show-monografia-2 h6{
+  color: #3ba2dc;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.monografia-view {
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+
+.monografia-view h3 {
+  color: rgb(2,25,48);
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.monografia-view p {
+  margin-bottom: 5px;
+  color: rgb(2,25,48);
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.monografia-view ion-icon {
+  color: #68c7ef;
+}
+
+.footer-imagia span {
+  color: rgb(2,25,48);
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+}
+
+.card-monografia-back p{
+  margin-bottom: 5px;
+  color: rgb(2,25,48);
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.card-monografia-back ion-icon {
+  color: #68c7ef;
+}
+
+.text-titulo-1{
+  color: #68c7ef;
+}
+
+.defesa-front{
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+
+.defesa-front h3 {
+  color: rgb(2,25,48);
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.defesa-front p{
+  margin-bottom: 5px;
+  color: rgb(2,25,48);
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+}
+.defesa-front ion-icon {
+  color: #68c7ef;
+}
+
+.defesa-back{
+  padding-top: 0px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.defesa-back p{
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: rgb(2,25,48);
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+.defesa-back ion-icon {
+  color: #68c7ef;
+}
+
+.defesa-back i{
+  color: #68c7ef;
+}

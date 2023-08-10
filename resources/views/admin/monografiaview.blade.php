@@ -294,15 +294,15 @@
                                         <td>
                                             <div class="col d-flex align-items-center align-content-center">
                                                 @if(auth()->user()->is_drcurso)
-                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/monografia/edit/{{$mono->id}}" style="background-color: #0ccf94;color: rgb(242,244,245);margin-right: 10px;margin-top: 6px;"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
+                                                <a class="btn btn-sm d-flex align-items-center btn-actualizar" type="button" href="/monografia/edit/{{$mono->id}}"><ion-icon name="create"></ion-icon>&nbsp;Editar</a>
                                                 <form action="/monografia/delete/{{$mono->id}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm d-flex align-items-center" type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
+                                                    <button class="btn btn-sm d-flex align-items-center btn-eliminar" type="submit"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
 
                                                 </form>
                                                 @endif
-                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/monografia/showadmin/{{$mono->id}}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
+                                                <a class="btn btn-sm d-flex align-items-center btn-ver" type="button" href="/monografia/showadmin/{{$mono->id}}"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
                                             </div>
                                         </td>
                                     </tr>

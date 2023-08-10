@@ -284,10 +284,10 @@
                                                 <form action="/usuario/deletevisitante//{{ $user->id }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm d-flex align-items-center " type="submit" style="background-color: #f51616;color: rgb(243,246,248);margin-right: 10px;margin-top: 6px;"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
+                                                    <button class="btn btn-sm d-flex align-items-center btn-eliminar" type="submit"><ion-icon name="trash-outline"></ion-icon>&nbsp;Eliminar</button>
 
                                                 </form>
-                                                <a class="btn btn-sm d-flex align-items-center" type="button" href="/usuario/showvisitante/{{$user->id}}" style="background-color: #0280c6;color: rgb(243,246,248);margin-top: 6px;"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
+                                                <a class="btn btn-sm d-flex align-items-center btn-ver" type="button" href="/usuario/showvisitante/{{$user->id}}"><ion-icon name="eye"></ion-icon>&nbsp;Ver</a>
 
                                             </div>
                                         </td>

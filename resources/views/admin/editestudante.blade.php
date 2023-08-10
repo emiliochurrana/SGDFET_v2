@@ -328,8 +328,8 @@
                             </div>
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                            <button class="btn text-white shadow-lg" type="submit" style="margin-right: 15px;background-color: #0ccf94;">Actualizar</button>
-                            <a class="btn text-white shadow-lg" href="{{('/usuario/estudantes')}}" type="button" style="background-color: #f24f4f;">Cancelar</a>
+                            <button class="btn btn-sm d-flex align-items-center shadow-lg btn-actualizar" type="submit"><ion-icon name="create"></ion-icon>&nbsp;Actualizar</button>
+                            <a class="btn btn-sm d-flex align-items-center shadow-lg btn-cancelar" href="{{('/usuario/estudantes')}}" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                         </div>
                     </form>
 

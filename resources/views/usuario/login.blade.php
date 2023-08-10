@@ -150,7 +150,7 @@
                         
                     </div>
                 </main>
-                <div class="header-login-div" style="margin-top: -20px;">
+                <div class="header-login-div" style="margin-top: -50px;">
                     <h4 class="login-header"><strong>SISTEMA DE GESTÃO DE DEFESAS FET<br></strong></h4>
                     <img class="d-lg-flex" style="width: 260px;height: 55px;background-size: contain;" src="../img/card_img.png">
                 </div>

@@ -374,7 +374,7 @@
                 <h3 data-aos="zoom-in" data-aos-duration="400" data-aos-delay="400" style="font-family: Roboto, sans-serif;font-weight: bold;color: #3ba2dc;margin-left: 20px;">Detalhes da Defesa</h3>
             </div>
             <div class="col d-flex justify-content-end align-items-center align-content-center" style="padding-right: 40px;">
-                <a class="btn" href="{{('/defesas')}}" type="button" style="color: rgb(255,255,255);background-color: #0ccf94;margin-right: 15px;">Voltar</a>
+                <a class="btn btn-sm d-flex align-items-center text-white shadow btn-actualizar" href="{{('/defesas')}}" type="button"><ion-icon name="arrow-undo"></ion-icon>&nbsp;Voltar</a>
             </div>
         </div>
         <hr style="margin-top: 5px;background-color: #3ba2dc;">
@@ -382,31 +382,31 @@
             <div class="col-xl-4 offset-xl-0 d-xl-flex align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="height: 100%;">
                 <img class="rounded-circle img-fluid" style="background-size: cover;" src="/ficheiros/estudantes/fotos/{{$defesas->foto}}" width="300px" height="300px">
             </div>
-            <div class="col offset-xl-0" style="height: 100%;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;font-size: 18px;"></i>&nbsp;Nome: {{$defesas->autor}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Tema: {{$defesas->tema}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Curso: {{$defesas->curso}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-book-open" style="color: #68c7ef;"></i>&nbsp;Nivel: {{$defesas->nivel}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;"></i>&nbsp;Supervisor: {{$defesas->supervisor}}&nbsp;</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;"></i>&nbsp;Oponente: {{$defesas->oponente}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-user-alt" style="color: #68c7ef;"></i>&nbsp;Presidente: {{$defesas->presidente}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-home" style="color: #68c7ef;"></i>&nbsp;Sala: {{$defesas->sala}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fa fa-calendar" style="color: #68c7ef;"></i>&nbsp;Data: {{date('d/m/y', strtotime($defesas->data))}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-clock" style="color: #68c7ef;"></i>&nbsp;Hora: {{date('h:i', strtotime($defesas->hora))}}</p>
-                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="color: #000000;"><i class="fas fa-users" style="color: #68c7ef;"></i>&nbsp;{{count($defesas->participanteDefesa)}} participantes</p>
+            <div class="col offset-xl-0 show-defesa">
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;<strong>Nome:</strong> {{$defesas->autor}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;<strong>Tema:</strong> {{$defesas->tema}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;<strong>Curso:</strong> {{$defesas->curso}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-book-open"></i>&nbsp;<strong>Nivel:</strong> {{$defesas->nivel}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;<strong>Supervisor:</strong> {{$defesas->supervisor}}&nbsp;</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;<strong>Oponente:</strong> {{$defesas->oponente}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-user-alt"></i>&nbsp;<strong>Presidente:</strong> {{$defesas->presidente}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-home"></i>&nbsp;<strong>Sala:</strong> {{$defesas->sala}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fa fa-calendar"></i>&nbsp;<strong>Data:</strong> {{date('d/m/y', strtotime($defesas->data))}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-clock"></i>&nbsp;<strong>Hora:</strong> {{date('h:i', strtotime($defesas->hora))}}</p>
+                <p data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450"><i class="fas fa-users"></i>&nbsp;{{count($defesas->participanteDefesa)}} participantes</p>
                 <div class="col d-flex align-items-start align-content-start">
                     <form action="/defesa/join/{{$defesas->id}}" method="post">
                         @csrf
-                        <a class="btn btn-secondary text-white border rounded" id="event-submit" data-aos-duration="450" data-aos-delay="450" data-bs-hover-animate="tada" href="/defesa/join/{{$defesas->id}}" onclick="event.preventDefault(); this.closest('form').submit();" style="background-color: #68c7ef;margin-right:20px;">Participar</a>
+                        <a class="btn btn-sm d-flex align-items-center text-white btn-participar" id="event-submit" data-aos-duration="450" data-aos-delay="450" data-bs-hover-animate="tada" href="/defesa/join/{{$defesas->id}}" onclick="event.preventDefault(); this.closest('form').submit();"><ion-icon name="checkmark"></ion-icon>&nbsp;Participar</a>
                     </form>
                     <!--<a class="btn btn-secondary text-white border rounded" data-aos-duration="450" data-aos-delay="450" data-bs-hover-animate="tada" href="/participantes/{{$defesas->id}}"  style="background-color: #68c7ef;">Participantes</a>-->
                 </div>
             </div>
         </div>
-        <div class="row" style="padding-top: 5px;padding-bottom: 20px;padding-right: 20px;padding-left: 20px;">
-            <div class="col-xl-12 offset-xl-0" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="padding-right: 40px;padding-left: 40px;">
-                <h5 style="color: #68c7ef;font-family: Roboto, sans-serif;font-weight: bold;">Resumo</h5>
-                <p class="text-justify" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;padding-left: 15px;">
+        <div class="row show-defesa-1">
+            <div class="col-xl-12 offset-xl-0 show-defesa-2" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450">
+                <h6>Resumo</h6>
+                <p class="text-justify" data-aos="zoom-in" data-aos-duration="450" data-aos-delay="450" style="font-family: Roboto, sans-serif;padding-left: 15px;color:#7b7b7b;">
                     {{$defesas->resumo}} <br>
                 </p>
             </div>

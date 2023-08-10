@@ -269,9 +269,8 @@
                                 </div>
                             </div>
                             <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-end">
-                                <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;margin-bottom: 10px;">Actualizar</button>
-                                <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{('/usuario/drcursos')}}" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
-
+                                <button class="btn btn-sm d-flex align-items-center shadow btn-actualizar" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit"><ion-icon name="create"></ion-icon>&nbsp;Actualizar</button>
+                                <a class="btn btn-sm d-flex align-items-center shadow btn-cancelar" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{('/usuario/drcursos')}}"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                             </div>
                         </form>
                     </div>

@@ -347,9 +347,9 @@
                             <input class="shadow form-control" id="monografia" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800" type="hidden" name="monografia" style="background-color: #ffffff;">
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-center">
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;background-color: #0ccf94;color: #ffffff;margin-bottom: 10px;">Cadastrar</button>
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: #3f9bc3;margin-right: 20px;color: #ffffff;margin-bottom: 10px;">Limpar Campos</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" href="{{ ('/defesa/index') }}" data-aos-delay="800" type="button" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
+                            <button class="btn btn-sm d-flex align-items-center btn-actualizar shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit"><ion-icon name="add"></ion-icon>&nbsp;Cadastrar</button>
+                            <button class="btn btn-sm d-flex align-items-center btn-limpar shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset">Limpar Campos</button>
+                            <a class="btn btn-sm d-flex align-items-center shadow btn-cancelar" data-aos="fade-right" data-aos-duration="800" href="{{ ('/defesa/index') }}" data-aos-delay="800" type="button"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                         </div>
                         <label class="d-flex" style="margin-top: 20px;padding: 10px;padding-left: 20px;background-color: #aff5ff;">Obs: O * representa campos obrigatórios<br></label>
 

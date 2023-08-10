@@ -100,10 +100,12 @@ use Illuminate\Support\Facades\Route;
             Route::get('/defesa/index', [DefesaController::class, 'index'])->name('defesasview')->middleware('auth');
             Route::get('/defesa/edit/{id}', [DefesaController::class, 'edit'])->name('editdefesa')->middleware('auth'); //rota para carregar o formulario para editas dados da defesa
             Route::get('/defesa/showadmin/{id}', [DefesaController::class, 'showAdmin'])->name('showadmindefesa')->middleware('auth'); //rota para trazer de forma detalhada os dados de uma determinada defesa 
+            Route::get('/defesa/showimprim/{id}', [DefesaController::class, 'showImprim'])->name('showimprimdefesa')->middleware('auth'); //rota para trazer de forma detalhada os dados de uma determinada defesa 
             Route::get('/defesa/showantes/{id}', [DefesaController::class, 'showAntes'])->name('showuserdefesantes'); //rota para trazer de forma detalhada os dados de uma determinada defesa 
             Route::get('/defesa/showdepois/{id}', [DefesaController::class, 'showDepois'])->name('showuserdefesadepois')->middleware('auth'); //rota para trazer de forma detalhada os dados de uma determinada defesa 
             Route::get('/defesas/admin', [DefesaController::class,'pesquisaAdmin']); //rota de pesquisa de Defesas
-            Route::get('/estudante/defesa', [DefesaController::class,'retorna'])->name('getestudante')->middleware('auth'); //rota de pesquisa de Defesas
+            Route::get('/estudante/defesa', [DefesaController::class,'retorna'])->name('getestudante')->middleware('auth'); //rota de pesquisa de 
+            Route::get('/defesa/imprimi/{id}', [DefesaController::class, 'imprimir'])->name('defesaimprimir')->middleware('auth');
 
     //Rota get para comentario
             Route::get('/comentarios', [ComentarioController::class, 'index'])->name('comentarios')->middleware('auth');
@@ -160,11 +162,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/usuario/perfilestudante/{id}', [UserController::class, 'perfilEstudante'])->name('perfilestudante')->middleware('auth');//rota para carregar perfil do estudante
         Route::get('/usuario/perfildocente/{id}', [UserController::class, 'perfilDocente']);//rota para carregar dados do estudante
         Route::get('/usuario/editperfilestudante/{id}', [UserController::class, 'editPerfilEstudante'])->name('editperfilestudante')->middleware('auth');//rota para carregar o formulario de edicao dos dados do perfil do estudante
-        //Route::get('/usuario/editperfilestudante/{id}', [DadosController::class, 'edit'])->name('editdados');//rota para carregar o formulario de edicao dos dados do perfil do estudante
-        //Route::get('/usuario/editperfildocente{id}', [UserController::class, 'editPerfilDocente'])->name('editperfildocente')->middleware('auth'); //rota para carregar o formulario de dicao dos dados do perfil do docente
         Route::get('/usuario/showdocente/{id}', [UserController::class, 'showDocente'])->name('showdocente')->middleware('auth');
         Route::get('/usuario/showestudante/{id}', [UserController::class, 'showEstudante'])->name('showestudante')->middleware('auth');
-        //Route::get('/usuario/showestudante/{id}', [DadosController::class, 'show'])->name('showdados');
 
         Route::get('/usuario/visitante', [UserController::class, 'indexVisitantes'])->name('visitanteview')->middleware('auth');
       
@@ -186,15 +185,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/usuario/logout', [AuthController::class, 'logout']); //rota para logout/terminar sessao
         
 //POST
-    //Rotas post para usuarios 
-        
-         
-        
-        
-    //Rotas post para monografias     
-        
-    
-    //Rotas post para defesas 
+
         
         
     //Rotas post para dados 
@@ -203,7 +194,6 @@ use Illuminate\Support\Facades\Route;
         Route::post('/admin', [UserController::class, 'storeAdmin']);//rota para envio dos dasdos de cadastro do administrador do sistema 
     //Rotas post para comentarios
         Route::post('/usuario/comentario', [ComentarioController::class, 'store'])->middleware('auth');//rota para envio dos dados do comentario do ussuario logado na base de dados 
-        //Route::post('/comentario', [ComentarioController::class, 'storeComentario']);//rota para envio dos dados do comentario do usuario nao logado na base de dados
 
         
 //PUT/PUTCH

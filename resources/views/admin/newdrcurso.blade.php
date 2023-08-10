@@ -332,9 +332,9 @@
                             </div>
                         </div>
                         <div class="form-group d-md-flex d-lg-flex d-xl-flex justify-content-end align-items-center">
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit" style="margin-right: 20px;color: #ffffff;background-color: #0ccf94;margin-bottom: 10px;">Cadastrar</button>
-                            <button class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset" style="background-color: rgb(63,155,195);margin-right: 20px;color: #ffffff;margin-bottom: 10px;">Limpar Campos</button>
-                            <a class="btn shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{ ('/usuario/drcursos') }}" style="background-color: #da2d22;color: #ffffff;margin-bottom: 10px;">Cancelar</a>
+                            <button class="btn btn-sm d-flex align-items-center btn-actualizar shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="submit"><ion-icon name="add"></ion-icon>&nbsp;Cadastrar</button>
+                            <button class="btn btn-sm d-flex align-items-center btn-limpar shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="reset">Limpar Campos</button>
+                            <a class="btn btn-sm d-flex align-items-center btn-cancelar shadow" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800" type="button" href="{{ ('/usuario/drcursos') }}"><ion-icon name="close-outline"></ion-icon>&nbsp;Cancelar</a>
                         </div>
                         <label class="d-flex" style="margin-top: 20px;padding: 10px;padding-left: 20px;background-color: #aff5ff;">Obs: O * representa campos obrigatórios<br></label>
                     </form>
