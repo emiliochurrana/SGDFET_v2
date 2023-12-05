@@ -95,6 +95,7 @@
         .col-titulo{
             margin-top: 0;
             padding: 0;
+            margin-bottom: 0;
         }
         .col-titulo h2{
             color: #000;
@@ -104,7 +105,7 @@
             margin: 0;
         }
 
-        h2{
+        h3{
             text-transform: uppercase !important;
             display: flex !important;
             justify-content: center;
@@ -129,7 +130,7 @@
             font-size: 12px;
         }
         .p{
-            font-size: 14px;
+            font-size: 12px;
         }
         .container-end{
             display: flex;
@@ -336,14 +337,14 @@
                                                 <div class="card shadow"> 
                                                 <div class=" modal-body">
                                                     <div class="imagem-logoUp">
-                                                        <img  class="img-header-up" src="../../img/up_logo.jpeg"/>
+                                                        <img  class="img-header-up" src="'.public_path().'/public/img/up_logo.jpeg"/>
                                                     </div>
                                                     <div class="imagem-card">
-                                                        <img class="img-header-fet" src="../../img/card_img.png" />
+                                                        <img class="img-header-fet" src="http://127.0.0.1:8000/sgdfet_v2/ img/card_img.png" />
                                                     </div>
                                                 </div>
                                                 <div class="col-titulo">   
-                                                        <h2>CURSO DE LICENCIATURA EM {{$defesas->curso}}</h2>
+                                                        <h3>CURSO DE LICENCIATURA EM {{$defesas->curso}}</h3>
                                                 </div>
                                                 <div class="linha">
                                                     <hr class="linha-1">
@@ -363,7 +364,7 @@
                                                 </div>
                                               
                                                 <div class="col-titulo">
-                                                        <h2>CALENDARIO DE DEFESA DE MONOGRAFIA CIENTIFICA</h2>
+                                                        <h3>CALENDARIO DE DEFESA DE MONOGRAFIA CIENTIFICA</h3>
                                                 </div>
                                                 
                                             <div class="card-body">
@@ -388,7 +389,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="img-perfil">
-                                                                <img src="/ficheiros/estudantes/fotos/{{$defesas->foto}}">&nbsp;{{$defesas->autor}}
+                                                                <img src="'.public_path().'/ficheiros/estudantes/fotos/{{$defesas->foto}}">&nbsp;{{$defesas->autor}}
                                                                     </div>
                                                             </td>
                                                                 <td>{{$defesas->codigo_estudante}}</td>
